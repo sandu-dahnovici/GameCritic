@@ -14,6 +14,8 @@ namespace GameCritic.Domain.Entities
 
         public decimal Price { get; set; }
 
+        public int Playtime { get; set; }
+
         public double? Score { get; set; }
 
         public byte[] RowVersion { get; set; }

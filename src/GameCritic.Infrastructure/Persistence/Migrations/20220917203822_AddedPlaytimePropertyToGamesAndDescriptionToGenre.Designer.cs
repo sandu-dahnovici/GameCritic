@@ -4,6 +4,7 @@ using GameCritic.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameCritic.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(GameCriticDbContext))]
-    partial class GameCriticDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220917203822_AddedPlaytimePropertyToGamesAndDescriptionToGenre")]
+    partial class AddedPlaytimePropertyToGamesAndDescriptionToGenre
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,6 +257,9 @@ namespace GameCritic.Infrastructure.Persistance.Migrations
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Playtime")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasPrecision(3)
                         .HasColumnType("money");
@@ -347,6 +352,10 @@ namespace GameCritic.Infrastructure.Persistance.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
