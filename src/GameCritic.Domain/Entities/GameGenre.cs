@@ -1,4 +1,4 @@
-﻿namespace GameCritic.Domain
+﻿namespace GameCritic.Domain.Entities
 {
     public class GameGenre : BaseEntity
     {

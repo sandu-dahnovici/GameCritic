@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCritic.API", "src\GameCritic.API\GameCritic.API.csproj", "{FB95AE28-3822-4D4D-89CE-E7F26A0A7A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCritic.Domain", "src\GameCritic.Domain\GameCritic.Domain.csproj", "{72E86E48-1570-44FC-A921-6D11A71BFB93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCritic.Domain", "src\GameCritic.Domain\GameCritic.Domain.csproj", "{72E86E48-1570-44FC-A921-6D11A71BFB93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCritic.Infrastructure", "src\GameCritic.Infrastructure\GameCritic.Infrastructure.csproj", "{4ED705ED-4432-4DA1-AC09-37B439E2A962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCritic.Application", "src\GameCritic.Application\GameCritic.Application.csproj", "{EA58DEAF-2B2C-4E56-994E-1CB068F297D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{72E86E48-1570-44FC-A921-6D11A71BFB93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72E86E48-1570-44FC-A921-6D11A71BFB93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72E86E48-1570-44FC-A921-6D11A71BFB93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED705ED-4432-4DA1-AC09-37B439E2A962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED705ED-4432-4DA1-AC09-37B439E2A962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED705ED-4432-4DA1-AC09-37B439E2A962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED705ED-4432-4DA1-AC09-37B439E2A962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA58DEAF-2B2C-4E56-994E-1CB068F297D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA58DEAF-2B2C-4E56-994E-1CB068F297D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA58DEAF-2B2C-4E56-994E-1CB068F297D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA58DEAF-2B2C-4E56-994E-1CB068F297D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

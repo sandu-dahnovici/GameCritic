@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameCritic.Domain
+namespace GameCritic.Domain.Entities
 {
     public class Game : BaseEntity
     {
@@ -10,19 +10,21 @@ namespace GameCritic.Domain
 
         public string Summary { get; set; }
 
-        public string? ImagePath { get; set; }
+        public string? ImageName { get; set; }
 
         public decimal Price { get; set; }
 
-        public double Score { get; set; }
+        public double? Score { get; set; }
+
+        public byte[] RowVersion { get; set; }
 
         public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
 
-        ICollection<Review> Reviews { get; set; }
+        public ICollection<Review> Reviews { get; set; }
 
-        ICollection<GameAward> GameAwards { get; set; }
+        public ICollection<GameAward> GameAwards { get; set; }
 
-        ICollection<GameGenre> GameGenres { get; set; }
+        public ICollection<GameGenre> GameGenres { get; set; }
     }
 }

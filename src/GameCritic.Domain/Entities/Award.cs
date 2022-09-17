@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameCritic.Domain
+namespace GameCritic.Domain.Entities
 {
     public class Award : BaseEntity
     {
@@ -8,6 +8,6 @@ namespace GameCritic.Domain
 
         public int Year { get; set; }
 
-        public ICollection<GameAward> GameAwards { get; set; } 
+        public ICollection<GameAward> GameAwards { get; set; }
     }
 }

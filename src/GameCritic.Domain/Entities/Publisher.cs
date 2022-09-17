@@ -1,4 +1,4 @@
-﻿namespace GameCritic.Domain
+﻿namespace GameCritic.Domain.Entities
 {
     public class Publisher : BaseEntity
     {
@@ -8,9 +8,11 @@
 
         public int FoundationYear { get; set; }
 
-        public string WebsiteURL { get; set; }
+        public string? WebsiteURL { get; set; }
 
         public int NumberOfEmployees { get; set; }
+
+        public ICollection<Game> Games { get; set; }
 
     }
 }

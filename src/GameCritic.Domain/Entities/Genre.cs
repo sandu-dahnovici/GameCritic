@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameCritic.Domain
+namespace GameCritic.Domain.Entities
 {
     public class Genre : BaseEntity
     {
