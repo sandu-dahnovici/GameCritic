@@ -1,0 +1,16 @@
+﻿using GameCritic.Domain.Entities;
+using GameCritic.Domain.Auth;
+
+namespace GameCritic.Application.Common.Interfaces
+{
+    public interface IUnitOfWork : IDisposable
+    {
+        IGenericRepository<Award> AwardRepository { get; }
+        IGenericRepository<Game> GameRepository { get; }
+        IGenericRepository<GameAward> GameAwardRepository { get; }
+        IGenericRepository<GameGenre> GameGenreRepository { get; }
+        IGenericRepository<Genre> GenreRepository { get; }
+        IGenericRepository<Publisher> PublisherRepository { get; }
+        IGenericRepository<Review> ReviewRepository { get; }
+    }
+}

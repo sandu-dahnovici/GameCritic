@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GameCritic.Domain.Entities;
 
-namespace GameCritic.Infrastructure.Persistance.Configurations
+namespace GameCritic.Infrastructure.Persistence.Configurations
 {
     public class GenreConfig : IEntityTypeConfiguration<Genre>
     {

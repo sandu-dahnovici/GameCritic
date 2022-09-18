@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GameCritic.Infrastructure.Persistance.Migrations
+namespace GameCritic.Infrastructure.Persistence.Migrations
 {
     public partial class Initial_Migration : Migration
     {

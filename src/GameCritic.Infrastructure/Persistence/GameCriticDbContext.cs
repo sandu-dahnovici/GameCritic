@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GameCritic.Domain.Entities;
 using GameCritic.Domain.Auth;
-using GameCritic.Infrastructure.Persistance.Configurations;
+using GameCritic.Infrastructure.Persistence.Configurations;
 
-namespace GameCritic.Infrastructure.Persistance
+namespace GameCritic.Infrastructure.Persistence
 {
     public class GameCriticDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {

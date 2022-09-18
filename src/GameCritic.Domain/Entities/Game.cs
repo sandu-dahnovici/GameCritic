@@ -23,9 +23,9 @@ namespace GameCritic.Domain.Entities
         public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
 
-        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
 
-        public ICollection<GameAward> GameAwards { get; set; }
+        public ICollection<GameAward>? GameAwards { get; set; }
 
         public ICollection<GameGenre> GameGenres { get; set; }
     }

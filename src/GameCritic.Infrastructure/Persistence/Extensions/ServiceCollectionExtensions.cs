@@ -2,9 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using GameCritic.Domain.Auth;
+using GameCritic.Infrastructure.Persistence.Repositories;
+using GameCritic.Application.Common.Interfaces;
 
-
-namespace GameCritic.Infrastructure.Persistance.Extensions
+namespace GameCritic.Infrastructure.Persistence.Extensions
 {
     public static class ServiceCollectionExtensions
     {
@@ -21,7 +22,8 @@ namespace GameCritic.Infrastructure.Persistance.Extensions
             })
             .AddEntityFrameworkStores<GameCriticDbContext>();
 
-            //services.AddScoped<IRepository, EFCoreRepository>();
+
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
             //services.AddTransient<IAuthenticationService, AuthenticationService>();
             //services.AddTransient<ITokenService, TokenService>();
 

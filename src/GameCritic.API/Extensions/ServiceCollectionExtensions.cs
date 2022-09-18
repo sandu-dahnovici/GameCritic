@@ -1,5 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
-using GameCritic.Infrastructure.Persistance.Extensions;
+using GameCritic.Infrastructure.Persistence.Extensions;
 using GameCritic.Application.Extensions;
 
 namespace GameCritic.API.Extensions

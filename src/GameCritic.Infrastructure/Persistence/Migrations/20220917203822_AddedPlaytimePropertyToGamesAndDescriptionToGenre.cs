@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GameCritic.Infrastructure.Persistance.Migrations
+namespace GameCritic.Infrastructure.Persistence.Migrations
 {
     public partial class AddedPlaytimePropertyToGamesAndDescriptionToGenre : Migration
     {

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GameCritic.Application\GameCritic.Application.csproj" />
     <ProjectReference Include="..\GameCritic.Domain\GameCritic.Domain.csproj" />
   </ItemGroup>
 

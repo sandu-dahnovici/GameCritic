@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using GameCritic.Domain.Entities;
 using GameCritic.Domain.Auth;
 
-namespace GameCritic.Infrastructure.Persistance.Configurations
+namespace GameCritic.Infrastructure.Persistence.Configurations
 {
     public class UserConfig : IEntityTypeConfiguration<User>
     {
