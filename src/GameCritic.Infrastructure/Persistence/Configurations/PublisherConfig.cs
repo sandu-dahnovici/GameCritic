@@ -24,9 +24,6 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(30);
 
-            builder.Property(p => p.Country)
-                .HasMaxLength(100);
-
         }
     }
 }

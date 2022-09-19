@@ -1,6 +1,6 @@
 ﻿using GameCritic.Domain.Entities;
 
-namespace GameCritic.Application.Common.Interfaces
+namespace GameCritic.Application.Common.Interfaces.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {

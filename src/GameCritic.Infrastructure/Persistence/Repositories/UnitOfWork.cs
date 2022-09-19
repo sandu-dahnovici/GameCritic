@@ -1,4 +1,4 @@
-﻿using GameCritic.Application.Common.Interfaces;
+﻿using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Domain.Entities;
 
 namespace GameCritic.Infrastructure.Persistence.Repositories
@@ -82,6 +82,11 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
                     _reviewRepository = new GenericRepository<Review>(_dbContext);
                 return _reviewRepository;
             }
+        }
+
+        public async Task SaveAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
 
         private bool disposedValue;

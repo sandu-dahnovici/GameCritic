@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using GameCritic.Domain.Auth;
 using GameCritic.Infrastructure.Persistence.Repositories;
-using GameCritic.Application.Common.Interfaces;
+using GameCritic.Application.Common.Interfaces.Repositories;
 
 namespace GameCritic.Infrastructure.Persistence.Extensions
 {

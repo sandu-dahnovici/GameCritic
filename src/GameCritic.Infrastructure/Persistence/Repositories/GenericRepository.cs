@@ -1,4 +1,4 @@
-﻿using GameCritic.Application.Common.Interfaces;
+﻿using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 

@@ -16,7 +16,7 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
                 .IsRequired();
 
             builder.Property(r => r.Comment)
-                .HasMaxLength(700);
+                .HasMaxLength(1000);
         }
     }
 }

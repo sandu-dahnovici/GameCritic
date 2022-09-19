@@ -22,6 +22,10 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
             builder.Property(g => g.Score)
                 .HasPrecision(2);
 
+            builder.Property(g => g.Summary)
+                .IsRequired()
+                .HasMaxLength(2000);
+
             builder.Property(g => g.Price)
                 .HasColumnType("money")
                 .HasPrecision(3);

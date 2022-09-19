@@ -1,7 +1,7 @@
 ﻿using GameCritic.Domain.Entities;
 using GameCritic.Domain.Auth;
 
-namespace GameCritic.Application.Common.Interfaces
+namespace GameCritic.Application.Common.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -12,5 +12,6 @@ namespace GameCritic.Application.Common.Interfaces
         IGenericRepository<Genre> GenreRepository { get; }
         IGenericRepository<Publisher> PublisherRepository { get; }
         IGenericRepository<Review> ReviewRepository { get; }
+        Task SaveAsync();
     }
 }
