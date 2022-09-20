@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using GameCritic.Application.App.Dtos;
+using GameCritic.Application.App.Queries.Games;
 
 namespace GameCritic.API.Controllers
 {
@@ -16,6 +18,10 @@ namespace GameCritic.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public void Get() { }
+        public async Task<GameDto> GetById(int id)
+        {
+            var gameDto = await _mediator.Send(new GetGameByIdQuery() { GameId = id });
+            return gameDto;
+        }
     }
 }

@@ -36,9 +36,9 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             return _entities.ToList();
         }
 
-        public TEntity GetById(int id)
+        public async Task<TEntity> GetById(int id)
         {
-            return _entities.Find(id);
+            return await _entities.FindAsync(id);
         }
 
         public void Update(TEntity entity)

@@ -22,6 +22,9 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
             builder.Property(g => g.Score)
                 .HasPrecision(2);
 
+            builder.Property(g => g.Playtime)
+                .HasPrecision(2);
+
             builder.Property(g => g.Summary)
                 .IsRequired()
                 .HasMaxLength(2000);

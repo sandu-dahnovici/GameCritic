@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="App\Commands\" />
+    <Folder Include="App\CommandHandler\" />
     <Folder Include="Common\Interfaces\Services\" />
   </ItemGroup>
 
