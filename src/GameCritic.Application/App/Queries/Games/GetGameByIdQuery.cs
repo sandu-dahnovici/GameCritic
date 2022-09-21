@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using GameCritic.Application.App.Dtos;
+using GameCritic.Application.App.Dtos.Game;
 
 namespace GameCritic.Application.App.Queries.Games
 {

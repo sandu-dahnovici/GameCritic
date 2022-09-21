@@ -6,7 +6,7 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
     public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<Award> AwardRepository { get; }
-        IGenericRepository<Game> GameRepository { get; }
+        IGameRepository GameRepository { get; }
         IGenericRepository<GameAward> GameAwardRepository { get; }
         IGenericRepository<GameGenre> GameGenreRepository { get; }
         IGenericRepository<Genre> GenreRepository { get; }

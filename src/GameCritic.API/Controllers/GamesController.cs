@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using GameCritic.Application.App.Dtos;
 using GameCritic.Application.App.Queries.Games;
+using GameCritic.Application.App.Dtos.Game;
 
 namespace GameCritic.API.Controllers
 {

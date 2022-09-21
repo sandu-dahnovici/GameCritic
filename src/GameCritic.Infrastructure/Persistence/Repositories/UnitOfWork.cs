@@ -8,7 +8,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
         private readonly GameCriticDbContext _dbContext;
 
         private IGenericRepository<Award> _awardRepository;
-        private IGenericRepository<Game> _gameRepository;
+        private IGameRepository _gameRepository;
         private IGenericRepository<GameAward> _gameAwardRepository;
         private IGenericRepository<GameGenre> _gameGenreRepository;
         private IGenericRepository<Genre> _genreRepository;
@@ -25,12 +25,12 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             }
         }
 
-        public IGenericRepository<Game> GameRepository
+        public IGameRepository GameRepository
         {
             get
             {
                 if (_gameRepository == null)
-                    _gameRepository = new GenericRepository<Game>(_dbContext);
+                    _gameRepository = new GameRepository(_dbContext);
                 return _gameRepository;
             }
         }

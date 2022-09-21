@@ -1,4 +1,7 @@
-﻿namespace GameCritic.Application.App.Dtos
+﻿using GameCritic.Application.App.Dtos.Publisher;
+using GameCritic.Application.App.Dtos.GameAward;
+
+namespace GameCritic.Application.App.Dtos.Game
 {
     public class GameDto
     {
@@ -18,6 +21,8 @@
 
         public double? Score { get; set; }
 
-        public int PublisherId { get; set; }
+        public PublisherDto Publisher { get; set; }
+
+        public IEnumerable<GameAwardForGameDto> Awards { get; set; }
     }
 }

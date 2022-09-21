@@ -2,7 +2,8 @@
 using AutoMapper;
 using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Application.App.Queries.Games;
-using GameCritic.Application.App.Dtos;
+using GameCritic.Application.App.Dtos.Game;
+using GameCritic.Application.App.Dtos.GameAward;
 
 namespace GameCritic.Application.App.QueryHandler.Games
 {
@@ -19,7 +20,7 @@ namespace GameCritic.Application.App.QueryHandler.Games
 
         public async Task<GameDto> Handle(GetGameByIdQuery request, CancellationToken cancellationToken)
         {
-            var game = await _unitOfWork.GameRepository.GetById(request.GameId);
+            var game = await _unitOfWork.GameRepository.GetGame(g => g.Id == request.GameId);
             var gameDto = _mapper.Map<GameDto>(game);
             return gameDto;
         }

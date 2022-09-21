@@ -1,6 +1,7 @@
 ﻿using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace GameCritic.Infrastructure.Persistence.Repositories
 {
@@ -23,9 +24,9 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
         public void Delete(int id)
         {
             var entity = _entities.Find(id);
-            if(entity == null)
+            if (entity == null)
             {
-                throw new Exception($"{typeof(TEntity)} with id { id } is not found");
+                throw new Exception($"{typeof(TEntity)} with id {id} is not found");
             }
 
             _entities.Remove(entity);
@@ -39,6 +40,17 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
         public async Task<TEntity> GetById(int id)
         {
             return await _entities.FindAsync(id);
+        }
+
+        public async Task<TEntity> GetWithInclude(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> entities = _entities;
+
+            if (includeProperties != null)
+                entities = includeProperties.Aggregate(entities,
+                    (current, include) => current.Include(include));
+
+            return await entities.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
         public void Update(TEntity entity)

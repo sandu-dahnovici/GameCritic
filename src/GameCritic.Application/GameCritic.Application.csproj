@@ -23,6 +23,9 @@
   <ItemGroup>
     <Folder Include="App\Commands\" />
     <Folder Include="App\CommandHandler\" />
+    <Folder Include="App\Dtos\GameGenre\" />
+    <Folder Include="App\Dtos\Genre\" />
+    <Folder Include="App\Dtos\Review\" />
     <Folder Include="Common\Interfaces\Services\" />
   </ItemGroup>
 
