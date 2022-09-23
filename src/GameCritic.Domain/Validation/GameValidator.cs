@@ -12,7 +12,7 @@ namespace GameCritic.Domain.Validation
                 .MaximumLength(50);
             RuleFor(g => g.ReleaseDate)
                 .NotEmpty()
-                .InclusiveBetween(new DateTime(1990,1,1), DateTime.Now.Date);
+                .InclusiveBetween(new DateTime(1990, 1, 1), DateTime.Now.Date);
             RuleFor(g => g.Summary)
                 .NotEmpty()
                 .MinimumLength(50)

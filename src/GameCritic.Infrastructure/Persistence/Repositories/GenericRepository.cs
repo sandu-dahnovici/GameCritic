@@ -1,4 +1,7 @@
-﻿using GameCritic.Application.Common.Interfaces.Repositories;
+﻿using AutoMapper;
+using GameCritic.Application.Common.Interfaces.Repositories;
+using GameCritic.Application.Common.Models;
+using GameCritic.Application.Extensions;
 using GameCritic.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -9,11 +12,13 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
     {
         private readonly GameCriticDbContext _dbContext;
         private readonly DbSet<TEntity> _entities;
+        private readonly IMapper _mapper;
 
-        public GenericRepository(GameCriticDbContext dbContext)
+        public GenericRepository(GameCriticDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _entities = dbContext.Set<TEntity>();
+            _mapper = mapper;
         }
 
         public void Add(TEntity entity)
@@ -34,12 +39,17 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
         public List<TEntity> GetAll()
         {
-            return _entities.ToList();
+            return _entities.AsNoTracking().ToList();
         }
 
         public async Task<TEntity> GetById(int id)
         {
             return await _entities.FindAsync(id);
+        }
+
+        public async Task<PaginatedResult<TDto>> GetPagedData<TDto>(PagedRequest pagedRequest) where TDto : class
+        {
+            return await _entities.CreatePaginatedResultAsync<TEntity,TDto>(pagedRequest, _mapper);
         }
 
         public async Task<TEntity> GetWithInclude(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includeProperties)

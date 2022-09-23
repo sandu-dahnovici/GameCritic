@@ -2,8 +2,7 @@
 using AutoMapper;
 using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Application.App.Queries.Games;
-using GameCritic.Application.App.Dtos.Game;
-using GameCritic.Application.App.Dtos.GameAward;
+using GameCritic.Application.Common.Dtos.Game;
 
 namespace GameCritic.Application.App.QueryHandler.Games
 {

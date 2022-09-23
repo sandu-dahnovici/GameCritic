@@ -1,4 +1,5 @@
-﻿using GameCritic.Application.Common.Interfaces.Repositories;
+﻿using AutoMapper;
+using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Domain.Entities;
 
 namespace GameCritic.Infrastructure.Persistence.Repositories
@@ -6,6 +7,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly GameCriticDbContext _dbContext;
+        private readonly IMapper _mapper;
 
         private IGenericRepository<Award> _awardRepository;
         private IGameRepository _gameRepository;
@@ -20,7 +22,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_awardRepository == null)
-                    _awardRepository = new GenericRepository<Award>(_dbContext);
+                    _awardRepository = new GenericRepository<Award>(_dbContext,_mapper);
                 return _awardRepository;
             }
         }
@@ -30,7 +32,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_gameRepository == null)
-                    _gameRepository = new GameRepository(_dbContext);
+                    _gameRepository = new GameRepository(_dbContext,_mapper);
                 return _gameRepository;
             }
         }
@@ -40,7 +42,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_gameAwardRepository == null)
-                    _gameAwardRepository = new GenericRepository<GameAward>(_dbContext);
+                    _gameAwardRepository = new GenericRepository<GameAward>(_dbContext, _mapper);
                 return _gameAwardRepository;
             }
         }
@@ -49,7 +51,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_gameGenreRepository == null)
-                    _gameGenreRepository = new GenericRepository<GameGenre>(_dbContext);
+                    _gameGenreRepository = new GenericRepository<GameGenre>(_dbContext, _mapper);
                 return _gameGenreRepository;
             }
         }
@@ -59,7 +61,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_genreRepository == null)
-                    _genreRepository = new GenericRepository<Genre>(_dbContext);
+                    _genreRepository = new GenericRepository<Genre>(_dbContext, _mapper);
                 return _genreRepository;
             }
         }
@@ -69,7 +71,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_publisherRepository == null)
-                    _publisherRepository = new GenericRepository<Publisher>(_dbContext);
+                    _publisherRepository = new GenericRepository<Publisher>(_dbContext, _mapper);
                 return _publisherRepository;
             }
         }
@@ -79,7 +81,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_reviewRepository == null)
-                    _reviewRepository = new GenericRepository<Review>(_dbContext);
+                    _reviewRepository = new GenericRepository<Review>(_dbContext, _mapper);
                 return _reviewRepository;
             }
         }
@@ -91,9 +93,10 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
         private bool disposedValue;
 
-        public UnitOfWork(GameCriticDbContext dbContext)
+        public UnitOfWork(GameCriticDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         protected virtual void Dispose(bool disposing)

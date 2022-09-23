@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameCritic.Application.App.Dtos.Award
+namespace GameCritic.Application.Common.Dtos.Award
 {
-    public class AwardForGameDto 
+    public class ListAwardDto 
     {
         public int Id { get; set; }
 

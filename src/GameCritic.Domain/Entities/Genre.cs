@@ -7,5 +7,7 @@
         public string? Description { get; set; }
 
         public ICollection<GameGenre> GameGenres { get; set; }
+
+        
     }
 }

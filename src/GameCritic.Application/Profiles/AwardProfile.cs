@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GameCritic.Domain.Entities;
-using GameCritic.Application.App.Dtos.Award;
+using GameCritic.Application.Common.Dtos.Award;
 
 namespace GameCritic.Application.Profiles
 {
@@ -9,7 +9,7 @@ namespace GameCritic.Application.Profiles
         public AwardProfile()
         {
             CreateMap<Award, AwardDto>();
-            CreateMap<Award, AwardForGameDto>();
+            CreateMap<Award, ListAwardDto>();
         }
     }
 }

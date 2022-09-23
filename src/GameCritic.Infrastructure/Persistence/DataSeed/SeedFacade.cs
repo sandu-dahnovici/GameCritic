@@ -12,6 +12,8 @@ namespace GameCritic.Infrastructure.Persistence.DataSeed
             await GameSeed.Seed(dbContext);
             await AwardSeed.Seed(dbContext);
             await GameAwardSeed.Seed(dbContext);
+            await GenreSeed.Seed(dbContext);
+            await GameGenreSeed.Seed(dbContext);
         }
     }
 }

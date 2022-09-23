@@ -15,10 +15,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandling();
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
+app.UseDbTransaction();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();

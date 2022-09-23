@@ -1,7 +1,10 @@
 ﻿using Microsoft.OpenApi.Models;
 using GameCritic.Infrastructure.Persistence.Extensions;
+using GameCritic.Application.Common.Interfaces.Services;
+using GameCritic.Infrastructure.Services;
 using GameCritic.Application.Extensions;
 using GameCritic.Application;
+using Azure.Storage.Blobs;
 
 namespace GameCritic.API.Extensions
 {

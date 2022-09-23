@@ -11,9 +11,9 @@ namespace GameCritic.Application.Extensions
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            //services.AddValidatorsFromAssembly(assembly);
+            services.AddValidatorsFromAssembly(assembly);
             services.AddMediatR(assembly);
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             return services;
         }

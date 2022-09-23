@@ -13,7 +13,7 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
                 .HasMaxLength(30);
 
             builder.Property(g => g.Description)
-                .HasMaxLength(500);
+                .HasMaxLength(2000);
 
             builder.HasMany(g => g.GameGenres)
                 .WithOne(gg => gg.Genre)

@@ -14,6 +14,7 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.20" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,12 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="App\Commands\" />
-    <Folder Include="App\CommandHandler\" />
-    <Folder Include="App\Dtos\GameGenre\" />
-    <Folder Include="App\Dtos\Genre\" />
-    <Folder Include="App\Dtos\Review\" />
-    <Folder Include="Common\Interfaces\Services\" />
+    <Folder Include="Common\Dtos\Review\" />
   </ItemGroup>
 
 </Project>

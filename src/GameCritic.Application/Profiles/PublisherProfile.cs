@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GameCritic.Domain.Entities;
-using GameCritic.Application.App.Dtos.Publisher;
+using GameCritic.Application.Common.Dtos.Publisher;
 
 namespace GameCritic.Application.Profiles
 {
@@ -9,6 +9,7 @@ namespace GameCritic.Application.Profiles
         public PublisherProfile()
         {
             CreateMap<Publisher, PublisherDto>();
+            CreateMap<Publisher, ListPublisherDto>();
         }
     }
 }

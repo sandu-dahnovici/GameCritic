@@ -1,6 +1,6 @@
-﻿using GameCritic.Application.App.Dtos.GameAward;
+﻿using GameCritic.Application.Common.Dtos.GameAward;
 
-namespace GameCritic.Application.App.Dtos.Award
+namespace GameCritic.Application.Common.Dtos.Award
 {
     public class AwardDto
     {
