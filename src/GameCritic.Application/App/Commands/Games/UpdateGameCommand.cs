@@ -5,8 +5,10 @@ using MediatR;
 
 namespace GameCritic.Application.App.Commands.Games
 {
-    public class CreateGameCommand : IRequest<GameDto>
+    public class UpdateGameCommand : IRequest
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public DateTime ReleaseDate { get; set; }

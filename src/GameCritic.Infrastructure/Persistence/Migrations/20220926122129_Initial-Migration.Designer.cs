@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameCritic.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(GameCriticDbContext))]
-    [Migration("20220922092555_ExpandedGenreDescription")]
-    partial class ExpandedGenreDescription
+    [Migration("20220926122129_Initial-Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

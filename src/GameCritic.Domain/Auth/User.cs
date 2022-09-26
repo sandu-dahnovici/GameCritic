@@ -5,5 +5,7 @@ namespace GameCritic.Domain.Auth
     public class User : IdentityUser<int>
     {
         public ICollection<Review> Reviews { get; set; }
+
+        public DateTime RegisterDateTime { get; set; } = DateTime.Now;
     }
 }

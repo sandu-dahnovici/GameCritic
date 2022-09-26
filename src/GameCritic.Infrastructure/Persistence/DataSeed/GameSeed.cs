@@ -8,6 +8,16 @@ namespace GameCritic.Infrastructure.Persistence.DataSeed
         {
             if (dbContext.Games.Any()) return;
 
+            /* updated score with UPDATE G1
+            SET G1.Score = G2.average
+            FROM Games G1
+            INNER JOIN(select GameId, AVG(Cast(Mark as Float)) as average FROM Reviews
+
+            GROUP BY GameId) as G2
+            ON G1.Id = G2.GameId
+            
+             then set image names also in mssm*/
+
             List<Game> games = new()
             {
                 new()

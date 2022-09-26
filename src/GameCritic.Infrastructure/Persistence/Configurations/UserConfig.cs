@@ -12,6 +12,13 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
             builder.HasMany(u => u.Reviews)
                 .WithOne(r => r.User)
                 .HasForeignKey(r => r.UserId);
+
+            builder.Property(u => u.UserName)
+                .IsRequired()
+                .HasMaxLength(40);
+
+            builder.Property(u => u.RegisterDateTime)
+                .IsRequired();
         }
     }
 }

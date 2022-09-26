@@ -7,9 +7,10 @@ using System.Linq.Expressions;
 
 namespace GameCritic.Infrastructure.Persistence.Repositories
 {
-    public class GameRepository :  GenericRepository<Game>, IGameRepository
+    public class GameRepository : GenericRepository<Game>, IGameRepository
     {
         private readonly GameCriticDbContext _dbContext;
+
         public GameRepository(GameCriticDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
             _dbContext = dbContext;
@@ -28,7 +29,5 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
             return await games.FirstOrDefaultAsync(expression);
         }
-
-        
     }
 }

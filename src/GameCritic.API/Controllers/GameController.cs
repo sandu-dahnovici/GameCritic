@@ -34,10 +34,24 @@ namespace GameCritic.API.Controllers
         }
 
         [HttpPost]
-        public async Task<GameDto> CreateBook(CreateGameCommand createGameDto)
+        public async Task<GameDto> CreateGame(CreateGameCommand createGameDto)
         {
             var gameDto = await _mediator.Send(createGameDto);
             return gameDto;
         }
+
+        [HttpPut]
+        public async Task<Unit> UpdateGame(UpdateGameCommand updateGameDto)
+        {
+            var unit = await _mediator.Send(updateGameDto);
+            return unit;
+        }
+
+        [HttpDelete]
+        public async Task<Unit> DeleteGame(DeleteGameCommand deleteGameDto)
+        {
+            var unit = await _mediator.Send(deleteGameDto);
+            return unit;
+        } 
     }
 }

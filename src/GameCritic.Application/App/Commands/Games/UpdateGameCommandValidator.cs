@@ -2,9 +2,9 @@
 
 namespace GameCritic.Application.App.Commands.Games
 {
-    public class CreateGameCommandValidator : AbstractValidator<CreateGameCommand>
+    public class UpdateGameCommandValidator : AbstractValidator<UpdateGameCommand>
     {
-        public CreateGameCommandValidator()
+        public UpdateGameCommandValidator()
         {
             RuleFor(g => g.Title)
                 .NotNull()
@@ -27,6 +27,7 @@ namespace GameCritic.Application.App.Commands.Games
                 .MinimumLength(3);
             RuleFor(g => g.Playtime)
                 .GreaterThan(0.5);
+
         }
     }
 }

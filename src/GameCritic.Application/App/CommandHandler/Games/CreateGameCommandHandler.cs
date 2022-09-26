@@ -24,22 +24,16 @@ namespace GameCritic.Application.App.CommandHandler.Games
 
             _unitOfWork.GameRepository.Add(game);
 
-            await _unitOfWork.SaveAsync();
-
-            var gameDto = _mapper.Map<GameDto>(game);
-
             foreach (var genreId in request.GenresId)
             {
-                var genre = _unitOfWork.GenreRepository.GetById(genreId);
-                GameGenre gameGenre = new() { Game = game, Genre = await genre };
+                var genre = await _unitOfWork.GenreRepository.GetById(genreId);
+                GameGenre gameGenre = new() { Game = game, Genre = genre };
                 _unitOfWork.GameGenreRepository.Add(gameGenre);
             }
 
             await _unitOfWork.SaveAsync();
 
-            game = await _unitOfWork.GameRepository.GetGame(g => g.Id == game.Id);
-
-            gameDto = _mapper.Map<GameDto>(game);
+            var gameDto = _mapper.Map<GameDto>(game);
 
             return gameDto;
         }

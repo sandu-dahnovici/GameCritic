@@ -12,6 +12,6 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
         Task<PaginatedResult<TDto>> GetPagedData<TDto>(PagedRequest pagedRequest) where TDto : class;
         void Add(TEntity entity);
         void Update(TEntity entity);
-        void Delete(int id);
+        Task Delete(int id);
     }
 }

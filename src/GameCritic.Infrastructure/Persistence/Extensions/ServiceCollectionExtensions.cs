@@ -7,6 +7,7 @@ using GameCritic.Application.Common.Interfaces.Repositories;
 using Azure.Storage.Blobs;
 using GameCritic.Application.Common.Interfaces.Services;
 using GameCritic.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace GameCritic.Infrastructure.Persistence.Extensions
 {
@@ -21,9 +22,17 @@ namespace GameCritic.Infrastructure.Persistence.Extensions
 
             services.AddIdentity<User, Role>(options =>
             {
-                options.Password.RequiredLength = 8;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.User.AllowedUserNameCharacters =  "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._";
+                options.User.RequireUniqueEmail = true;
             })
-            .AddEntityFrameworkStores<GameCriticDbContext>();
+            .AddEntityFrameworkStores<GameCriticDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();

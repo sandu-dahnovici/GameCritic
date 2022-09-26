@@ -5,11 +5,11 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Award> AwardRepository { get; }
+        IAwardRepository AwardRepository { get; }
         IGameRepository GameRepository { get; }
         IGenericRepository<GameAward> GameAwardRepository { get; }
         IGenericRepository<GameGenre> GameGenreRepository { get; }
-        IGenericRepository<Genre> GenreRepository { get; }
+        IGenreRepository GenreRepository { get; }
         IGenericRepository<Publisher> PublisherRepository { get; }
         IGenericRepository<Review> ReviewRepository { get; }
         Task SaveAsync();

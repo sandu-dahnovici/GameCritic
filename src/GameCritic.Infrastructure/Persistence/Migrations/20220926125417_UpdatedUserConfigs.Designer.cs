@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameCritic.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(GameCriticDbContext))]
-    [Migration("20220920151132_SetPlaytimeNullableAndFloatType")]
-    partial class SetPlaytimeNullableAndFloatType
+    [Migration("20220926125417_UpdatedUserConfigs")]
+    partial class UpdatedUserConfigs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,6 +123,9 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("RegisterDateTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -130,8 +133,9 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
@@ -238,7 +242,7 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<short>("Year")
+                    b.Property<short?>("Year")
                         .HasColumnType("smallint");
 
                     b.HasKey("Id");
@@ -356,8 +360,8 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<string>("Name")
                         .IsRequired()

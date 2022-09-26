@@ -25,12 +25,9 @@ namespace GameCritic.Infrastructure.Persistence
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new AwardConfig());
-            builder.ApplyConfiguration(new GameAwardConfig());
-            builder.ApplyConfiguration(new GameConfig());
-            builder.ApplyConfiguration(new GenreConfig());
-            builder.ApplyConfiguration(new PublisherConfig());
-            builder.ApplyConfiguration(new ReviewConfig());
+            var assembly = typeof(GameConfig).Assembly;
+
+            builder.ApplyConfigurationsFromAssembly(assembly);
 
             ApplyIdentityMapConfiguration(builder);
         }

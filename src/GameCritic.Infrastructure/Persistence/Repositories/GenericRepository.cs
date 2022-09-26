@@ -26,9 +26,9 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             _entities.Add(entity);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var entity = _entities.Find(id);
+            var entity = await _entities.FindAsync(id);
             if (entity == null)
             {
                 throw new Exception($"{typeof(TEntity)} with id {id} is not found");
@@ -49,7 +49,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
         public async Task<PaginatedResult<TDto>> GetPagedData<TDto>(PagedRequest pagedRequest) where TDto : class
         {
-            return await _entities.CreatePaginatedResultAsync<TEntity,TDto>(pagedRequest, _mapper);
+            return await _entities.CreatePaginatedResultAsync<TEntity, TDto>(pagedRequest, _mapper);
         }
 
         public async Task<TEntity> GetWithInclude(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includeProperties)

@@ -11,7 +11,5 @@
         public decimal Price { get; set; }
 
         public double? Score { get; set; }
-
-        public string Publisher { get; set; }
     }
 }

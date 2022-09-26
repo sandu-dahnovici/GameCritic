@@ -9,6 +9,8 @@ namespace GameCritic.Application.Profiles
         public GenreProfile()
         {
             CreateMap<Genre, ListGenreDto>();
+            CreateMap<Genre, GenreDto>()
+                .ForMember(g => g.Games, c => c.MapFrom(gg => gg.GameGenres));
         }
     }
 }

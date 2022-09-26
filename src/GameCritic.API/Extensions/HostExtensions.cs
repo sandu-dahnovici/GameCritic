@@ -16,8 +16,9 @@ namespace GameCritic.API.Extensions
                 {
                     var context = services.GetRequiredService<GameCriticDbContext>();
                     var userManager = services.GetRequiredService<UserManager<User>>();
+                    var roleManager = services.GetRequiredService<RoleManager<Role>>();
 
-                    await SeedFacade.SeedData(context);
+                    await SeedFacade.SeedData(context,userManager,roleManager);
                 }
                 catch (Exception ex)
                 {

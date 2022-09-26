@@ -8,6 +8,5 @@
 
         public ICollection<GameGenre> GameGenres { get; set; }
 
-        
     }
 }
