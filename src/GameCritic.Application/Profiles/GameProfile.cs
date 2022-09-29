@@ -15,7 +15,8 @@ namespace GameCritic.Application.Profiles
                 .ForMember(gdto => gdto.Publisher, c => c.MapFrom(g => g.Publisher))
                 .ReverseMap();
 
-            CreateMap<Game, GameListDto>();
+            CreateMap<Game, GameListDto>()
+                .ForMember(g => g.PublisherName , c => c.MapFrom(p => p.Publisher.Name));
                 
             CreateMap<CreateGameCommand, Game>();
             CreateMap<UpdateGameCommand, Game>();

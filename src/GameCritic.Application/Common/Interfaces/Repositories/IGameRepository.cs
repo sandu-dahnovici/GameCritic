@@ -7,5 +7,6 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
     {
         Task<Game> GetGame(Expression<Func<Game, bool>> expression);
         void UpdateImage(Game game);
+        IList<Game> GetGames();
     }
 }

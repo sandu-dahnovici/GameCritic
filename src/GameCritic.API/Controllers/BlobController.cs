@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameCritic.API.Controllers
 {
     [Route("api/blob")]
-    public class BlobController : BaseController
+    public class BlobController : ControllerBase
     {
         private readonly IBlobService _service;
 

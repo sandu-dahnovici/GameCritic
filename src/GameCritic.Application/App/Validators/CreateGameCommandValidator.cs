@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
+using GameCritic.Application.App.Commands.Games;
 
-namespace GameCritic.Application.App.Commands.Games
+namespace GameCritic.Application.App.Validators
 {
-    public class UpdateGameCommandValidator : AbstractValidator<UpdateGameCommand>
+    public class CreateGameCommandValidator : AbstractValidator<CreateGameCommand>
     {
-        public UpdateGameCommandValidator()
+        public CreateGameCommandValidator()
         {
             RuleFor(g => g.Title)
                 .NotNull()

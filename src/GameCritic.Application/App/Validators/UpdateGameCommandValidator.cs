@@ -1,10 +1,11 @@
 ﻿using FluentValidation;
+using GameCritic.Application.App.Commands.Games;
 
-namespace GameCritic.Application.App.Commands.Games
+namespace GameCritic.Application.App.Validators
 {
-    public class CreateGameCommandValidator : AbstractValidator<CreateGameCommand>
+    public class UpdateGameCommandValidator : AbstractValidator<UpdateGameCommand>
     {
-        public CreateGameCommandValidator()
+        public UpdateGameCommandValidator()
         {
             RuleFor(g => g.Title)
                 .NotNull()
@@ -23,7 +24,7 @@ namespace GameCritic.Application.App.Commands.Games
                 .NotNull()
                 .NotEmpty()
                 .InclusiveBetween(10, 300);
-      
+
         }
     }
 }

@@ -26,7 +26,7 @@ namespace GameCritic.Application.App.CommandHandler.Games
             var game = await _unitOfWork.GameRepository.GetById(request.Id);
 
             if (game == null)
-                throw new ResponseException(System.Net.HttpStatusCode.NotFound,"This game cannot be found");
+                throw new HttpResponseException(System.Net.HttpStatusCode.NotFound,"This game cannot be found");
 
             if (game.ImageName != null)
                 await _blobService.DeleteBlob(game.ImageName);

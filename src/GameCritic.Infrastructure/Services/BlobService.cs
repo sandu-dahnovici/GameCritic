@@ -21,12 +21,12 @@ namespace GameCritic.Infrastructure.Services
             List<string> extensions = new() { ".jpg", ".jpeg", ".png", ".webp" };
 
             if (file == null || (file.Length < 1 || file.Length > 10000000))
-                throw new ResponseException(HttpStatusCode.BadRequest, string.Format("File is too big or doesn't exist", 3));
+                throw new HttpResponseException(HttpStatusCode.BadRequest, string.Format("File is too big or doesn't exist", 3));
 
             var extension = Path.GetExtension(file.FileName);
 
             if (!extensions.Contains(extension))
-                throw new ResponseException(HttpStatusCode.BadRequest, $"Unsupported {extension} extension");
+                throw new HttpResponseException(HttpStatusCode.BadRequest, $"Unsupported {extension} extension");
 
             var encodedBlobName = Guid.NewGuid() + extension;
 
@@ -37,7 +37,7 @@ namespace GameCritic.Infrastructure.Services
             var response = await blobClient.UploadAsync(file.OpenReadStream(), httpHeaders);
 
             if (response == null)
-                throw new ResponseException(HttpStatusCode.BadRequest, $"Can't upload {file.Name}");
+                throw new HttpResponseException(HttpStatusCode.BadRequest, $"Can't upload {file.Name}");
 
             return encodedBlobName;
         }
@@ -53,7 +53,7 @@ namespace GameCritic.Infrastructure.Services
             var blobClient = _containerClient.GetBlobClient(name);
 
             if (!await blobClient.ExistsAsync())
-                throw new ResponseException(HttpStatusCode.BadRequest, $"File {name} was not found");
+                throw new HttpResponseException(HttpStatusCode.BadRequest, $"File {name} was not found");
 
             return await blobClient.OpenReadAsync();
         }

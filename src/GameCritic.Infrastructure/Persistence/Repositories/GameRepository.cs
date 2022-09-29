@@ -32,6 +32,11 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             return await games.FirstOrDefaultAsync(expression);
         }
 
+        public IList<Game> GetGames()
+        {
+            return _dbContext.Set<Game>().Include(g => g.Publisher).AsNoTracking().ToList();
+        }
+
         public void UpdateImage(Game game)
         {
             _dbContext.Games.Attach(game).Property(g => g.ImageName).IsModified = true;

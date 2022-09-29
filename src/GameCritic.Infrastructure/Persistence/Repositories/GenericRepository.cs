@@ -37,7 +37,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             _entities.Remove(entity);
         }
 
-        public List<TEntity> GetAll()
+        public IList<TEntity> GetAll()
         {
             return _entities.AsNoTracking().ToList();
         }

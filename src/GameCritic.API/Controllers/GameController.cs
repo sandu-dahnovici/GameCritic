@@ -5,12 +5,15 @@ using GameCritic.Application.App.Queries.Games;
 using GameCritic.Application.Common.Dtos.Game;
 using GameCritic.Application.Common.Models;
 using GameCritic.Application.App.Commands.Games;
+using GameCritic.Application.Common.Exceptions;
+using GameCritic.API.Filters;
 
 namespace GameCritic.API.Controllers
 {
     [Route("api/games")]
     [ApiController]
-    public class GameController : BaseController
+    [HttpResponseExceptionFilter]
+    public class GameController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -19,18 +22,18 @@ namespace GameCritic.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("paginated-search")]
-        public async Task<PaginatedResult<GameListDto>> GetPagedGames(PagedRequest pagedRequest)
+        [HttpGet]
+        public async Task<IList<GameListDto>> GetAll()
         {
-            var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
-            return response;
+            var games = await _mediator.Send(new GetAllGamesQuery());
+            return games;
         }
 
         [HttpGet("{id}")]
-        public async Task<GameDto> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var gameDto = await _mediator.Send(new GetGameByIdQuery() { GameId = id });
-            return gameDto;
+            return Ok(gameDto);
         }
 
         [HttpPost]
@@ -57,7 +60,14 @@ namespace GameCritic.API.Controllers
         [HttpPatch("{id}/image")]
         public async Task<IActionResult> UpdateGameImage(int id, IFormFile image)
         {
-            return Ok(await _mediator.Send(new UpdateGameImageCommand { Id = id , Image = image}));
-        } 
+            return Ok(await _mediator.Send(new UpdateGameImageCommand { Id = id, Image = image }));
+        }
+
+        [HttpPost("paginated-search")]
+        public async Task<PaginatedResult<GameListDto>> GetPagedGames(PagedRequest pagedRequest)
+        {
+            var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
+            return response;
+        }
     }
 }
