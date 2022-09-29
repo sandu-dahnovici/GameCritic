@@ -20,7 +20,7 @@ namespace GameCritic.API.Controllers
         }
 
         [HttpPost("paginated-search")]
-        public async Task<PaginatedResult<ListGameDto>> GetPagedGames(PagedRequest pagedRequest)
+        public async Task<PaginatedResult<GameListDto>> GetPagedGames(PagedRequest pagedRequest)
         {
             var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
             return response;
@@ -52,6 +52,12 @@ namespace GameCritic.API.Controllers
         {
             var unit = await _mediator.Send(deleteGameDto);
             return unit;
+        }
+
+        [HttpPatch("{id}/image")]
+        public async Task<IActionResult> UpdateGameImage(int id, IFormFile image)
+        {
+            return Ok(await _mediator.Send(new UpdateGameImageCommand { Id = id , Image = image}));
         } 
     }
 }

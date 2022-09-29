@@ -14,6 +14,6 @@ namespace GameCritic.Application.Common.Dtos.Publisher
 
         public int NumberOfEmployees { get; set; }
 
-        public IList<ListGameDto> Games { get; set; }
+        public IList<GameListDto> Games { get; set; }
     }
 }

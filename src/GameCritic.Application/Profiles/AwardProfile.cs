@@ -9,7 +9,7 @@ namespace GameCritic.Application.Profiles
         public AwardProfile()
         {
             CreateMap<Award, AwardDto>();
-            CreateMap<Award, ListAwardDto>();
+            CreateMap<Award, AwardListDto>();
         }
     }
 }

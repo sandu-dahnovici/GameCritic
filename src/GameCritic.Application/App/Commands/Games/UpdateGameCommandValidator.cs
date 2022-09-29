@@ -23,10 +23,6 @@ namespace GameCritic.Application.App.Commands.Games
                 .NotNull()
                 .NotEmpty()
                 .InclusiveBetween(10, 300);
-            RuleFor(g => g.ImageName)
-                .MinimumLength(3);
-            RuleFor(g => g.Playtime)
-                .GreaterThan(0.5);
 
         }
     }

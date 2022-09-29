@@ -1,6 +1,6 @@
 ﻿namespace GameCritic.Application.Common.Dtos.Genre
 {
-    public class ListGenreDto 
+    public class GenreListDto 
     {
         public int Id { get; set; }
 

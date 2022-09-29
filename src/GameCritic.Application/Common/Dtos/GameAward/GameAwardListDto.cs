@@ -4,12 +4,12 @@ using GameCritic.Application.Common.Dtos.Award;
 
 namespace GameCritic.Application.Common.Dtos.GameAward
 {
-    public class ListGameAwardDto
+    public class GameAwardListDto
     {
         public int Id { get; set; }
 
         public int Rank { get; set; }
 
-        public ListAwardDto Award { get; set; }
+        public AwardListDto Award { get; set; }
     }
 }

@@ -4,30 +4,30 @@ using System.Runtime.Serialization;
 namespace GameCritic.Application.Common.Exceptions
 {
     [Serializable]
-    public class HttpResponseException : Exception
+    public class ResponseException : Exception
     {
         private HttpStatusCode _badRequest;
         private string _errorMessage;
 
-        public HttpResponseException()
+        public ResponseException()
         {
         }
 
-        public HttpResponseException(string? message) : base(message)
+        public ResponseException(string? message) : base(message)
         {
         }
 
-        public HttpResponseException(HttpStatusCode badRequest, string message)
+        public ResponseException(HttpStatusCode badRequest, string message)
         {
             this._badRequest = badRequest;
             this._errorMessage = message;
         }
 
-        public HttpResponseException(string? message, Exception? innerException) : base(message, innerException)
+        public ResponseException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
 
-        protected HttpResponseException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ResponseException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

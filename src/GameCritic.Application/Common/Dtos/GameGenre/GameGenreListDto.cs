@@ -4,8 +4,8 @@ using GameCritic.Application.Common.Dtos.Genre;
 
 namespace GameCritic.Application.Common.Dtos.GameGenre
 {
-    public class ListGameGenreDto
+    public class GameGenreListDto
     {
-        public ListGenreDto Genre { get; set; }
+        public GenreListDto Genre { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using GameCritic.Application.Common.Dtos.Genre;
 using GameCritic.Application.Common.Dtos.GameAward;
 using GameCritic.Application.Common.Dtos.GameGenre;
+using GameCritic.Application.Common.Dtos.Review;
 
 namespace GameCritic.Application.Common.Dtos.Game
 {
@@ -23,10 +24,12 @@ namespace GameCritic.Application.Common.Dtos.Game
 
         public double? Score { get; set; }
 
-        public ListPublisherDto Publisher { get; set; }
+        public PublisherListDto Publisher { get; set; }
 
-        public IList<ListGameAwardDto> Awards { get; set; }
+        public IList<GameReviewDto> Reviews { get; set; }
 
-        public IList<ListGenreDto> Genres { get; set; }
+        public IList<GameAwardListDto> Awards { get; set; }
+
+        public IList<GenreListDto> Genres { get; set; }
     }
 }

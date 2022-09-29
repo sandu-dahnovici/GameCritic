@@ -15,8 +15,6 @@ namespace GameCritic.Application.App.Commands.Games
 
         public string Summary { get; set; }
 
-        public string? ImageName { get; set; }
-
         public decimal Price { get; set; }
 
         public double? Playtime { get; set; }

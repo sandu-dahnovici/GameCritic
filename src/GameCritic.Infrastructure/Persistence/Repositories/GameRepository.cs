@@ -25,9 +25,16 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
                 .Include(g => g.GameAwards)
                     .ThenInclude(ga => ga.Award)
                 .Include(g => g.GameGenres)
-                    .ThenInclude(gg => gg.Genre);
+                    .ThenInclude(gg => gg.Genre)
+                .Include(g => g.Reviews)
+                    .ThenInclude(r => r.User);
 
             return await games.FirstOrDefaultAsync(expression);
+        }
+
+        public void UpdateImage(Game game)
+        {
+            _dbContext.Games.Attach(game).Property(g => g.ImageName).IsModified = true;
         }
     }
 }

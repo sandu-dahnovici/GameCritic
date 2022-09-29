@@ -12,7 +12,6 @@ namespace GameCritic.Application.App.CommandHandler.Games
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private readonly IBlobService _blobService;
 
         public UpdateGameCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {

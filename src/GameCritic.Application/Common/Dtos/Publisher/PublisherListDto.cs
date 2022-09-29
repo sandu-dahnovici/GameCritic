@@ -1,6 +1,6 @@
 ﻿namespace GameCritic.Application.Common.Dtos.Publisher
 {
-    public class ListPublisherDto
+    public class PublisherListDto
     {
         public int Id { get; set; }
 

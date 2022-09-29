@@ -17,7 +17,8 @@ namespace GameCritic.Infrastructure.Persistence.Extensions
         {
             services.AddDbContext<GameCriticDbContext>(optionBuilder =>
             {
-                optionBuilder.UseSqlServer(configuration.GetConnectionString("GameCriticConnection"));
+                optionBuilder.UseSqlServer(configuration.GetConnectionString("GameCriticConnection"),
+                providerOptions => providerOptions.EnableRetryOnFailure());
             });
 
             services.AddIdentity<User, Role>(options =>
@@ -36,9 +37,9 @@ namespace GameCritic.Infrastructure.Persistence.Extensions
 
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
-            services.AddSingleton(x => new BlobServiceClient(configuration.GetConnectionString("AzureConnection")));
-            services.AddSingleton<IBlobService>(sp =>
-                new BlobService(sp.GetService<BlobServiceClient>(), configuration.GetValue<string>("Container")));
+            services.AddSingleton(serviceProvider => new BlobServiceClient(configuration.GetConnectionString("AzureConnection")));
+            services.AddSingleton<IBlobService>(serviceProvider =>
+                new BlobService(serviceProvider.GetService<BlobServiceClient>(), configuration.GetValue<string>("Container")));
 
             //services.AddTransient<IAuthenticationService, AuthenticationService>();
             //services.AddTransient<ITokenService, TokenService>();

@@ -20,33 +20,23 @@ namespace GameCritic.API.Middlewares
                 return;
             }
 
-            using (var transaction = await dbContext.Database.BeginTransactionAsync())
+            var strategy = dbContext.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync<object, object>(null!, operation: async (dbctx, state, cancel) =>
             {
+                // start the transaction
+                await using var transaction = await dbContext.Database.BeginTransactionAsync();
+
+                // invoke next middleware 
                 await _next(httpContext);
 
-                //Commit transaction if all commands succeed, transaction will auto-rollback when disposed if either commands fails
-                await dbContext.Database.CommitTransactionAsync();
-            }
+                // commit the transaction
+                await transaction.CommitAsync();
 
-            //using (var transaction = CreateTransactionScope())
-            //{
-            //    await _next(httpContext);
-            //    transaction.Complete();
-            //}
+                return null!;
+            }, null);
+
         }
 
-        //private static TransactionScope CreateTransactionScope()
-        //{
-        //    const int _transactionTimeout = 240;
-
-        //    var options = new TransactionOptions
-        //    {
-        //        IsolationLevel = IsolationLevel.ReadCommitted,
-        //        Timeout = TimeSpan.FromSeconds(_transactionTimeout)
-        //    };
-
-        //    return new TransactionScope(TransactionScopeOption.Required, options, TransactionScopeAsyncFlowOption.Enabled);
-        //}
 
 
     }

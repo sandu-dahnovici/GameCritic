@@ -1,6 +1,6 @@
 ﻿namespace GameCritic.Application.Common.Dtos.Game
 {
-    public class ListGameDto
+    public class GameListDto
     {
         public int Id { get; set; }
 

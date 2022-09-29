@@ -8,7 +8,7 @@ namespace GameCritic.Application.Profiles
     {
         public GameAwardProfile()
         {
-            CreateMap<GameAward, ListGameAwardDto>()
+            CreateMap<GameAward, GameAwardListDto>()
                 .ForMember(ga => ga.Award , c => c.MapFrom(a => a.Award));
             CreateMap<CreateGameAwardDto, GameAward>()
                 .ForMember(ga => ga.AwardId, c => c.MapFrom(a => a.AwardId));

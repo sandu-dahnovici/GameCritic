@@ -13,8 +13,6 @@ namespace GameCritic.Application.App.Commands.Games
 
         public string Summary { get; set; }
 
-        public string? ImageName { get; set; }
-
         public decimal Price { get; set; }
 
         public double? Playtime { get; set; }
@@ -22,7 +20,5 @@ namespace GameCritic.Application.App.Commands.Games
         public int PublisherId { get; set; }
 
         public IList<int> GenresId { get; set; }
-
-        public IList<CreateGameAwardDto> GameAwards { get; set; }
     }
 }

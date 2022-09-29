@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameCritic.Application.Common.Dtos.Award
 {
-    public class ListAwardDto 
+    public class AwardListDto 
     {
         public int Id { get; set; }
 

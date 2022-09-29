@@ -6,7 +6,7 @@ using GameCritic.Application.Common.Dtos.Game;
 
 namespace GameCritic.Application.App.QueryHandler.Games
 {
-    public class GetGamesPagedQueryHandler : IRequestHandler<GetGamesPagedQuery, PaginatedResult<ListGameDto>>
+    public class GetGamesPagedQueryHandler : IRequestHandler<GetGamesPagedQuery, PaginatedResult<GameListDto>>
     {
         public readonly IGameRepository _gameRepository;
 
@@ -15,9 +15,9 @@ namespace GameCritic.Application.App.QueryHandler.Games
             _gameRepository = gameRepository;
         }
 
-        public async Task<PaginatedResult<ListGameDto>> Handle(GetGamesPagedQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<GameListDto>> Handle(GetGamesPagedQuery request, CancellationToken cancellationToken)
         {
-            var pagedGamesDto = await _gameRepository.GetPagedData<ListGameDto>(request.PagedRequest);
+            var pagedGamesDto = await _gameRepository.GetPagedData<GameListDto>(request.PagedRequest);
             return pagedGamesDto;
         }
     }

@@ -10,6 +10,6 @@ namespace GameCritic.Application.Common.Dtos.Genre
 
         public string Description { get; set; }
 
-        public IList<ListGameDto> Games { get; set; }
+        public IList<GameListDto> Games { get; set; }
     }
 }

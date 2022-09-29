@@ -21,8 +21,4 @@
     <ProjectReference Include="..\GameCritic.Domain\GameCritic.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Dtos\Review\" />
-  </ItemGroup>
-
 </Project>

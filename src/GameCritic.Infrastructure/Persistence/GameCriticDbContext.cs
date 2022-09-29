@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GameCritic.Domain.Entities;
 using GameCritic.Domain.Auth;
 using GameCritic.Infrastructure.Persistence.Configurations;
+using System.Reflection;
 
 namespace GameCritic.Infrastructure.Persistence
 {
@@ -25,9 +26,7 @@ namespace GameCritic.Infrastructure.Persistence
         {
             base.OnModelCreating(builder);
 
-            var assembly = typeof(GameConfig).Assembly;
-
-            builder.ApplyConfigurationsFromAssembly(assembly);
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             ApplyIdentityMapConfiguration(builder);
         }
