@@ -22,7 +22,5 @@ namespace GameCritic.Application.App.Commands.Games
         public int PublisherId { get; set; }
 
         public IList<int> GenresId { get; set; }
-
-        public IList<CreateGameAwardDto> GameAwards { get; set; }
     }
 }

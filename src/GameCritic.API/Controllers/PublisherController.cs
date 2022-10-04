@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using GameCritic.Application.App.Queries.Publishers;
+using GameCritic.Application.App.Commands.Publishers;
 using GameCritic.Application.Common.Dtos.Publisher;
 using GameCritic.Application.Common.Models;
 
@@ -22,6 +23,13 @@ namespace GameCritic.API.Controllers
         public async Task<PublisherDto> GetById(int id)
         {
             var publisherDto = await _mediator.Send(new GetPublisherByIdQuery() { PublisherId = id });
+            return publisherDto;
+        }
+
+        [HttpPost]
+        public async Task<PublisherDto> CreatePublisher(CreatePublisherCommand createPublisherDto)
+        {
+            var publisherDto = await _mediator.Send(createPublisherDto);
             return publisherDto;
         }
 

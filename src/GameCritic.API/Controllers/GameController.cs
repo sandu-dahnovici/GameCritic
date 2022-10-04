@@ -5,7 +5,6 @@ using GameCritic.Application.App.Queries.Games;
 using GameCritic.Application.Common.Dtos.Game;
 using GameCritic.Application.Common.Models;
 using GameCritic.Application.App.Commands.Games;
-using GameCritic.Application.Common.Exceptions;
 using GameCritic.API.Filters;
 
 namespace GameCritic.API.Controllers
@@ -37,24 +36,24 @@ namespace GameCritic.API.Controllers
         }
 
         [HttpPost]
-        public async Task<GameDto> CreateGame(CreateGameCommand createGameDto)
+        public async Task<ActionResult<GameDto>> CreateGame(CreateGameCommand createGameDto)
         {
             var gameDto = await _mediator.Send(createGameDto);
-            return gameDto;
+            return Ok(gameDto);
         }
 
         [HttpPut]
-        public async Task<Unit> UpdateGame(UpdateGameCommand updateGameDto)
+        public async Task<ActionResult<Unit>> UpdateGame(UpdateGameCommand updateGameDto)
         {
             var unit = await _mediator.Send(updateGameDto);
-            return unit;
+            return Ok(unit);
         }
 
         [HttpDelete]
-        public async Task<Unit> DeleteGame(DeleteGameCommand deleteGameDto)
+        public async Task<ActionResult<Unit>> DeleteGame(DeleteGameCommand deleteGameDto)
         {
             var unit = await _mediator.Send(deleteGameDto);
-            return unit;
+            return Ok(unit);
         }
 
         [HttpPatch("{id}/image")]

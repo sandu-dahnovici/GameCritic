@@ -45,7 +45,7 @@ namespace GameCritic.Application.App.CommandHandler.Games
                         .AsQueryable()
                         .Single(gg => gg.Genre == genre && gg.Game == gg.Game);
 
-                    _unitOfWork.GameGenreRepository.Delete(gameGenreDelete.Id);
+                    await _unitOfWork.GameGenreRepository.Delete(gameGenreDelete.Id);
                 }
             }
 
