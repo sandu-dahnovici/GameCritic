@@ -5,7 +5,7 @@ using GameCritic.Application.App.Queries.Games;
 using GameCritic.Application.Common.Dtos.Game;
 using GameCritic.Application.Common.Exceptions;
 
-namespace GameCritic.Application.App.QueryHandler.Games
+namespace GameCritic.Application.App.QueryHandlers.Games
 {
     public class GetAllGamesQueryHandler : IRequestHandler<GetAllGamesQuery, IList<GameListDto>>
     {

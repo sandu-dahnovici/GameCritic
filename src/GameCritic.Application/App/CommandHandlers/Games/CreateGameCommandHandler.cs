@@ -5,7 +5,7 @@ using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Domain.Entities;
 using MediatR;
 
-namespace GameCritic.Application.App.CommandHandler.Games
+namespace GameCritic.Application.App.CommandHandlers.Games
 {
     public class CreateGameCommandHandler : IRequestHandler<CreateGameCommand, GameDto>
     {

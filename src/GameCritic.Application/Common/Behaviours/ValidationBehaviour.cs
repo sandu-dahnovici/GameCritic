@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
+using ValidationException = GameCritic.Application.Common.Exceptions.ValidationException;
+
 
 namespace GameCritic.Application.Common.Behaviours
 {

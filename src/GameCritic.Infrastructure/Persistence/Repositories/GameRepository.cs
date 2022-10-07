@@ -16,7 +16,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Game> GetGame(Expression<Func<Game, bool>> expression)
+        public async Task<Game> GetGameById(int id)
         {
             IQueryable<Game> games = _dbContext.Set<Game>();
 
@@ -29,7 +29,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
                 .Include(g => g.Reviews)
                     .ThenInclude(r => r.User);
 
-            return await games.FirstOrDefaultAsync(expression);
+            return await games.FirstOrDefaultAsync(g => g.Id == id);
         }
 
         public IList<Game> GetGames()

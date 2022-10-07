@@ -4,7 +4,7 @@ using GameCritic.Application.Common.Models;
 using GameCritic.Application.App.Queries.Games;
 using GameCritic.Application.Common.Dtos.Game;
 
-namespace GameCritic.Application.App.QueryHandler.Games
+namespace GameCritic.Application.App.QueryHandlers.Games
 {
     public class GetGamesPagedQueryHandler : IRequestHandler<GetGamesPagedQuery, PaginatedResult<GameListDto>>
     {

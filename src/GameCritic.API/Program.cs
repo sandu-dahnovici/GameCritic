@@ -15,6 +15,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRequestLogging();
+
 app.UseExceptionHandling();
 
 app.UseHttpsRedirection();
@@ -28,3 +30,18 @@ app.UseDbTransaction();
 app.MapControllers();
 
 await app.RunAsync();
+
+
+
+
+
+
+
+
+
+
+
+
+public partial class Program
+{
+}

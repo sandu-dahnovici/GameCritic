@@ -5,7 +5,7 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
 {
     public interface IGameRepository : IGenericRepository<Game>
     {
-        Task<Game> GetGame(Expression<Func<Game, bool>> expression);
+        Task<Game> GetGameById(int id);
         void UpdateImage(Game game);
         IList<Game> GetGames();
     }

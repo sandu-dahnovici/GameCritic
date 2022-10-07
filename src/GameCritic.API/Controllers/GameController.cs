@@ -22,10 +22,10 @@ namespace GameCritic.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IList<GameListDto>> GetAll()
+        public async Task<ActionResult<IList<GameListDto>>> GetAll()
         {
             var games = await _mediator.Send(new GetAllGamesQuery());
-            return games;
+            return Ok(games);
         }
 
         [HttpGet("{id}")]
@@ -39,7 +39,7 @@ namespace GameCritic.API.Controllers
         public async Task<ActionResult<GameDto>> CreateGame(CreateGameCommand createGameDto)
         {
             var gameDto = await _mediator.Send(createGameDto);
-            return Ok(gameDto);
+            return CreatedAtAction(nameof(GetById), new { id = gameDto.Id }, gameDto);
         }
 
         [HttpPut]

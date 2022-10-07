@@ -1,40 +1,45 @@
 ﻿using AutoMapper;
 using GameCritic.Application.App.Commands.Games;
 using GameCritic.Application.Common.Dtos.Game;
+using System.Net;
 using GameCritic.Application.Common.Exceptions;
 using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Application.Common.Interfaces.Services;
 using GameCritic.Domain.Entities;
 using MediatR;
 
-namespace GameCritic.Application.App.CommandHandler.Games
+namespace GameCritic.Application.App.CommandHandlers.Games
 {
-    public class DeleteGameCommandHandler : IRequestHandler<DeleteGameCommand>
+    public class UpdateGameImageCommandHandler : IRequestHandler<UpdateGameImageCommand,string>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IBlobService _blobService;
 
-        public DeleteGameCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateGameImageCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, IBlobService blobService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _blobService = blobService;
         }
 
-        public async Task<Unit> Handle(DeleteGameCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(UpdateGameImageCommand request, CancellationToken cancellationToken)
         {
-            var game = await _unitOfWork.GameRepository.GetById(request.Id);
+            var game = await _unitOfWork.GameRepository.GetGameById(request.Id);
 
             if (game == null)
-                throw new HttpResponseException(System.Net.HttpStatusCode.NotFound,"This game cannot be found");
+                throw new HttpResponseException(HttpStatusCode.NotFound, "Game was not found");
 
             if (game.ImageName != null)
                 await _blobService.DeleteBlob(game.ImageName);
 
-            await _unitOfWork.GameRepository.Delete(request.Id);
+            game.ImageName = await _blobService.UploadBlob(request.Image);
+
+            _unitOfWork.GameRepository.UpdateImage(game);
+
             await _unitOfWork.SaveAsync();
 
-            return Unit.Value;
+            return game.ImageName;
         }
     }
 }

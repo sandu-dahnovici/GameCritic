@@ -4,7 +4,7 @@ using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Application.Common.Dtos.Publisher;
 using GameCritic.Application.App.Queries.Publishers;
 
-namespace GameCritic.Application.App.QueryHandler.Publishers
+namespace GameCritic.Application.App.QueryHandlers.Publishers
 {
     public class GetPublisherByIdQueryHandler : IRequestHandler<GetPublisherByIdQuery, PublisherDto>
     {

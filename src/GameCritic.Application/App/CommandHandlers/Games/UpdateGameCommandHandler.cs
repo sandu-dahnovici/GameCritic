@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using GameCritic.Application.App.Commands.Games;
 using GameCritic.Application.Common.Dtos.Game;
+using GameCritic.Application.Common.Exceptions;
 using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Application.Common.Interfaces.Services;
 using GameCritic.Domain.Entities;
 using MediatR;
 
-namespace GameCritic.Application.App.CommandHandler.Games
+namespace GameCritic.Application.App.CommandHandlers.Games
 {
     public class UpdateGameCommandHandler : IRequestHandler<UpdateGameCommand>
     {
@@ -21,7 +22,10 @@ namespace GameCritic.Application.App.CommandHandler.Games
 
         public async Task<Unit> Handle(UpdateGameCommand request, CancellationToken cancellationToken)
         {
-            var game = await _unitOfWork.GameRepository.GetGame(g => g.Id == request.Id);
+            var game = await _unitOfWork.GameRepository.GetGameById(request.Id);
+
+            if (game == null)
+                throw new HttpResponseException(System.Net.HttpStatusCode.NotFound, "This game cannot be found");
 
             _mapper.Map(request, game);
 

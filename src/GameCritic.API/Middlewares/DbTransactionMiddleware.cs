@@ -11,7 +11,7 @@ namespace GameCritic.API.Middlewares
             _next = next;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext,GameCriticDbContext  dbContext)
+        public async Task InvokeAsync(HttpContext httpContext, GameCriticDbContext dbContext)
         {
             // For HTTP GET opening transaction is not required
             if (httpContext.Request.Method == HttpMethod.Get.Method)

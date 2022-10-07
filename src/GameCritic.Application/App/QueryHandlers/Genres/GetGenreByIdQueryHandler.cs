@@ -4,7 +4,7 @@ using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Application.Common.Dtos.Genre;
 using GameCritic.Application.App.Queries.Genres;
 
-namespace GameCritic.Application.App.QueryHandler.Genres
+namespace GameCritic.Application.App.QueryHandlers.Genres
 {
     public class GetGenreByIdQueryHandler : IRequestHandler<GetGenreByIdQuery, GenreDto>
     {
