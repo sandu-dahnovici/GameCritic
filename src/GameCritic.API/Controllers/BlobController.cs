@@ -3,10 +3,12 @@ using GameCritic.API.Controllers;
 using GameCritic.Application.Common.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using GameCritic.API.Filters;
 
 namespace GameCritic.API.Controllers
 {
     [Route("api/blob")]
+    [HttpResponseExceptionFilter]
     public class BlobController : ControllerBase
     {
         private readonly IBlobService _service;

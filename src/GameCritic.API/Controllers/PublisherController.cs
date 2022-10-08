@@ -5,11 +5,13 @@ using GameCritic.Application.App.Queries.Publishers;
 using GameCritic.Application.App.Commands.Publishers;
 using GameCritic.Application.Common.Dtos.Publisher;
 using GameCritic.Application.Common.Models;
+using GameCritic.API.Filters;
 
 namespace GameCritic.API.Controllers
 {
     [Route("api/publishers")]
     [ApiController]
+    [HttpResponseExceptionFilter]
     public class PublisherController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -31,6 +33,19 @@ namespace GameCritic.API.Controllers
         {
             var publisherDto = await _mediator.Send(createPublisherDto);
             return publisherDto;
+        }
+
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePublisher(UpdatePublisherCommand updatePublisherDto)
+        {
+            return Ok(await _mediator.Send(updatePublisherDto));
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeletePublisher(DeletePublisherCommand deletePublisherDto)
+        {
+            return Ok(await _mediator.Send(deletePublisherDto));
         }
 
         //[HttpPost("paginated-search")]

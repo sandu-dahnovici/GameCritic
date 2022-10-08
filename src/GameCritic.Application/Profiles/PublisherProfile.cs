@@ -12,6 +12,7 @@ namespace GameCritic.Application.Profiles
             CreateMap<Publisher, PublisherDto>();
             CreateMap<Publisher, PublisherListDto>();
             CreateMap<CreatePublisherCommand, Publisher>();
+            CreateMap<UpdatePublisherCommand, Publisher>();
         }
     }
 }

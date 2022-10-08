@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using GameCritic.Application.App.Queries.Genres;
 using GameCritic.Application.Common.Dtos.Genre;
+using GameCritic.API.Filters;
 
 namespace GameCritic.API.Controllers
 {
     [Route("api/genres")]
     [ApiController]
+    [HttpResponseExceptionFilter]
     public class GenreController : ControllerBase
     {
         private readonly IMediator _mediator;

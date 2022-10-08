@@ -5,7 +5,7 @@ using GameCritic.Application.Common.Interfaces.Repositories;
 using GameCritic.Domain.Entities;
 using MediatR;
 
-namespace GameCritic.Application.App.CommandHandler.Publishers
+namespace GameCritic.Application.App.CommandHandlers.Publishers
 {
     public class CreatePublisherCommandHandler : IRequestHandler<CreatePublisherCommand, PublisherDto>
     {
