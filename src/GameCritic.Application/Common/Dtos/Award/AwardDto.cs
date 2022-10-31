@@ -1,4 +1,5 @@
-﻿using GameCritic.Application.Common.Dtos.GameAward;
+﻿using GameCritic.Application.Common.Dtos.Game;
+using GameCritic.Application.Common.Dtos.GameAward;
 
 namespace GameCritic.Application.Common.Dtos.Award
 {
@@ -10,6 +11,6 @@ namespace GameCritic.Application.Common.Dtos.Award
 
         public int Year { get; set; }
 
-        //public IEnumerable<Gam> Games { get; set; }
+        public IEnumerable<AwardGameListDto> Games { get; set; }
     }
 }

@@ -4,8 +4,8 @@ using MediatR;
 using GameCritic.Application.App.Queries.Publishers;
 using GameCritic.Application.App.Commands.Publishers;
 using GameCritic.Application.Common.Dtos.Publisher;
-using GameCritic.Application.Common.Models;
 using GameCritic.API.Filters;
+using GameCritic.Application.Common.Models;
 
 namespace GameCritic.API.Controllers
 {
@@ -48,11 +48,11 @@ namespace GameCritic.API.Controllers
             return Ok(await _mediator.Send(deletePublisherDto));
         }
 
-        //[HttpPost("paginated-search")]
-        //public async Task<PaginatedResult<ListPublisherDto>> GetPagedGames(PagedRequest pagedRequest)
-        //{
-        //    var response = await _mediator.Send(new GetPublishersPagedQuery() { PagedRequest = pagedRequest });
-        //    return response;
-        //}
+        [HttpPost("paginated-search")]
+        public async Task<PaginatedResult<PublisherListDto>> GetPagedGames(PagedRequest pagedRequest)
+        {
+            var response = await _mediator.Send(new GetPublishersPagedQuery() { PagedRequest = pagedRequest });
+            return response;
+        }
     }
 }
