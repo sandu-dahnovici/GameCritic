@@ -20,13 +20,13 @@ namespace GameCritic.Application.Common.Dtos.Game
 
         public decimal Price { get; set; }
 
-        public int Playtime { get; set; }
+        public double? Playtime { get; set; }
 
         public double? Score { get; set; }
 
         public PublisherListDto Publisher { get; set; }
 
-        public IList<GameReviewDto> Reviews { get; set; }
+        public IList<ReviewListDto> Reviews { get; set; }
 
         public IList<GameAwardListDto> Awards { get; set; }
 

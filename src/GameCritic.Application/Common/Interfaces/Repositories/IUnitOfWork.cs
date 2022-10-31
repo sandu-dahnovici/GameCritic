@@ -11,7 +11,7 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
         IGenericRepository<GameGenre> GameGenreRepository { get; }
         IGenreRepository GenreRepository { get; }
         IGenericRepository<Publisher> PublisherRepository { get; }
-        IGenericRepository<Review> ReviewRepository { get; }
+        IReviewRepository ReviewRepository { get; }
         Task SaveAsync();
     }
 }

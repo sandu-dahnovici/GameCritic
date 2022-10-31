@@ -37,9 +37,9 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             _entities.Remove(entity);
         }
 
-        public IList<TEntity> GetAll()
+        public  IList<TEntity> GetAll()
         {
-            return _entities.AsNoTracking().ToList();
+            return _entities.AsNoTracking().ToList(); // here to make async
         }
 
         public async Task<TEntity> GetById(int id)

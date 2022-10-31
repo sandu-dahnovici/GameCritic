@@ -7,10 +7,10 @@ namespace GameCritic.Application.Common.Exceptions
     public class HttpResponseException : Exception
     {
         private HttpStatusCode _badRequest;
-        private string _errorMessage;
+        private string? _errorMessage;
 
         public HttpStatusCode StatusCode { get => _badRequest; set => _badRequest = value; }
-        public string Message { get => _errorMessage;  set => _errorMessage = value;  }
+        public string? Message { get => _errorMessage; set => _errorMessage = value; }
 
         public HttpResponseException()
         {

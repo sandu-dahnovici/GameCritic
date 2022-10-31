@@ -15,14 +15,14 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
         private IGenericRepository<GameGenre> _gameGenreRepository;
         private IGenreRepository _genreRepository;
         private IGenericRepository<Publisher> _publisherRepository;
-        private IGenericRepository<Review> _reviewRepository;
+        private IReviewRepository _reviewRepository;
 
         public IAwardRepository AwardRepository
         {
             get
             {
                 if (_awardRepository == null)
-                    _awardRepository = new AwardRepository(_dbContext,_mapper);
+                    _awardRepository = new AwardRepository(_dbContext, _mapper);
                 return _awardRepository;
             }
         }
@@ -32,7 +32,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             get
             {
                 if (_gameRepository == null)
-                    _gameRepository = new GameRepository(_dbContext,_mapper);
+                    _gameRepository = new GameRepository(_dbContext, _mapper);
                 return _gameRepository;
             }
         }
@@ -76,12 +76,12 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             }
         }
 
-        public IGenericRepository<Review> ReviewRepository
+        public IReviewRepository ReviewRepository
         {
             get
             {
                 if (_reviewRepository == null)
-                    _reviewRepository = new GenericRepository<Review>(_dbContext, _mapper);
+                    _reviewRepository = new ReviewRepository(_dbContext, _mapper);
                 return _reviewRepository;
             }
         }
