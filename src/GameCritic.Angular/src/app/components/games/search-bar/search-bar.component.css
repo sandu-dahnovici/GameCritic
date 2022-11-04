@@ -1,0 +1,23 @@
+form {
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-form-field {
+    max-width: 200px;
+    margin-right: 10px;
+}
+
+.mat-form-field {
+    background-color: white;
+    height: 50px;
+}
+
+@media (max-width: 800px) {
+    mat-form-field {
+        max-width: 110px;
+    }
+}

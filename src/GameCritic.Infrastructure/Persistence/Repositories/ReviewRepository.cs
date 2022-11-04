@@ -15,18 +15,6 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Award> GetAward(Expression<Func<Award, bool>> expression)
-        {
-            IQueryable<Award> awards = _dbContext.Set<Award>();
-
-            awards = awards
-                .Include(g => g.GameAwards)
-                    .ThenInclude(gg => gg.Game)
-                    .ThenInclude(ggg => ggg.Publisher);
-
-            return await awards.FirstOrDefaultAsync(expression);
-        }
-
         public async Task<IList<Review>> GetReviewsByGameId(int id)
         {
             IQueryable<Review> reviews = _dbContext.Set<Review>();
