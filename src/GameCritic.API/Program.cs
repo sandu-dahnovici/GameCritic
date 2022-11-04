@@ -15,6 +15,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAny");
+
 app.UseRequestLogging();
 
 app.UseExceptionHandling();

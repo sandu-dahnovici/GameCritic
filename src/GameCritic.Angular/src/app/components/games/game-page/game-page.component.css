@@ -1,0 +1,112 @@
+.example-card {
+    max-width: 70%;
+    margin: 20px auto 2em;
+}
+
+.example-header-image {
+    background-size: cover;
+    width: 20em;
+    height: 20em;
+    border-radius: 10%;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: gold;
+}
+
+.awards {
+    overflow: hidden;
+    margin: 0 0 13px;
+    border: solid 1px rgb(167, 167, 167);
+}
+
+.rankings {
+    width: 100%;
+}
+
+.body {
+    border-color: #ccc;
+    border-width: 0 1px;
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    border-color: #ccc;
+    border-style: solid;
+}
+
+.head {
+    background-color: #caa42d;
+    border-color: #caa42d;
+}
+
+.module .module_title {
+    display: inline;
+    float: left;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+.module .head_type_1 {
+    color: #fff;
+}
+
+
+.score {
+    float: right;
+    display: inline-flex;
+}
+
+.title {
+    color: #2e2e2e !important;
+    text-transform: uppercase;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900 !important;
+}
+
+.box {
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+    color: #f0fff3;
+    background-color: #6c3;
+}
+
+.mat-raised-button.mat-gray,
+.mat-flat-button.mat-gray,
+.mat-fab.mat-gray,
+.mat-mini-fab.mat-gray {
+    color: #f0fff3;
+    background-color: rgb(170, 170, 170);
+}
+
+.mat-mini-fab.mat-accent {
+    color: #f0fff3;
+    background-color: #aeb018;
+}

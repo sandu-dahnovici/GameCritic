@@ -25,6 +25,7 @@ namespace GameCritic.API.Extensions
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.ConfigureCors();
         }
 
         public static WebApplicationBuilder AddAuthentication(this WebApplicationBuilder builder)
@@ -50,6 +51,18 @@ namespace GameCritic.API.Extensions
             });
 
             return builder;
+        }
+
+        public static void ConfigureCors(this IServiceCollection services)
+        {
+            services.AddCors(o =>
+            {
+                o.AddPolicy("AllowAny", cors =>
+                    cors.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                );
+            });
         }
     }
 }

@@ -1,0 +1,18 @@
+<div class="search-section" style="background-image: url(assets/home-background.png)">
+    <div class="box">
+        <h2 class="about-title" style="text-align: center;">GameCritic - cool platform for reviewing games</h2>
+        <p class="about-text">
+            Find the critics' consensus in one place, with a single "Score" distills the opinions of the most respected
+            critics writing online and in print to a single number.
+            Sound off with your own ratings and reviews
+            We value our users' opinions. In addition to streamlining our user voting process, we've elevated the the
+            status
+            of the average user score throughout the site.
+        </p>
+    </div>
+
+    <app-search-bar (onSearch)="paginatedSearch($event)"></app-search-bar>
+    
+</div>
+<ng-image-slider [images]="imgCollection" #nav class="footer" [imageSize]="{width: 180, height: 180, space: 7}"
+[infinite]="true" [autoSlide]="true" (imageClick)="imageClickHandler($event)"></ng-image-slider>

@@ -1,0 +1,67 @@
+<div class="box">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title class="title">{{ game.title }}</mat-card-title>
+            <mat-card-subtitle><a routerLink="#">{{ game.publisher.name }}</a></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content style="display:inline-flex">
+            <div mat-card-avatar class="example-header-image" [style.background-image]="'url(' + getImageUrl() + ')'">
+            </div>
+            <p style="margin-left: 20px;width: 60%;margin-right: 20px;font-size: large;">{{ game.summary }}</p>
+
+            <div class="details">
+                <div class="score">
+                    <button mat-mini-fab style="width:50px;height:50px;font-size:larger;margin-right: 20px;"
+                        [color]="game.score > 8 ? 'success' : game.score > 5 ? 'accent' : game.score > 1 ? 'warn' : 'gray'">
+                        {{ game.score ? game.score.toFixed(1) : "tbd"}}
+                    </button>
+                    <div *ngIf="game.score">
+                        <p style="display:inline"><b>User Score</b></p>
+                        <p>
+                            Generally favorable reviews
+                            based on <b style="color:green;"><i>{{ game.reviews.length }}</i></b> Ratings
+                        </p>
+                    </div>
+                </div>
+                <p *ngIf="game.genres"><b>Genres</b> :
+                    <ng-container *ngFor="let genre of game.genres;let indexOf=index;">
+                        <a routerLink="#" style="font-weight: normal;">{{ genre.name }}
+                            <ng-container *ngIf="indexOf != game.genres.length-1"> , </ng-container>
+                        </a>
+                    </ng-container>
+                </p>
+                <p><strong>Release Date</strong> : {{ game.releaseDate | date }}</p>
+                <p><strong>Price</strong> : {{ game.price | currency }}</p>
+                <p><strong>Playtime</strong>: {{ game.playtime | timelapse }}</p>
+                <div class="awards">
+                    <ng-container *ngIf="game.awards">
+                        <div class="head head_type_1">
+                            <div class="head-wrap" style="text-align: center;">
+                                <h2 class="module-title">AWARDS & RANKINGS</h2>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <table class="rankings">
+                                <tbody *ngIf="game.awards.length">
+                                    <tr *ngFor="let gameAward of game.awards">
+                                        <td>
+                                            <mat-icon>verified</mat-icon>
+                                        </td>
+                                        <a routerLink="#">
+                                            <td>#{{ gameAward.rank }}</td>
+                                            <td>{{ gameAward.award | formatAward}}</td>
+                                        </a>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="!game.awards.length">
+                                    <h2>This game has no awards!</h2>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>
