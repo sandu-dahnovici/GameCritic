@@ -11,7 +11,7 @@
     </mat-toolbar-row>
 
     <ng-container>
-        <mat-table #table matSort matSortActive="title" matSortDirection="asc" [dataSource]="dataSource">
+        <mat-table #table matSort [dataSource]="dataSource">
             <ng-container matColumnDef="title">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
                 <mat-cell *matCellDef="let game">

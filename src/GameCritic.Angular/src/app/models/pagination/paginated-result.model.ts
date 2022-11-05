@@ -1,6 +1,6 @@
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
-import {RequestFilters} from "./request-filters.model";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { RequestFilters } from "./request-filters.model";
 
 export class PaginatedRequest {
   pageIndex: number;
@@ -9,11 +9,11 @@ export class PaginatedRequest {
   sortDirection: string;
   requestFilters: RequestFilters;
 
-  constructor(paginator: MatPaginator, sort: MatSort, filters: RequestFilters) {
+  constructor(paginator: MatPaginator, sort: string, direction: string, filters: RequestFilters) {
     this.pageIndex = paginator.pageIndex;
     this.pageSize = paginator.pageSize;
-    this.columnNameForSorting = sort.active;
-    this.sortDirection = sort.direction;
+    this.columnNameForSorting = sort;
+    this.sortDirection = direction;
     this.requestFilters = filters;
   }
 }

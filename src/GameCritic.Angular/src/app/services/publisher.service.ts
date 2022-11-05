@@ -13,6 +13,11 @@ export class PublisherService {
 
   private url = environment.apiUrl + 'publishers/';
 
+  public search = {
+    redirected: false,
+    text: '',
+  };
+
   constructor(private http: HttpClient) { }
 
   getPublishersPaged(paginatedRequest: PaginatedRequest): Observable<PagedResult<PublisherList>> {
@@ -21,6 +26,10 @@ export class PublisherService {
 
   getAllPublishers(): Observable<PublisherList[]> {
     return this.http.get<PublisherList[]>(this.url);
+  }
+
+  deletePublisher(id: number): Observable<any> {
+    return this.http.delete<any>(this.url + id);
   }
 
 }

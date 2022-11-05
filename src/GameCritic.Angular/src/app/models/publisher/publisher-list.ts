@@ -1,4 +1,6 @@
 export interface PublisherList {
     id: number,
-    name: string
+    name: string,
+    country: string,
+    foundationYear: number
 }

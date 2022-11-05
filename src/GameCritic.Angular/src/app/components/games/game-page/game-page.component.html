@@ -8,8 +8,11 @@
             <div mat-card-avatar class="example-header-image"
                 [style.background-image]="'url(' + getImageUrl(game.imageName) + ')'">
             </div>
-            <p style="margin-left: 20px;margin-right: 20px;font-size: larger;
-            width: fit-content;">{{ game.summary }}</p>
+            <div style="margin-left: 20px;margin-right: 20px;
+            width: fit-content;">
+                <h3 align="center"><strong>Summary</strong></h3>
+                <p style="font-size: larger;">{{ game.summary }}</p>
+            </div>
 
             <div class="details">
                 <div class="score">
@@ -54,7 +57,7 @@
                                 <tbody *ngIf="game.awards.length">
                                     <tr *ngFor="let gameAward of game.awards">
                                         <td>
-                                            <mat-icon>verified</mat-icon>
+                                            <mat-icon style="color: rgb(255, 210, 48);">emoji_events</mat-icon>
                                         </td>
                                         <a routerLink="#">
                                             <td>#{{ gameAward.rank }}</td>
