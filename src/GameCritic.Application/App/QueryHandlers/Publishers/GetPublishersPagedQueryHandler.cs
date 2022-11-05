@@ -8,16 +8,16 @@ namespace GameCritic.Application.App.QueryHandlers.Publishers
 {
     public class GetPublishersPagedQueryHandler : IRequestHandler<GetPublishersPagedQuery, PaginatedResult<PublisherListDto>>
     {
-        public readonly IGameRepository _gameRepository;
+        public readonly IUnitOfWork _unitOfWork;
 
-        public GetPublishersPagedQueryHandler(IGameRepository gameRepository)
+        public GetPublishersPagedQueryHandler(IUnitOfWork unitOfWork)
         {
-            _gameRepository = gameRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<PaginatedResult<PublisherListDto>> Handle(GetPublishersPagedQuery request, CancellationToken cancellationToken)
         {
-            var pagedPublishersDto = await _gameRepository.GetPagedData<PublisherListDto>(request.PagedRequest);
+            var pagedPublishersDto = await _unitOfWork.PublisherRepository.GetPagedData<PublisherListDto>(request.PagedRequest);
             return pagedPublishersDto;
         }
     }

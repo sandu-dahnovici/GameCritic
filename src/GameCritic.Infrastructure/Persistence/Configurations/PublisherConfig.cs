@@ -18,7 +18,7 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
             builder.HasMany(p => p.Games)
                 .WithOne(g => g.Publisher)
                 .HasForeignKey(g => g.PublisherId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(p => p.Country)
                 .IsRequired()

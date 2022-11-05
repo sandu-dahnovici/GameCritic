@@ -1,0 +1,63 @@
+<div class="publishers-container">
+    <mat-toolbar-row style="margin-bottom: 50px;">
+        <app-search-bar entity="publisher" (onSearch)="paginatedSearch($event)" style="margin: auto;"></app-search-bar>
+        <button mat-mini-fab style="margin-right:10px; background-color:#e07c9e"
+            [routerLink]="['/admin/editPublisher', 0]">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-mini-fab style="margin-right:10px; background-color:darkgray"
+            (click)="sc.text='';this.paginator.pageIndex = 0;paginatedSearch('')">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </mat-toolbar-row>
+
+    <ng-container>
+        <mat-table #table matSort [dataSource]="dataSource">
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                <mat-cell *matCellDef="let publisher">
+                    <b><a [routerLink]="['/publishers',publisher.id]" routerLinkActive="active">{{ publisher.name
+                            }}</a></b>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="country">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let publisher">
+                    {{ publisher.country }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="foundationYear">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Foundation Year</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let publisher">
+                    {{ publisher.foundationYear }}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+                <mat-header-cell mat-header-cell *matHeaderCellDef>Admin</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let publisher" style="justify-content:left;">
+                    <button mat-mini-fab style="background-color:teal; min-height: 30px;   margin: 5px;"
+                        [routerLink]="['/admin/editPublisher', publisher.id]" matTooltip="Update Publisher">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" style="min-height: 30px;  margin: 5px;"
+                        (click)="openDialogForDeleting(publisher.id)" matTooltip="Delete Publisher">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row mat-row *matRowDef="let row; columns : displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator [length]="pagedPublishers?.total" [pageSizeOptions]="[3,5,10,15,20]" pageSize="5" pageIndex="0">
+        </mat-paginator>
+    </ng-container>
+
+    <ng-container *ngIf="!pagedPublishers?.total">
+        <div style="margin-top: 50px;" class="not-found">
+            <span class="label danger">No publishers found!</span>
+        </div>
+    </ng-container>
+</div>
