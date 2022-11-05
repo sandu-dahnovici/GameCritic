@@ -5,9 +5,11 @@
             <mat-card-subtitle><a routerLink="#">{{ game.publisher.name }}</a></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content style="display:inline-flex">
-            <div mat-card-avatar class="example-header-image" [style.background-image]="'url(' + getImageUrl() + ')'">
+            <div mat-card-avatar class="example-header-image"
+                [style.background-image]="'url(' + getImageUrl(game.imageName) + ')'">
             </div>
-            <p style="margin-left: 20px;width: 60%;margin-right: 20px;font-size: large;">{{ game.summary }}</p>
+            <p style="margin-left: 20px;margin-right: 20px;font-size: larger;
+            width: fit-content;">{{ game.summary }}</p>
 
             <div class="details">
                 <div class="score">
@@ -32,12 +34,19 @@
                 </p>
                 <p><strong>Release Date</strong> : {{ game.releaseDate | date }}</p>
                 <p><strong>Price</strong> : {{ game.price | currency }}</p>
-                <p><strong>Playtime</strong>: {{ game.playtime | timelapse }}</p>
+                <p><strong>Playtime</strong>:
+                    <ng-container *ngIf="game.playtime > 0">
+                        {{ game.playtime | timelapse }}
+                    </ng-container>
+                    <ng-container *ngIf="!game.playtime">
+                        Multiplayer
+                    </ng-container>
+                </p>
                 <div class="awards">
                     <ng-container *ngIf="game.awards">
                         <div class="head head_type_1">
                             <div class="head-wrap" style="text-align: center;">
-                                <h2 class="module-title">AWARDS & RANKINGS</h2>
+                                <h2 class="module-title" style="color:white">AWARDS & RANKINGS</h2>
                             </div>
                         </div>
                         <div class="body">
@@ -54,7 +63,7 @@
                                     </tr>
                                 </tbody>
                                 <tbody *ngIf="!game.awards.length">
-                                    <h2>This game has no awards!</h2>
+                                    <h2 style="text-align: center;">This game has no awards!</h2>
                                 </tbody>
                             </table>
                         </div>
@@ -64,4 +73,30 @@
 
         </mat-card-content>
     </mat-card>
+    <div class="review-section">
+        <div class="head head_type_1">
+            <div class="head-wrap" style="text-align: center;">
+                <h2 class="module-title" style="color:white">USER REVIEWS</h2>
+            </div>
+        </div>
+        <ng-container *ngIf="game.reviews.length;else noReviews">
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="review">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let review">
+                        <app-review-card [review]="review"></app-review-card>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="['review']"></mat-header-row>
+                <mat-row mat-row *matRowDef="let row; columns : ['review'];"></mat-row>
+            </mat-table>
+            <mat-paginator [length]="game.reviews.length" pageSize="3" [pageSizeOptions]="[2,3,5,10]"></mat-paginator>
+        </ng-container>
+        <ng-template #noReviews>
+            <div style="margin-top: 20px;" class="not-found">
+                <span class="label danger">This game has no reviews</span>
+            </div>
+        </ng-template>
+    </div>
 </div>

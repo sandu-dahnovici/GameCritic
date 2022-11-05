@@ -42,17 +42,18 @@ namespace GameCritic.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = gameDto.Id }, gameDto);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<Unit>> UpdateGame(UpdateGameCommand updateGameDto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Unit>> UpdateGame(UpdateGameCommand updateGameDto, int id)
         {
+            updateGameDto.Id = id;
             var unit = await _mediator.Send(updateGameDto);
             return Ok(unit);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<Unit>> DeleteGame(DeleteGameCommand deleteGameDto)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> DeleteGame(int id)
         {
-            var unit = await _mediator.Send(deleteGameDto);
+            var unit = await _mediator.Send(new DeleteGameCommand { Id = id });
             return Ok(unit);
         }
 

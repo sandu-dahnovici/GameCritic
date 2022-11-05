@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Game } from '../models/game/game';
 import { GameList } from '../models/game/game-list';
+import { UpdateGame } from '../models/game/update-game';
 import { PagedResult } from '../models/pagination/paged-result.model';
 import { PaginatedRequest } from '../models/pagination/paginated-result.model';
 
@@ -31,4 +32,38 @@ export class GameService {
   getGameById(id: string): Observable<Game> {
     return this.http.get<Game>(this.url + `${id}`);
   }
+
+  deleteGame(id: number): Observable<any> {
+    return this.http.delete<any>(this.url + id);
+  }
+
+  private createGame(game: UpdateGame): Observable<Game> {
+    return this.http.post<Game>(this.url, game);
+  }
+
+  private updateGame(game: UpdateGame): Observable<any> {
+    return this.http.put<any>(this.url + game.id, game);
+  }
+
+  saveGame(game: UpdateGame): Observable<Game> {
+    if (game.id !== undefined && game.id > 0) {
+      return this.updateGame(game);
+    }
+    return this.createGame(game);
+  }
+
+  setGameImage(id: number, file: File): Observable<string> {
+    const url = `${this.url}${id}/image`;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Disposition': 'multipart/form-data',
+      }),
+      responseType: 'text',
+    };
+    const formData = new FormData();
+    formData.append('image', file, file.name);
+    // @ts-ignore
+    return this.http.patch<string>(url, formData, options);
+  }
+
 }

@@ -1,17 +1,17 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TitleStrategy } from '@angular/router';
-import { filter, merge } from 'rxjs';
+import { merge } from 'rxjs';
 import { GameList } from 'src/app/models/game/game-list';
 import { PagedResult } from 'src/app/models/pagination/paged-result.model';
 import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.model';
 import { RequestFilters } from 'src/app/models/pagination/request-filters.model';
 import { GameService } from 'src/app/services/game.service';
-import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 
 @Component({
   selector: 'app-games-search-page',
@@ -95,24 +95,23 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
   }
 
   openDialogForDeleting(id: number) {
-    // const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-    //   data: { title: 'Dialog', message: 'Are you sure to delete this item?' }
-    // });
-    // dialogRef.disableClose = true;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Dialog', message: 'Are you sure to delete this game?' }
+    });
+    dialogRef.disableClose = true;
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
-    //     this.bookService.deleteBook(id).subscribe(
-    //       () => {
-    //         this.loadBooksFromApi();
-
-    //         this.snackBar.open('The item has been deleted successfully.', 'Close', {
-    //           duration: 1500
-    //         });
-    //       }
-    //     );
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
+        this.gameService.deleteGame(id).subscribe(
+          () => {
+            this.loadGamesFromApi();
+            this.snackBar.open('The game has been deleted successfully.', 'Close', {
+              duration: 1500
+            });
+          }
+        );
+      }
+    });
   }
 
   isAdmin() {

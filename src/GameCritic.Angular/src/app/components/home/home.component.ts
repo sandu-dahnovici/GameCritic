@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     const paginatedRequest: PaginatedRequest = {
       pageIndex: 0,
-      pageSize: 15,
+      pageSize: 14,
       columnNameForSorting: 'id',
       sortDirection: 'asc',
       requestFilters: {

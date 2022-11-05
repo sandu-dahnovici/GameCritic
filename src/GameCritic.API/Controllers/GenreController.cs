@@ -25,5 +25,12 @@ namespace GameCritic.API.Controllers
             var genreDto = await _mediator.Send(new GetGenreByIdQuery() { GenreId = id });
             return genreDto;
         }
+
+        [HttpGet]
+        public async Task<IList<GenreListDto>> GetAllGenres()
+        {
+            var response = await _mediator.Send(new GetAllGenresQuery());
+            return response;
+        }
     }
 }

@@ -1,0 +1,18 @@
+.example-card {
+    max-width: 50%;
+    margin: 20px auto 2em;
+}
+
+.example-header-image {
+    background-size: cover;
+    width: 20em;
+    height: 20em;
+    border-radius: 10%;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}

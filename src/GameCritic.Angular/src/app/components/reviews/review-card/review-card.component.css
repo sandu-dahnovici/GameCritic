@@ -1,0 +1,35 @@
+mat-card-footer {
+    margin: 1px;
+    text-align: right;
+}
+
+p {
+    font-size: larger;
+}
+
+mat-card {
+    min-width: 600px;
+    max-width: 600px;
+    max-height: fit-content;
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+    color: #f0fff3;
+    background-color: #6c3;
+}
+
+.mat-raised-button.mat-gray,
+.mat-flat-button.mat-gray,
+.mat-fab.mat-gray,
+.mat-mini-fab.mat-gray {
+    color: #f0fff3;
+    background-color: rgb(170, 170, 170);
+}
+
+.mat-mini-fab.mat-accent {
+    color: #f0fff3;
+    background-color: #aeb018;
+}

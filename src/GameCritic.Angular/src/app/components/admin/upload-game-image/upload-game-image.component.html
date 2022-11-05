@@ -1,0 +1,25 @@
+<mat-card class="example-card" fxLayoutAlign="center">
+    <mat-card-header>
+        <mat-card-title>{{ game.title }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="display:inline-flex;">
+        <div mat-card-avatar class="example-header-image" style="margin-right: 30px;"
+            [style.background-image]="'url(' + getImageUrl(game.imageName) + ')'">
+        </div>
+        <mat-icon style="margin-top: auto;margin-right: 30px;">arrow_right</mat-icon>
+        <div mat-card-avatar class="example-header-image" id="blah" style="right:0;float:right"
+            [style.background-image]="'url(' + imageUrl + ')'">
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <div class="text-center">
+            <input class="form-control" id="imgInp" type="file" (change)="onChange($event)">
+
+            <button (click)="uploadFile()" class="btn btn-success">
+                <mat-icon>upload</mat-icon>
+            </button>
+        </div>
+    </mat-card-actions>
+</mat-card>

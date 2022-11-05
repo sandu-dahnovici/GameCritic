@@ -54,5 +54,12 @@ namespace GameCritic.API.Controllers
             var response = await _mediator.Send(new GetPublishersPagedQuery() { PagedRequest = pagedRequest });
             return response;
         }
+
+        [HttpGet]
+        public async Task<IList<PublisherListDto>> GetAllPublishers()
+        {
+            var response = await _mediator.Send(new GetAllPublishersQuery());
+            return response;
+        }
     }
 }

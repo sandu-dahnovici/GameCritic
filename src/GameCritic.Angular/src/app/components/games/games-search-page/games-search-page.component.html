@@ -1,6 +1,6 @@
 <div class="games-container">
     <mat-toolbar-row style="margin-bottom: 50px;">
-        <app-search-bar (onSearch)="paginatedSearch($event)" style="margin: auto;"></app-search-bar>
+        <app-search-bar entity="game" (onSearch)="paginatedSearch($event)" style="margin: auto;"></app-search-bar>
         <button mat-mini-fab style="margin-right:10px; background-color:#e07c9e" [routerLink]="['/admin/editGame', 0]">
             <mat-icon>add</mat-icon>
         </button>
@@ -52,7 +52,7 @@
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button mat-mini-fab color="primary" style="min-height: 30px;  margin: 5px;"
-                        (click)="openDialogForDeleting(game.id)" matTooltip="Upload Image for Game">
+                        [routerLink]="['/admin/uploadGameImage',game.id]" matTooltip="Upload Image for Game">
                         <mat-icon>upload</mat-icon>
                     </button>
                 </mat-cell>
