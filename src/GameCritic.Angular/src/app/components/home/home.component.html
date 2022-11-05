@@ -11,7 +11,7 @@
         </p>
     </div>
 
-    <app-search-bar (onSearch)="paginatedSearch($event)"></app-search-bar>
+    <app-search-bar (onSearch)="paginatedSearch($event)" [entity]="'game'"></app-search-bar>
     
 </div>
 <ng-image-slider [images]="imgCollection" #nav class="footer" [imageSize]="{width: 180, height: 180, space: 7}"

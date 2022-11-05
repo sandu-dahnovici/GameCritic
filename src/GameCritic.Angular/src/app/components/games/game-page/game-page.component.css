@@ -1,5 +1,5 @@
 .example-card {
-    max-width: 70%;
+    max-width: 80%;
     margin: 20px auto 2em;
 }
 
@@ -70,6 +70,23 @@ h2 {
 .score {
     float: right;
     display: inline-flex;
+}
+
+.not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    color: white;
+    padding: 18px;
+    font-family: Arial;
+    font-size: 1.2em;
+}
+
+.danger {
+    background-color: #f44336;
 }
 
 .title {

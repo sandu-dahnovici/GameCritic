@@ -1,6 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { GameService } from 'src/app/services/game.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,8 +9,9 @@ export class SearchBarComponent implements OnInit {
 
   @Output() onSearch: EventEmitter<string> = new EventEmitter();
   text: string;
+  @Input() entity: string;
 
-  constructor(private gameService: GameService, private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

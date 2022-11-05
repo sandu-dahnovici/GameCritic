@@ -1,0 +1,97 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="view-card-title" style="text-align: center;">
+            {{pageTitle}}
+        </mat-card-title>
+    </mat-card-header>
+    <form novalidate [formGroup]="gameForm" (ngSubmit)="saveGame()">
+        <mat-toolbar style="background-color: #FFF">
+            <mat-toolbar-row>
+                <span class="title-spacer"></span>
+                <mat-card-actions>
+                    <button mat-fab class="primary" style="margin-right:10px; background-color:darkgray" type="submit"
+                        [disabled]='!gameForm.valid'>
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="" style="margin-right:10px; " [routerLink]="['/games']">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="title">Title : </mat-label>
+            <input matInput type="text" name="title" class="form-control" formControlName="title">
+        </mat-form-field>
+        <br>
+        <ng-container
+            *ngIf="!gameForm.controls['title'].valid && (gameForm.controls['title'].dirty || gameForm.controls['title'].touched)">
+            <mat-error *ngIf="gameForm.controls['title'].errors?.['required']">Title is required</mat-error>
+            <mat-error *ngIf="gameForm.controls['title'].errors?.['maxlength']">Title has maximum 30 characters
+            </mat-error>
+        </ng-container>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Release Date : </mat-label>
+            <input matInput [matDatepicker]="picker" name="releaseDate" formControlName="releaseDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <ng-container *ngIf="!releaseDate?.valid && (releaseDate?.dirty || releaseDate?.touched)">
+            <mat-error *ngIf="releaseDate?.errors?.['required']">Release date is required</mat-error>
+            <mat-error *ngIf="releaseDate?.errors?.['validDate']">Release date must be between 01.01.2000 and current
+                date
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary" style="width: 70%;">
+            <mat-label for="summary">Summary : </mat-label>
+            <textarea matInput name="summary" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="100"
+                formControlName="summary"></textarea>
+        </mat-form-field>
+        <ng-container *ngIf="!summary?.valid && (summary?.dirty || summary?.touched)">
+            <mat-error *ngIf="summary?.errors?.['required']">Summary is required</mat-error>
+            <mat-error *ngIf="summary?.errors?.['minlength']">Summary must be 50 characters long </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="title">Price : </mat-label>
+            <input matInput type="number" name="price" class="form-control" formControlName="price">
+        </mat-form-field>
+        <br>
+        <ng-container
+            *ngIf="!gameForm.controls['price'].valid && (gameForm.controls['price'].dirty || gameForm.controls['price'].touched)">
+            <mat-error *ngIf="gameForm.controls['price'].errors?.['required']">Price is required</mat-error>
+            <mat-error *ngIf="gameForm.controls['price'].errors?.['max']">Price must be less than 300
+            </mat-error>
+            <mat-error *ngIf="gameForm.controls['price'].errors?.['min']">Price must be more than 10
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="playtime">Playtime : </mat-label>
+            <input matInput type="number" name="playtime" class="form-control" formControlName="playtime">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="publisher">Publisher : </mat-label>
+            <mat-select name="publisher" formControlName="publisherId" placeholder="Select Publisher">
+                <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+                    {{publisher.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <ng-container *ngIf="!publisherId?.valid && (publisherId?.dirty || publisherId?.touched)">
+            <mat-error *ngIf="publisherId?.errors?.['requiered']">
+                Publisher is required.
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-select placeholder="Select Genres" formControlName="genresId" [value]="genres" multiple>
+                <mat-option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-card>
