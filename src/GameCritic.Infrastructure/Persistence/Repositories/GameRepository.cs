@@ -22,7 +22,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
             games = games
                 .Include(g => g.Publisher)
-                .Include(g => g.GameAwards)
+                .Include(g => g.Rankings)
                     .ThenInclude(ga => ga.Award)
                 .Include(g => g.GameGenres)
                     .ThenInclude(gg => gg.Genre);

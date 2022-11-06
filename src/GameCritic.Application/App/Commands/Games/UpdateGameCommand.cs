@@ -1,5 +1,4 @@
 ﻿using GameCritic.Application.Common.Dtos.Game;
-using GameCritic.Application.Common.Dtos.GameAward;
 using GameCritic.Domain.Entities;
 using MediatR;
 

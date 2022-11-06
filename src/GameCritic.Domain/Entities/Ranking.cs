@@ -1,6 +1,6 @@
 ﻿namespace GameCritic.Domain.Entities
 {
-    public class GameAward : BaseEntity
+    public class Ranking : BaseEntity
     {
         public int GameId { get; set; }
         public Game Game { get; set; }

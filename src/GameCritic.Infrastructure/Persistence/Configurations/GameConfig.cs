@@ -43,7 +43,7 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
                 .HasForeignKey(gg => gg.GameId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(g => g.GameAwards)
+            builder.HasMany(g => g.Rankings)
                 .WithOne(ga => ga.Game)
                 .HasForeignKey(ga => ga.GameId)
                 .OnDelete(DeleteBehavior.Cascade);

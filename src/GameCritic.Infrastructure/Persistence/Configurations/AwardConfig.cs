@@ -14,7 +14,7 @@ namespace GameCritic.Infrastructure.Persistence.Configurations
             builder.Property(a => a.Year)
                 .HasColumnType("smallint");
 
-            builder.HasMany(a => a.GameAwards)
+            builder.HasMany(a => a.Rankings)
                 .WithOne(ga => ga.Award)
                 .HasForeignKey(ga => ga.AwardId)
                 .OnDelete(DeleteBehavior.Cascade);

@@ -2,13 +2,13 @@
 
 namespace GameCritic.Infrastructure.Persistence.DataSeed
 {
-    public static class GameAwardSeed
+    public static class RankingSeed
     {
         public static async Task Seed(GameCriticDbContext dbContext)
         {
-            if (dbContext.GameAwards.Any()) return;
+            if (dbContext.Rankings.Any()) return;
 
-            List<GameAward> gameAwards = new()
+            List<Ranking> rankings = new()
             {
                 new()
                 {
@@ -132,7 +132,7 @@ namespace GameCritic.Infrastructure.Persistence.DataSeed
                 },
             };
 
-            dbContext.AddRange(gameAwards);
+            dbContext.AddRange(rankings);
             await dbContext.SaveChangesAsync();
         }
     }

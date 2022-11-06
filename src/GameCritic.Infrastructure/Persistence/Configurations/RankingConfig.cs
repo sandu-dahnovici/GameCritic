@@ -4,9 +4,9 @@ using GameCritic.Domain.Entities;
 
 namespace GameCritic.Infrastructure.Persistence.Configurations
 {
-    public class GameAwardConfig : IEntityTypeConfiguration<GameAward>
+    public class RankingConfig : IEntityTypeConfiguration<Ranking>
     {
-        public void Configure(EntityTypeBuilder<GameAward> builder)
+        public void Configure(EntityTypeBuilder<Ranking> builder)
         {
             builder.Property(ga => ga.Rank)
                 .IsRequired()

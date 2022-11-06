@@ -1,5 +1,5 @@
 ﻿using GameCritic.Application.Common.Dtos.Game;
-using GameCritic.Application.Common.Dtos.GameAward;
+using GameCritic.Application.Common.Dtos.Ranking;
 
 namespace GameCritic.Application.Common.Dtos.Award
 {

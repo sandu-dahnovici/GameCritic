@@ -300,32 +300,6 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("GameCritic.Domain.Entities.GameAward", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AwardId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<short>("Rank")
-                        .HasColumnType("smallint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AwardId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("GameAwards");
-                });
-
             modelBuilder.Entity("GameCritic.Domain.Entities.GameGenre", b =>
                 {
                     b.Property<int>("Id")
@@ -401,6 +375,32 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publishers");
+                });
+
+            modelBuilder.Entity("GameCritic.Domain.Entities.Ranking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AwardId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<short>("Rank")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AwardId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Rankings");
                 });
 
             modelBuilder.Entity("GameCritic.Domain.Entities.Review", b =>
@@ -492,29 +492,10 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                     b.HasOne("GameCritic.Domain.Entities.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Publisher");
-                });
-
-            modelBuilder.Entity("GameCritic.Domain.Entities.GameAward", b =>
-                {
-                    b.HasOne("GameCritic.Domain.Entities.Award", "Award")
-                        .WithMany("GameAwards")
-                        .HasForeignKey("AwardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GameCritic.Domain.Entities.Game", "Game")
-                        .WithMany("GameAwards")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Award");
-
-                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("GameCritic.Domain.Entities.GameGenre", b =>
@@ -534,6 +515,25 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("GameCritic.Domain.Entities.Ranking", b =>
+                {
+                    b.HasOne("GameCritic.Domain.Entities.Award", "Award")
+                        .WithMany("Rankings")
+                        .HasForeignKey("AwardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GameCritic.Domain.Entities.Game", "Game")
+                        .WithMany("Rankings")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Award");
+
+                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("GameCritic.Domain.Entities.Review", b =>
@@ -562,14 +562,14 @@ namespace GameCritic.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("GameCritic.Domain.Entities.Award", b =>
                 {
-                    b.Navigation("GameAwards");
+                    b.Navigation("Rankings");
                 });
 
             modelBuilder.Entity("GameCritic.Domain.Entities.Game", b =>
                 {
-                    b.Navigation("GameAwards");
-
                     b.Navigation("GameGenres");
+
+                    b.Navigation("Rankings");
 
                     b.Navigation("Reviews");
                 });

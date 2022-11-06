@@ -10,7 +10,7 @@ namespace GameCritic.Application.Profiles
         public GameProfile()
         {
             CreateMap<Game, GameDto>()
-                .ForMember(gdto => gdto.Awards, c => c.MapFrom(g => g.GameAwards))
+                .ForMember(gdto => gdto.Awards, c => c.MapFrom(g => g.Rankings))
                 .ForMember(gdto => gdto.Genres, c => c.MapFrom(g => g.GameGenres))
                 .ForMember(gdto => gdto.Publisher, c => c.MapFrom(g => g.Publisher))
                 .ReverseMap();

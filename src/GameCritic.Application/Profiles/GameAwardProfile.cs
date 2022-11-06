@@ -1,18 +1,16 @@
 ﻿using AutoMapper;
 using GameCritic.Domain.Entities;
-using GameCritic.Application.Common.Dtos.GameAward;
+using GameCritic.Application.Common.Dtos.Ranking;
 
 namespace GameCritic.Application.Profiles
 {
-    public class GameAwardProfile : Profile
+    public class RankingProfile : Profile
     {
-        public GameAwardProfile()
+        public RankingProfile()
         {
-            CreateMap<GameAward, GameAwardListDto>()
+            CreateMap<Ranking, GameAwardListDto>()
                 .ForMember(ga => ga.Award, c => c.MapFrom(a => a.Award));
-            CreateMap<CreateGameAwardDto, GameAward>()
-                .ForMember(ga => ga.AwardId, c => c.MapFrom(a => a.AwardId));
-            CreateMap<GameAward, AwardGameListDto>()
+            CreateMap<Ranking, AwardGameListDto>()
                 .ForMember(ga => ga.Game, c => c.MapFrom(g => g.Game));
         }
     }

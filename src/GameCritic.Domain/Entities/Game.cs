@@ -25,7 +25,7 @@ namespace GameCritic.Domain.Entities
 
         public ICollection<Review>? Reviews { get; set; }
 
-        public ICollection<GameAward>? GameAwards { get; set; }
+        public ICollection<Ranking>? Rankings { get; set; }
 
         public ICollection<GameGenre> GameGenres { get; set; }
     }

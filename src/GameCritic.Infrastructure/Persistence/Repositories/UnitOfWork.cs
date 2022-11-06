@@ -11,7 +11,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
         private IAwardRepository _awardRepository;
         private IGameRepository _gameRepository;
-        private IGenericRepository<GameAward> _gameAwardRepository;
+        private IGenericRepository<Ranking> _rankingRepository;
         private IGenericRepository<GameGenre> _gameGenreRepository;
         private IGenreRepository _genreRepository;
         private IGenericRepository<Publisher> _publisherRepository;
@@ -37,13 +37,13 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             }
         }
 
-        public IGenericRepository<GameAward> GameAwardRepository
+        public IGenericRepository<Ranking> RankingRepository
         {
             get
             {
-                if (_gameAwardRepository == null)
-                    _gameAwardRepository = new GenericRepository<GameAward>(_dbContext, _mapper);
-                return _gameAwardRepository;
+                if (_rankingRepository == null)
+                    _rankingRepository = new GenericRepository<Ranking>(_dbContext, _mapper);
+                return _rankingRepository;
             }
         }
         public IGenericRepository<GameGenre> GameGenreRepository
