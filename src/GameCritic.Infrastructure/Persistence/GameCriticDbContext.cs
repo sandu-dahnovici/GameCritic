@@ -16,7 +16,7 @@ namespace GameCritic.Infrastructure.Persistence
 
         public DbSet<Award> Awards { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<GameAward> GameAwards { get; set; }
+        public DbSet<Ranking> Rankings { get; set; }
         public DbSet<GameGenre> GameGenres { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Publisher> Publishers { get; set; }

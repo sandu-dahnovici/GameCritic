@@ -8,6 +8,6 @@ namespace GameCritic.Domain.Entities
 
         public int? Year { get; set; }
 
-        public ICollection<GameAward> GameAwards { get; set; }
+        public ICollection<Ranking> Rankings { get; set; }
     }
 }

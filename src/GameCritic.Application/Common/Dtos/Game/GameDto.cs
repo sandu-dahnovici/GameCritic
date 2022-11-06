@@ -1,6 +1,6 @@
 ﻿using GameCritic.Application.Common.Dtos.Publisher;
 using GameCritic.Application.Common.Dtos.Genre;
-using GameCritic.Application.Common.Dtos.GameAward;
+using GameCritic.Application.Common.Dtos.Ranking;
 using GameCritic.Application.Common.Dtos.GameGenre;
 using GameCritic.Application.Common.Dtos.Review;
 

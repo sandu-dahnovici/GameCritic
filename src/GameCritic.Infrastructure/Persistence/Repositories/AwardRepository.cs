@@ -21,7 +21,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             IQueryable<Award> awards = _dbContext.Set<Award>();
 
             awards = awards
-                .Include(g => g.GameAwards)
+                .Include(g => g.Rankings)
                     .ThenInclude(gg => gg.Game)
                     .ThenInclude(ggg => ggg.Publisher);
 
