@@ -1,0 +1,39 @@
+<mat-card style="text-align:center; font-size: larger;" class="info-card">
+    <mat-card-title>{{ publisher.name }}</mat-card-title>
+    <mat-card-subtitle>{{ publisher.country }}</mat-card-subtitle>
+    <mat-card-content>
+        <p>
+            <mat-icon style="width: 100%;">work</mat-icon> {{publisher.name}} has
+            <i style="color:orange">{{ publisher.numberOfEmployees }}</i> employees
+        </p>
+    </mat-card-content>
+    <mat-card-footer style="display: inline-flex;justify-content: baseline; align-items: center;">
+        <ng-container *ngIf="publisher.websiteURL">
+            <a [href]="publisher.websiteURL" target="_blank" style="margin-right: 1em;">
+                <button mat-raised-button color="accent">
+                    Visit Official Website
+                    <mat-icon>forward</mat-icon>
+                </button>
+            </a>
+        </ng-container>
+        <P>Since <strong>{{ publisher.foundationYear }}
+            </strong></P>
+    </mat-card-footer>
+</mat-card>
+<ng-container *ngIf="publisher.games.length">
+    <div>
+        <div class="cover-title">
+            <div class="container">
+                <div class="cover-title__title">
+                    <h1>'{{publisher.name}}' Games ({{publisher.games.length }} found)</h1>
+                </div>
+            </div>
+        </div>
+        <app-games-grid [games]="publisher.games"></app-games-grid>
+    </div>
+</ng-container>
+<ng-container *ngIf="!publisher.games.length">
+    <div style="margin-top: 50px;" class="not-found">
+        <span class="label danger">{{publisher.name}} has no games</span>
+    </div>
+</ng-container>

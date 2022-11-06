@@ -22,8 +22,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
             genres = genres
                 .Include(g => g.GameGenres)
-                    .ThenInclude(gg => gg.Game)
-                    .ThenInclude(ggg => ggg.Publisher);
+                    .ThenInclude(gg => gg.Game);
 
             return await genres.FirstOrDefaultAsync(expression);
         }

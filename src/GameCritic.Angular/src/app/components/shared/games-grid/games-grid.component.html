@@ -1,0 +1,8 @@
+<div class="cards">
+    <ng-container *ngIf="games.length">
+        <mat-card *ngFor="let game of games" class="card-container" [routerLink]="['/games',game.id]" >
+            <img [src]="getImageUrl(game.imageName)">
+            <mat-card-title class="card-info">{{ game.title }}</mat-card-title>
+        </mat-card>
+    </ng-container>
+</div>

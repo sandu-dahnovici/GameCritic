@@ -26,8 +26,6 @@ namespace GameCritic.Application.Common.Dtos.Game
 
         public PublisherListDto Publisher { get; set; }
 
-        public IList<ReviewListDto> Reviews { get; set; }
-
         public IList<GameAwardListDto> Awards { get; set; }
 
         public IList<GenreListDto> Genres { get; set; }

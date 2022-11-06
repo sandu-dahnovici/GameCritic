@@ -22,12 +22,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PublisherPageComponent } from './publisher-page/publisher-page.component';
 import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    PublishersSearchPageComponent
+    PublishersSearchPageComponent,
+    PublisherPageComponent
   ],
   imports: [
     CommonModule,

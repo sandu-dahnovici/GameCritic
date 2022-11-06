@@ -1,4 +1,6 @@
-﻿using GameCritic.Domain.Entities;
+﻿using GameCritic.Application.Common.Dtos.Review;
+using GameCritic.Application.Common.Models;
+using GameCritic.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,7 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
 {
     public interface IReviewRepository : IGenericRepository<Review>
     {
+        Task<PaginatedResult<ReviewListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest);
         public Task<IList<Review>> GetReviewsByGameId(int id);
     }
 }

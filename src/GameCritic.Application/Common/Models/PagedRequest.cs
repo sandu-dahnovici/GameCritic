@@ -4,7 +4,7 @@
     {
         public PagedRequest()
         {
-            RequestFilters = new RequestFilters();
+
         }
 
         public int PageIndex { get; set; }
@@ -15,6 +15,6 @@
 
         public string SortDirection { get; set; }
 
-        public RequestFilters RequestFilters { get; set; }
+        public Filter Filter { get; set; }
     }
 }

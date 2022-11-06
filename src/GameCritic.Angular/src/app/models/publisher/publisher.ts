@@ -1,10 +1,11 @@
 import { Game } from "../game/game";
 
 export interface Publisher {
+    id: number,
     name: string,
     country: string,
     foundationYear: number,
-    websiteUrl: string,
+    websiteURL: string,
     numberOfEmployees: number,
     games: Game[]
 }

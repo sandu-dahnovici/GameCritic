@@ -9,11 +9,18 @@
     margin: 0 0 0 auto;
 }
 
+
 mat-toolbar {
-    position: sticky;
-    top: 0;
     right: 0;
     left: 0;
-    z-index: 10;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+    height: 64px;
     box-shadow: 0 2px 5px #0000004d;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
 }

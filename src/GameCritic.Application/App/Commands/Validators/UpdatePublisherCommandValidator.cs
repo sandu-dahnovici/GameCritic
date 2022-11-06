@@ -17,19 +17,19 @@ namespace GameCritic.Application.App.Commands.Validators
             RuleFor(p => p.NumberOfEmployees)
                 .NotNull()
                 .NotEmpty()
-                .InclusiveBetween(10, 2000000);
+                .InclusiveBetween(50, 2000000);
             RuleFor(p => p.WebsiteURL)
                 .Custom((uriName, context) =>
                 {
                     Uri uriResult;
                     bool result = Uri.TryCreate(uriName, UriKind.Absolute, out uriResult)
                         && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-                    if (!result)
+                    if (!result && uriName != "" && uriName?.Length > 10)
                         context.AddFailure("URL is not valid");
                 });
             RuleFor(p => p.Country)
                 .NotEmpty()
-                .MaximumLength(50);
+                .MaximumLength(100);
         }
     }
 }

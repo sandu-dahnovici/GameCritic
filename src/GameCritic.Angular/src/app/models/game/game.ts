@@ -13,7 +13,6 @@ export interface Game {
     playtime: number,
     score: number,
     publisher: PublisherList,
-    reviews: Review[],
     awards: GameAwardList[],
     genres: GenreList[]
 }

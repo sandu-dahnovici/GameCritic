@@ -8,11 +8,14 @@ const routes: Routes = [
   { path: 'publishers', loadChildren: () => import('./components/publishers/publishers.module').then(m => m.PublishersModule) },
   { path: 'games', loadChildren: () => import('./components/games/games.module').then(m => m.GamesModule) },
   { path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule) },
+  { path: 'genres', loadChildren: () => import('./components/genres/genres.module').then(m => m.GenresModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled',
+  }),
     CommonModule],
   exports: [RouterModule]
 })

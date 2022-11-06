@@ -5,10 +5,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
+import { GamesGridComponent } from './games-grid/games-grid.component';
 
 
 
@@ -16,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     SearchBarComponent,
     ConfirmDialogComponent,
+    GamesGridComponent,
   ],
   imports: [
     CommonModule,
@@ -23,12 +26,15 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatIconModule,
     FormsModule,
+    RouterModule,
     MatButtonModule,
     MatDialogModule,
+    MatCardModule,
   ],
   exports: [
     SearchBarComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    GamesGridComponent,
   ]
 })
 export class SharedModule { }

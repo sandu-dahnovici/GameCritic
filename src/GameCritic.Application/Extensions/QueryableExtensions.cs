@@ -49,22 +49,10 @@ namespace GameCritic.Application.Extensions
         private static IQueryable<T> ApplyFilters<T>(this IQueryable<T> query, PagedRequest pagedRequest)
         {
             var predicate = new StringBuilder();
-            var requestFilters = pagedRequest.RequestFilters;
-            for (int i = 0; i < requestFilters.Filters.Count; i++)
-            {
-                if (i > 0)
-                {
-                    predicate.Append($" {requestFilters.LogicalOperator}");
-                }
-                predicate.Append(requestFilters.Filters[i].Path + $".{nameof(string.Contains)}(@{i})");
-            }
 
-            if (requestFilters.Filters.Any())
-            {
-                var propertyValues = requestFilters.Filters.Select(filter => filter.Value).ToArray();
+            predicate.Append($"{pagedRequest.Filter.Path}.Contains(@0)");
 
-                query = query.Where(predicate.ToString(), propertyValues);
-            }
+            query = query.Where(predicate.ToString(), pagedRequest.Filter.Value);
 
             return query;
         }

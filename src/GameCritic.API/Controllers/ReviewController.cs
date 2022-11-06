@@ -5,6 +5,7 @@ using GameCritic.Application.App.Commands.Reviews;
 using GameCritic.Application.App.Queries.Reviews;
 using GameCritic.Application.Common.Dtos.Review;
 using GameCritic.API.Filters;
+using GameCritic.Application.Common.Models;
 
 namespace GameCritic.API.Controllers
 {
@@ -43,6 +44,13 @@ namespace GameCritic.API.Controllers
         public async Task<IActionResult> DeleteReview(DeleteReviewCommand deleteReviewDto)
         {
             return Ok(await _mediator.Send(deleteReviewDto));
+        }
+
+        [HttpPost("{gameId}")]
+        public async Task<PaginatedResult<ReviewListDto>> GetPagedReviewsByGameId(int gameId, PagedRequest pagedRequest)
+        {
+            var response = await _mediator.Send(new GetPagedReviewsByGameIdQuery() { Id = gameId, PagedRequest = pagedRequest });
+            return response;
         }
     }
 }
