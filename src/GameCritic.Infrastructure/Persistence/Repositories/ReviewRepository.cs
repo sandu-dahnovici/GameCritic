@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using GameCritic.Application.Common.Dtos.Review;
 using GameCritic.Application.Common.Interfaces.Repositories;
+using GameCritic.Application.Common.Models;
+using GameCritic.Application.Extensions;
 using GameCritic.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -9,10 +12,23 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
     public class ReviewRepository : GenericRepository<Review>, IReviewRepository
     {
         private readonly GameCriticDbContext _dbContext;
+        private readonly IMapper _mapper;
 
         public ReviewRepository(GameCriticDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
+        }
+        
+        public async Task<PaginatedResult<ReviewListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest)
+        {
+            IQueryable<Review> reviews = _dbContext.Set<Review>();
+
+            reviews = reviews.Include(r => r.Game)
+                .Include(r => r.User)
+                .Where(r => r.GameId == id);
+
+            return await reviews.CreatePaginatedResultAsync<Review, ReviewListDto>(pagedRequest, _mapper);
         }
 
         public async Task<IList<Review>> GetReviewsByGameId(int id)

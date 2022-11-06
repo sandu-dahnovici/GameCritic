@@ -1,0 +1,66 @@
+.cover-title {
+    padding: 1.5rem 0;
+    background: #fafafa;
+    background-color: #262435;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.container {
+    display: block;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-title__title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FEFEFF;
+}
+
+.not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    color: white;
+    padding: 18px;
+    font-family: Arial;
+    font-size: 1.2em;
+}
+
+.danger {
+    background-color: #f44336;
+}
+
+.info-card {
+    box-shadow: rgba(173, 173, 173, 0.25) 0px 25px 50px -12px;
+    padding: 36px;
+    border-radius: 16px;
+    /* background-color: #FCFBFC; */
+    transition: 0.6s ease;
+}
+
+.info-card:hover {
+    transform: scale(1.06);
+    transition: 0.6s ease;
+}
+
+.mat-card-title-group {
+    align-items: center;
+}
+
+
+.mat-card-title {
+    font-size: 18px;
+    color: #335179;
+}
+
+.mat-card-subtitle {
+    font-size: 12px;
+}

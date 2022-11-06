@@ -22,6 +22,7 @@ import { DelayInterceptor } from './interceptors/delay.interceptor';
 import { ProgressInterceptor } from './interceptors/progress.interceptor';
 import { SharedModule } from './components/shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { HomeComponent } from './components/home/home.component';
     MatMenuModule,
     MatDividerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     NgImageSliderModule,
     MatProgressBarModule,
     MatCardModule,

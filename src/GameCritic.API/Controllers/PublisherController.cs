@@ -36,20 +36,21 @@ namespace GameCritic.API.Controllers
         }
 
 
-        [HttpPut]
-        public async Task<IActionResult> UpdatePublisher(UpdatePublisherCommand updatePublisherDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdatePublisher(UpdatePublisherCommand updatePublisherDto, int id)
         {
+            updatePublisherDto.Id = id;
             return Ok(await _mediator.Send(updatePublisherDto));
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeletePublisher(DeletePublisherCommand deletePublisherDto)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePublisher(int id)
         {
-            return Ok(await _mediator.Send(deletePublisherDto));
+            return Ok(await _mediator.Send(new DeletePublisherCommand() { Id = id }));
         }
 
         [HttpPost("paginated-search")]
-        public async Task<PaginatedResult<PublisherListDto>> GetPagedGames(PagedRequest pagedRequest)
+        public async Task<PaginatedResult<PublisherListDto>> GetPagedPublishers(PagedRequest pagedRequest)
         {
             var response = await _mediator.Send(new GetPublishersPagedQuery() { PagedRequest = pagedRequest });
             return response;

@@ -6,9 +6,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { merge } from 'rxjs';
 import { GameList } from 'src/app/models/game/game-list';
+import { Filter } from 'src/app/models/pagination/filter.model';
 import { PagedResult } from 'src/app/models/pagination/paged-result.model';
 import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.model';
-import { RequestFilters } from 'src/app/models/pagination/request-filters.model';
 import { GameService } from 'src/app/services/game.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
@@ -27,7 +27,7 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(SearchBarComponent) sc: SearchBarComponent;
 
-  requestFilters!: RequestFilters;
+  filter!: Filter;
   constructor(private gameService: GameService, public dialog: MatDialog,
     public snackBar: MatSnackBar) { }
 
@@ -69,25 +69,19 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
         pageSize: 5,
         columnNameForSorting: '',
         sortDirection: '',
-        requestFilters: {
-          logicalOperator: 1,
-          filters: [{
-            path: 'title',
-            value: value,
-          }]
-        }
-      };
-    } else {
-      this.requestFilters = {
-        logicalOperator: 1,
-        filters: [{
+        filter: {
           path: 'title',
           value: value,
-        }]
+        }
+      }
+    } else {
+      this.filter = {
+        path: 'title',
+        value: value,
       }
       let toSort = this.sort.active ?? '';
       let direction = this.sort.direction ?? '';
-      paginatedRequest = new PaginatedRequest(this.paginator, toSort, direction, this.requestFilters);
+      paginatedRequest = new PaginatedRequest(this.paginator, toSort, direction, this.filter);
     }
     this.gameService.getGamesPaged(paginatedRequest)
       .subscribe((pagedGames: PagedResult<GameList>) => {

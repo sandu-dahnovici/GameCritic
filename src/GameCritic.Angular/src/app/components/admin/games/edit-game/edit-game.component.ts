@@ -37,10 +37,10 @@ export class EditGameComponent implements OnInit {
     this.route.params.subscribe(params => {
       objectId = +params['id'];
       if (objectId === 0) {
-        this.pageTitle = 'Add Game:';
+        this.pageTitle = 'Add Game :';
       } else {
         this.getGame(objectId);
-        this.pageTitle = 'Edit Game:';
+        this.pageTitle = 'Edit Game :';
         this.id = objectId;
       }
     });

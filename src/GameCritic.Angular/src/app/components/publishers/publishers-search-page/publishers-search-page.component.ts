@@ -5,9 +5,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { merge } from 'rxjs';
+import { Filter } from 'src/app/models/pagination/filter.model';
 import { PagedResult } from 'src/app/models/pagination/paged-result.model';
 import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.model';
-import { RequestFilters } from 'src/app/models/pagination/request-filters.model';
 import { PublisherList } from 'src/app/models/publisher/publisher-list';
 import { PublisherService } from 'src/app/services/publisher.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
@@ -28,7 +28,7 @@ export class PublishersSearchPageComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(SearchBarComponent) sc: SearchBarComponent;
 
-  requestFilters!: RequestFilters;
+  filter!: Filter;
   constructor(private publisherService: PublisherService, public dialog: MatDialog,
     public snackBar: MatSnackBar) { }
 
@@ -60,25 +60,19 @@ export class PublishersSearchPageComponent implements OnInit {
         pageSize: 5,
         columnNameForSorting: '',
         sortDirection: '',
-        requestFilters: {
-          logicalOperator: 1,
-          filters: [{
-            path: 'name',
-            value: value,
-          }]
+        filter: {
+          path: 'name',
+          value: value,
         }
       };
     } else {
-      this.requestFilters = {
-        logicalOperator: 1,
-        filters: [{
-          path: 'name',
-          value: value,
-        }]
+      this.filter = {
+        path: 'name',
+        value: value,
       }
       let toSort = this.sort.active ?? '';
       let direction = this.sort.direction ?? '';
-      paginatedRequest = new PaginatedRequest(this.paginator, toSort,direction, this.requestFilters);
+      paginatedRequest = new PaginatedRequest(this.paginator, toSort, direction, this.filter);
     }
     this.publisherService.getPublishersPaged(paginatedRequest)
       .subscribe((pagedPubs: PagedResult<PublisherList>) => {

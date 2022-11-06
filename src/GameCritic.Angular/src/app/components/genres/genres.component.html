@@ -1,0 +1,25 @@
+<mat-card style="text-align:center; font-size: larger;" class="info-card">
+    <mat-card-title>{{ genre.name }}</mat-card-title>
+    <mat-card-content>
+        <p>
+           {{genre.description}}
+        </p>
+    </mat-card-content>
+</mat-card>
+<ng-container *ngIf="genre.games.length">
+    <div>
+        <div class="cover-title">
+            <div class="container">
+                <div class="cover-title__title">
+                    <h1><i>{{genre.name}}</i> - Games ({{genre.games.length }} found)</h1>
+                </div>
+            </div>
+        </div>
+        <app-games-grid [games]="genre.games"></app-games-grid>
+    </div>
+</ng-container>
+<ng-container *ngIf="!genre.games.length">
+    <div style="margin-top: 50px;" class="not-found">
+        <span class="label danger">{{genre.name}} has no games</span>
+    </div>
+</ng-container>

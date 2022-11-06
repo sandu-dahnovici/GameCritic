@@ -24,14 +24,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const paginatedRequest: PaginatedRequest = {
       pageIndex: 0,
       pageSize: 14,
-      columnNameForSorting: 'id',
-      sortDirection: 'asc',
-      requestFilters: {
-        logicalOperator: 1,
-        filters: [{
-          path: 'title',
-          value: ''
-        }]
+      columnNameForSorting: '',
+      sortDirection: '',
+      filter: {
+        path: 'title',
+        value: '',
       }
     };
 

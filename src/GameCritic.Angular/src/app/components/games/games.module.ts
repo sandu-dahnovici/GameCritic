@@ -23,7 +23,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GamePageComponent } from './game-page/game-page.component';
 import { GamesSearchPageComponent } from './games-search-page/games-search-page.component';
-import { GamesTableComponent } from './games-table/games-table.component';
 import { SharedModule } from '../shared/shared.module';
 import { AwardsModule } from '../awards/awards.module';
 import { TimelapsePipe } from './game-page/timelapse.pipe';
@@ -34,7 +33,6 @@ import { ReviewsModule } from '../reviews/reviews.module';
   declarations: [
     GamePageComponent,
     GamesSearchPageComponent,
-    GamesTableComponent,
     TimelapsePipe
   ],
   imports: [
@@ -68,7 +66,6 @@ import { ReviewsModule } from '../reviews/reviews.module';
   exports: [
     GamePageComponent,
     GamesSearchPageComponent,
-    GamesTableComponent,
   ]
 })
 export class GamesModule { }

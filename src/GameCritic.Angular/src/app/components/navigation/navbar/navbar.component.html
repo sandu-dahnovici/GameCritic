@@ -18,9 +18,13 @@
             Publishers
         </button>
 
-        <button mat-button fxHide.xs>
+        <button mat-button fxHide.xs [matMenuTriggerFor]="menu">
             <mat-icon>list</mat-icon>
             Genres
         </button>
+        <mat-menu #menu="matMenu">
+            <button *ngFor="let genre of genres" mat-menu-item
+                [routerLink]="['/genres',genre.id]">{{genre.name}}</button>
+        </mat-menu>
     </div>
 </mat-toolbar>

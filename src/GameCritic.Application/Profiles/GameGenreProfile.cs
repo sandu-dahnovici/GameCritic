@@ -20,7 +20,8 @@ namespace GameCritic.Application.Profiles
                 .ForMember(g => g.Price, c => c.MapFrom(gg => gg.Game.Price))
                 .ForMember(g => g.ReleaseDate, c => c.MapFrom(gg => gg.Game.ReleaseDate))
                 .ForMember(g => g.Score, c => c.MapFrom(gg => gg.Game.Score))
-                .ForMember(g => g.Title, c => c.MapFrom(gg => gg.Game.Title));
+                .ForMember(g => g.Title, c => c.MapFrom(gg => gg.Game.Title))
+                .ForMember(g => g.ImageName, c => c.MapFrom(gg => gg.Game.ImageName));
         }
     }
 }

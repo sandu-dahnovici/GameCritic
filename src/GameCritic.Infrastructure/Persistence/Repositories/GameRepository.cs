@@ -25,9 +25,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
                 .Include(g => g.GameAwards)
                     .ThenInclude(ga => ga.Award)
                 .Include(g => g.GameGenres)
-                    .ThenInclude(gg => gg.Genre)
-                .Include(g => g.Reviews)
-                    .ThenInclude(r => r.User);
+                    .ThenInclude(gg => gg.Genre);
 
             return await games.FirstOrDefaultAsync(g => g.Id == id);
         }

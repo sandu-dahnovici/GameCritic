@@ -1,0 +1,96 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="view-card-title" style="text-align: center;">
+            {{pageTitle}}
+        </mat-card-title>
+    </mat-card-header>
+    <form novalidate [formGroup]="publisherForm" (ngSubmit)="savePublisher()">
+        <mat-toolbar style="background-color: #FFF">
+            <mat-toolbar-row>
+                <span class="title-spacer"></span>
+                <mat-card-actions>
+                    <button mat-fab class="primary" style="margin-right:10px; background-color:darkgray" type="submit"
+                        [disabled]='!publisherForm.valid'>
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="" style="margin-right:10px; " [routerLink]="['/publishers']">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="name">Name : </mat-label>
+            <input matInput type="text" name="name" class="form-control" formControlName="name">
+        </mat-form-field>
+        <br>
+        <ng-container
+            *ngIf="!publisherForm.controls['name'].valid && (publisherForm.controls['name'].dirty || publisherForm.controls['name'].touched)">
+            <mat-error *ngIf="publisherForm.controls['name'].errors?.['required']">Name is required</mat-error>
+            <mat-error *ngIf="publisherForm.controls['name'].errors?.['maxlength']">Name has maximum 50 characters
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="country">Country : </mat-label>
+            <mat-select name="country" formControlName="country" placeholder="Select Country">
+                <mat-option *ngFor="let country of countries" [value]="country">
+                    {{country}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <ng-container *ngIf="!country?.valid && (country?.dirty || country?.touched)">
+            <mat-error *ngIf="country?.errors?.['required']">
+                Country is required.
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="foundationYear">Foundation Year : </mat-label>
+            <input matInput type="number" name="foundationYear" class="form-control" formControlName="foundationYear">
+        </mat-form-field>
+        <br>
+        <ng-container
+            *ngIf="!publisherForm.controls['foundationYear'].valid && (publisherForm.controls['foundationYear'].dirty || publisherForm.controls['foundationYear'].touched)">
+            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['required']">Foundation Year is required
+            </mat-error>
+            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['max']">Foundation Year must be current
+                year
+            </mat-error>
+            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['min']">Foundation Year must be after
+                1970
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="websiteUrl">Website URL : </mat-label>
+            <input matInput type="text" name="websiteUrl" class="form-control" formControlName="websiteUrl">
+        </mat-form-field>
+        <br>
+        <ng-container
+            *ngIf="!publisherForm.controls['websiteUrl'].valid && (publisherForm.controls['websiteUrl'].dirty || publisherForm.controls['websiteUrl'].touched)">
+            <mat-error *ngIf="publisherForm.controls['websiteUrl'].errors?.['validUrl']">This website does not exist
+            </mat-error>
+        </ng-container>
+        <br>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="numberOfEmployees">Number of Employees : </mat-label>
+            <input matInput type="number" name="numberOfEmployees" class="form-control"
+                formControlName="numberOfEmployees">
+        </mat-form-field>
+        <br>
+        <ng-container
+            *ngIf="!publisherForm.controls['numberOfEmployees'].valid && (publisherForm.controls['numberOfEmployees'].dirty || publisherForm.controls['numberOfEmployees'].touched)">
+            <mat-error *ngIf="publisherForm.controls['numberOfEmployees'].errors?.['required']">Number of Employees is
+                required
+            </mat-error>
+            <mat-error *ngIf="publisherForm.controls['numberOfEmployees'].errors?.['max']">Number of Employees must be
+                more than 50
+            </mat-error>
+            <mat-error *ngIf="publisherForm.controls['numberOfEmployees'].errors?.['min']">Number of Employees must be
+                less than 200000
+            </mat-error>
+        </ng-container>
+    </form>
+</mat-card>

@@ -2,7 +2,8 @@
     <mat-card class="example-card">
         <mat-card-header>
             <mat-card-title class="title">{{ game.title }}</mat-card-title>
-            <mat-card-subtitle><a routerLink="#">{{ game.publisher.name }}</a></mat-card-subtitle>
+            <mat-card-subtitle><a [routerLink]="['/publishers',game.publisher.id]">{{ game.publisher.name }}</a>
+            </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content style="display:inline-flex">
             <div mat-card-avatar class="example-header-image"
@@ -24,13 +25,13 @@
                         <p style="display:inline"><b>User Score</b></p>
                         <p>
                             Generally favorable reviews
-                            based on <b style="color:green;"><i>{{ game.reviews.length }}</i></b> Ratings
+                            based on <b style="color:green;"><i>{{pagedReviews?.total}}</i></b> Ratings
                         </p>
                     </div>
                 </div>
                 <p *ngIf="game.genres"><b>Genres</b> :
                     <ng-container *ngFor="let genre of game.genres;let indexOf=index;">
-                        <a routerLink="#" style="font-weight: normal;">{{ genre.name }}
+                        <a [routerLink]="['/genres',genre.id]" style="font-weight: normal;">{{ genre.name }}
                             <ng-container *ngIf="indexOf != game.genres.length-1"> , </ng-container>
                         </a>
                     </ng-container>
@@ -82,24 +83,23 @@
                 <h2 class="module-title" style="color:white">USER REVIEWS</h2>
             </div>
         </div>
-        <ng-container *ngIf="game.reviews.length;else noReviews">
-            <mat-table [dataSource]="dataSource">
+        <div [hidden]="!pagedReviews?.total">
+            <mat-table matSort [dataSource]="dataSource">
                 <ng-container matColumnDef="review">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let review">
                         <app-review-card [review]="review"></app-review-card>
                     </mat-cell>
                 </ng-container>
-
                 <mat-header-row *matHeaderRowDef="['review']"></mat-header-row>
                 <mat-row mat-row *matRowDef="let row; columns : ['review'];"></mat-row>
             </mat-table>
-            <mat-paginator [length]="game.reviews.length" pageSize="3" [pageSizeOptions]="[2,3,5,10]"></mat-paginator>
-        </ng-container>
-        <ng-template #noReviews>
+            <mat-paginator [length]="pagedReviews?.total" pageSize="3" [pageSizeOptions]="[2,3,5,10]"></mat-paginator>
+        </div>
+        <ng-container *ngIf="!pagedReviews?.total">
             <div style="margin-top: 20px;" class="not-found">
                 <span class="label danger">This game has no reviews</span>
             </div>
-        </ng-template>
+        </ng-container>
     </div>
 </div>
