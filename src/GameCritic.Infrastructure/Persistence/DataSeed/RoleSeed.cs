@@ -11,8 +11,8 @@ namespace GameCritic.Infrastructure.Persistence.DataSeed
 
             List<Role> roles = new()
             {
-                new() { Name = UserRoles.User},
-                new() { Name = UserRoles.Admin},
+                new() { Name = RoleCategory.User},
+                new() { Name = RoleCategory.Admin},
             };
 
             foreach (var role in roles)

@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { GamesGridComponent } from './games-grid/games-grid.component';
+import { ScoreButtonComponent } from './score-button/score-button.component';
 
 
 
@@ -19,6 +20,7 @@ import { GamesGridComponent } from './games-grid/games-grid.component';
     SearchBarComponent,
     ConfirmDialogComponent,
     GamesGridComponent,
+    ScoreButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { GamesGridComponent } from './games-grid/games-grid.component';
     SearchBarComponent,
     ConfirmDialogComponent,
     GamesGridComponent,
+    ScoreButtonComponent,
   ]
 })
 export class SharedModule { }

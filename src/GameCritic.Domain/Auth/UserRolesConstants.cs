@@ -1,6 +1,6 @@
 ﻿namespace GameCritic.Domain.Auth
 {
-    public static class UserRoles
+    public static class RoleCategory
     {
         public const string Admin = "Admin";
 

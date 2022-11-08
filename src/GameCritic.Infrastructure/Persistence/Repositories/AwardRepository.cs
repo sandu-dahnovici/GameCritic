@@ -22,8 +22,7 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
 
             awards = awards
                 .Include(g => g.Rankings)
-                    .ThenInclude(gg => gg.Game)
-                    .ThenInclude(ggg => ggg.Publisher);
+                    .ThenInclude(gg => gg.Game);
 
             return await awards.FirstOrDefaultAsync(expression);
         }

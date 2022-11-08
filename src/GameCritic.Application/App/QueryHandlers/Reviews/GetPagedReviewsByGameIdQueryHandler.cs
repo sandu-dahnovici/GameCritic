@@ -8,7 +8,7 @@ using MediatR;
 
 namespace GameCritic.Application.App.QueryHandlers.Reviews
 {
-    public class GetPagedReviewsByGameIdQueryHandler : IRequestHandler<GetPagedReviewsByGameIdQuery, PaginatedResult<ReviewListDto>>
+    public class GetPagedReviewsByGameIdQueryHandler : IRequestHandler<GetPagedReviewsByGameIdQuery, PaginatedResult<ReviewUserListDto>>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -19,7 +19,7 @@ namespace GameCritic.Application.App.QueryHandlers.Reviews
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<PaginatedResult<ReviewListDto>> Handle(GetPagedReviewsByGameIdQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResult<ReviewUserListDto>> Handle(GetPagedReviewsByGameIdQuery request, CancellationToken cancellationToken)
         {
             var pagedReviewsDto = await _unitOfWork.ReviewRepository.GetPagedReviewsByGameId(request.Id, request.PagedRequest);
             return pagedReviewsDto;

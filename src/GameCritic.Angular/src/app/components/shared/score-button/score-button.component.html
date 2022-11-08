@@ -1,0 +1,4 @@
+<button mat-mini-fab
+    [color]="score > 8 ? 'success' : score > 5 ? 'accent' : score > 1 ? 'warn' : 'gray'">
+    {{ score ? score.toFixed(1) : "tbd"}}
+</button>

@@ -12,7 +12,7 @@
     </div>
 
     <app-search-bar (onSearch)="paginatedSearch($event)" [entity]="'game'"></app-search-bar>
-    
+
 </div>
 <ng-image-slider [images]="imgCollection" #nav class="footer" [imageSize]="{width: 180, height: 180, space: 7}"
-[infinite]="true" [autoSlide]="true" (imageClick)="imageClickHandler($event)"></ng-image-slider>
+    [infinite]="true" [autoSlide]="true" (imageClick)="imageClickHandler($event)"></ng-image-slider>

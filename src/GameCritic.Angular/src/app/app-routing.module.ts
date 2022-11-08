@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AwardPageComponent } from './components/awards/award-page/award-page.component';
+import { AwardResolver } from './components/awards/award-page/award.resolver';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
@@ -9,6 +11,7 @@ const routes: Routes = [
   { path: 'games', loadChildren: () => import('./components/games/games.module').then(m => m.GamesModule) },
   { path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule) },
   { path: 'genres', loadChildren: () => import('./components/genres/genres.module').then(m => m.GenresModule) },
+  { path: 'awards/:id', component: AwardPageComponent, resolve: { award: AwardResolver } },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

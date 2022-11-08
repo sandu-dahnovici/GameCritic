@@ -6,6 +6,8 @@ using GameCritic.Application.App.Commands.Publishers;
 using GameCritic.Application.Common.Dtos.Publisher;
 using GameCritic.API.Filters;
 using GameCritic.Application.Common.Models;
+using Microsoft.AspNetCore.Authorization;
+using GameCritic.Domain.Auth;
 
 namespace GameCritic.API.Controllers
 {
@@ -21,6 +23,7 @@ namespace GameCritic.API.Controllers
             _mediator = mediator;
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<PublisherDto> GetById(int id)
         {
@@ -28,6 +31,7 @@ namespace GameCritic.API.Controllers
             return publisherDto;
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpPost]
         public async Task<PublisherDto> CreatePublisher(CreatePublisherCommand createPublisherDto)
         {
@@ -35,7 +39,7 @@ namespace GameCritic.API.Controllers
             return publisherDto;
         }
 
-
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePublisher(UpdatePublisherCommand updatePublisherDto, int id)
         {
@@ -43,12 +47,14 @@ namespace GameCritic.API.Controllers
             return Ok(await _mediator.Send(updatePublisherDto));
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePublisher(int id)
         {
             return Ok(await _mediator.Send(new DeletePublisherCommand() { Id = id }));
         }
 
+        [AllowAnonymous]
         [HttpPost("paginated-search")]
         public async Task<PaginatedResult<PublisherListDto>> GetPagedPublishers(PagedRequest pagedRequest)
         {
@@ -56,6 +62,7 @@ namespace GameCritic.API.Controllers
             return response;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IList<PublisherListDto>> GetAllPublishers()
         {

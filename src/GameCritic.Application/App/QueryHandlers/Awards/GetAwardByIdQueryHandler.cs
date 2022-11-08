@@ -25,6 +25,8 @@ namespace GameCritic.Application.App.QueryHandlers.Reviews
             if (award == null)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound, "No award found");
 
+            award.Rankings = award.Rankings.OrderBy(r => r.Rank).ToList();
+
             var awardDto = _mapper.Map<AwardDto>(award);
 
             return awardDto;

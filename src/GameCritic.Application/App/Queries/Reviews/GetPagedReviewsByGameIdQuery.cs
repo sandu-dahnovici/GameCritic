@@ -4,7 +4,7 @@ using MediatR;
 
 namespace GameCritic.Application.App.Queries.Reviews
 {
-    public class GetPagedReviewsByGameIdQuery : IRequest<PaginatedResult<ReviewListDto>>
+    public class GetPagedReviewsByGameIdQuery : IRequest<PaginatedResult<ReviewUserListDto>>
     {
         public int Id { get; set; }
         public PagedRequest PagedRequest { get; set; }

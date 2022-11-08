@@ -1,8 +1,8 @@
-﻿using GameCritic.Application.Common.Dtos.User;
+﻿using GameCritic.Application.Common.Dtos.Game;
 
 namespace GameCritic.Application.Common.Dtos.Review
 {
-    public class ReviewListDto
+    public class ReviewGameListDto
     {
         public int Id { get; set; }
 
@@ -12,6 +12,6 @@ namespace GameCritic.Application.Common.Dtos.Review
 
         public DateTime CreationDate { get; set; }
 
-        public UserListDto User { get; set; }
+        public GameListDto Game { get; set; }
     }
 }

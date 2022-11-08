@@ -33,10 +33,7 @@
             <ng-container matColumnDef="score">
                 <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Score</mat-header-cell>
                 <mat-cell mat-cell *matCellDef="let game">
-                    <button mat-mini-fab
-                        [color]="game.score > 8 ? 'success' : game.score > 5 ? 'accent' : game.score > 1 ? 'warn' : 'gray'">
-                        {{ game.score ? game.score?.toFixed(1) : "tbd"}}
-                    </button>
+                    <app-score-button [score]="game.score"></app-score-button>
                 </mat-cell>
             </ng-container>
 

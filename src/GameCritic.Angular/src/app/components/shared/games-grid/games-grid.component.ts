@@ -10,10 +10,11 @@ import { GameService } from 'src/app/services/game.service';
 export class GamesGridComponent implements OnInit {
 
   @Input("games") games: GameList[] = [];
-
+  @Input("ranks") ranks : number[] = [];
   constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
+    
   }
 
   getImageUrl(imageName?: string) {

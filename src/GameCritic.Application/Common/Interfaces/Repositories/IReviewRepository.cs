@@ -11,7 +11,8 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
 {
     public interface IReviewRepository : IGenericRepository<Review>
     {
-        Task<PaginatedResult<ReviewListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest);
+        Task<PaginatedResult<ReviewGameListDto>> GetPagedReviewsByUserId(int id, PagedRequest pagedRequest);
+        Task<PaginatedResult<ReviewUserListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest);
         public Task<IList<Review>> GetReviewsByGameId(int id);
     }
 }
