@@ -6,6 +6,8 @@ using GameCritic.Application.App.Queries.Reviews;
 using GameCritic.Application.Common.Dtos.Review;
 using GameCritic.API.Filters;
 using GameCritic.Application.Common.Models;
+using Microsoft.AspNetCore.Authorization;
+using GameCritic.Domain.Auth;
 
 namespace GameCritic.API.Controllers
 {
@@ -21,35 +23,48 @@ namespace GameCritic.API.Controllers
             _mediator = mediator;
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ReviewListDto> GetReviewById(int id)
+        public async Task<ReviewUserListDto> GetReviewById(int id)
         {
             var reviewDto = await _mediator.Send(new GetReviewByIdQuery() { ReviewId = id });
             return reviewDto;
         }
 
+        [Authorize(Roles = RoleCategory.User)]
         [HttpPost]
         public async Task<IActionResult> CreateReview(CreateReviewCommand createReviewCommandDto)
         {
             return Ok(await _mediator.Send(createReviewCommandDto));
         }
 
+        [Authorize(Roles = RoleCategory.User)]
         [HttpPut]
         public async Task<IActionResult> UpdateReview(UpdateReviewCommand updateReviewDto)
         {
             return Ok(await _mediator.Send(updateReviewDto));
         }
 
+        [Authorize(Roles = RoleCategory.Admin + "," + RoleCategory.User)]
         [HttpDelete]
         public async Task<IActionResult> DeleteReview(DeleteReviewCommand deleteReviewDto)
         {
             return Ok(await _mediator.Send(deleteReviewDto));
         }
 
-        [HttpPost("{gameId}")]
-        public async Task<PaginatedResult<ReviewListDto>> GetPagedReviewsByGameId(int gameId, PagedRequest pagedRequest)
+        [AllowAnonymous]
+        [HttpPost("paginated-search/games/{gameId}")]
+        public async Task<PaginatedResult<ReviewUserListDto>> GetPagedReviewsByGameId(int gameId, PagedRequest pagedRequest)
         {
             var response = await _mediator.Send(new GetPagedReviewsByGameIdQuery() { Id = gameId, PagedRequest = pagedRequest });
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("paginated-search/users/{userId}")]
+        public async Task<PaginatedResult<ReviewUserListDto>> GetPagedReviewsByUserId(int userId, PagedRequest pagedRequest)
+        {
+            var response = await _mediator.Send(new GetPagedReviewsByGameIdQuery() { Id = userId, PagedRequest = pagedRequest });
             return response;
         }
     }

@@ -28,12 +28,13 @@ export class GamePageComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(({ game }) => {
       this.game = game;
+      this.reviewService.getPagedReviewsByGameId(this.game.id, this.defaultPaginatedRequest)
+        .subscribe((pagedResult) => {
+          this.pagedReviews = pagedResult;
+          this.dataSource = new MatTableDataSource<Review>(pagedResult.items);
+        });
     });
-    this.reviewService.getPagedReviewsByGameId(this.game.id, this.defaultPaginatedRequest)
-      .subscribe((pagedResult) => {
-        this.pagedReviews = pagedResult;
-        this.dataSource = new MatTableDataSource<Review>(pagedResult.items);
-      });
+
   }
 
   getImageUrl(imageName?: string) {

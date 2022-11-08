@@ -19,8 +19,8 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
             _mapper = mapper;
         }
-        
-        public async Task<PaginatedResult<ReviewListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest)
+
+        public async Task<PaginatedResult<ReviewUserListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest)
         {
             IQueryable<Review> reviews = _dbContext.Set<Review>();
 
@@ -28,7 +28,18 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
                 .Include(r => r.User)
                 .Where(r => r.GameId == id);
 
-            return await reviews.CreatePaginatedResultAsync<Review, ReviewListDto>(pagedRequest, _mapper);
+            return await reviews.CreatePaginatedResultAsync<Review, ReviewUserListDto>(pagedRequest, _mapper);
+        }
+
+        public async Task<PaginatedResult<ReviewGameListDto>> GetPagedReviewsByUserId(int id, PagedRequest pagedRequest)
+        {
+            IQueryable<Review> reviews = _dbContext.Set<Review>();
+
+            reviews = reviews.Include(r => r.Game)
+                .Include(r => r.User)
+                .Where(r => r.UserId == id);
+
+            return await reviews.CreatePaginatedResultAsync<Review, ReviewGameListDto>(pagedRequest, _mapper);
         }
 
         public async Task<IList<Review>> GetReviewsByGameId(int id)

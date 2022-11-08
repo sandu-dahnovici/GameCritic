@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using System.Text;
 using GameCritic.Domain.Auth;
+using GameCritic.Infrastructure.Options;
 
 namespace GameCritic.API.Extensions
 {
@@ -18,39 +19,40 @@ namespace GameCritic.API.Extensions
         public static void AddServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddInfrastructure(builder.Configuration);
-            //builder.Services.AddAuthentication();
+            builder.Services.ConfigureJwt(builder.Configuration);
             builder.Services.AddControllers();
             builder.Services.AddApplication();
             builder.Services.AddAutoMapper(typeof(ApplicationAssemblyMarker));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwagger();
             builder.Services.ConfigureCors();
         }
 
-        public static WebApplicationBuilder AddAuthentication(this WebApplicationBuilder builder)
+        public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
-            builder.Services.AddAuthentication(options =>
+            var jwtOptions = configuration.GetSection("JwtOptions").Get<JwtOptions>();
+
+            services.AddAuthentication(opt =>
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(opt =>
             {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
+                opt.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
+                    ValidIssuer = jwtOptions.Issuer,
+
                     ValidateAudience = true,
-                    ValidAudience = builder.Configuration["JWT:ValidAudience"],
-                    ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+                    ValidAudience = jwtOptions.Audience,
+
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key)),
+
+                    ValidateLifetime = true
                 };
             });
-
-            return builder;
         }
 
         public static void ConfigureCors(this IServiceCollection services)
@@ -63,6 +65,39 @@ namespace GameCritic.API.Extensions
                         .AllowAnyHeader()
                 );
             });
+        }
+
+        public static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Please enter token",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = JwtBearerDefaults.AuthenticationScheme,
+                                Type = ReferenceType.SecurityScheme,
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+            });
+
+            return services;
         }
     }
 }

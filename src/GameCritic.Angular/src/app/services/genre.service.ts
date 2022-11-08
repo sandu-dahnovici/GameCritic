@@ -21,7 +21,7 @@ export class GenreService {
       .pipe(catchError(this.errorHandling.handleError<GenreList[]>()));
   }
 
-  getGenreById(id : string): Observable<Genre> {
+  getGenreById(id: string): Observable<Genre> {
     return this.http.get<Genre>(this.url + `${id}` + '/games')
       .pipe(catchError(this.errorHandling.handleError<Genre>()));
   }

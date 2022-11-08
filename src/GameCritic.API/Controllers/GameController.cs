@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using MediatR;
 using GameCritic.Application.App.Queries.Games;
 using GameCritic.Application.Common.Dtos.Game;
 using GameCritic.Application.Common.Models;
 using GameCritic.Application.App.Commands.Games;
 using GameCritic.API.Filters;
+using GameCritic.Domain.Auth;
 
 namespace GameCritic.API.Controllers
 {
@@ -21,13 +23,7 @@ namespace GameCritic.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IList<GameListDto>>> GetAll()
-        {
-            var games = await _mediator.Send(new GetAllGamesQuery());
-            return Ok(games);
-        }
-
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -35,6 +31,7 @@ namespace GameCritic.API.Controllers
             return Ok(gameDto);
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpPost]
         public async Task<ActionResult<GameDto>> CreateGame(CreateGameCommand createGameDto)
         {
@@ -42,6 +39,7 @@ namespace GameCritic.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = gameDto.Id }, gameDto);
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpPut("{id}")]
         public async Task<ActionResult<Unit>> UpdateGame(UpdateGameCommand updateGameDto, int id)
         {
@@ -50,6 +48,7 @@ namespace GameCritic.API.Controllers
             return Ok(unit);
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Unit>> DeleteGame(int id)
         {
@@ -57,12 +56,14 @@ namespace GameCritic.API.Controllers
             return Ok(unit);
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpPatch("{id}/image")]
         public async Task<IActionResult> UpdateGameImage(int id, IFormFile image)
         {
             return Ok(await _mediator.Send(new UpdateGameImageCommand { Id = id, Image = image }));
         }
 
+        [AllowAnonymous]
         [HttpPost("paginated-search")]
         public async Task<PaginatedResult<GameListDto>> GetPagedGames(PagedRequest pagedRequest)
         {

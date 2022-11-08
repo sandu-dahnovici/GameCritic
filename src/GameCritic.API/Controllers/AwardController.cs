@@ -3,6 +3,7 @@ using MediatR;
 using GameCritic.API.Filters;
 using GameCritic.Application.Common.Dtos.Award;
 using GameCritic.Application.App.Queries.Awards;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameCritic.API.Controllers
 {
@@ -18,6 +19,7 @@ namespace GameCritic.API.Controllers
             _mediator = mediator;
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<AwardDto> GetAwardById(int id)
         {

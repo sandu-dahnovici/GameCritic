@@ -23,6 +23,8 @@ import { ProgressInterceptor } from './interceptors/progress.interceptor';
 import { SharedModule } from './components/shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AwardPageComponent } from './components/awards/award-page/award-page.component';
+import { AwardsModule } from './components/awards/awards.module';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     SharedModule,
     AppRoutingModule,
+    AwardsModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

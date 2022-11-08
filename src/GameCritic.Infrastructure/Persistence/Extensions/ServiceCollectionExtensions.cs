@@ -8,6 +8,7 @@ using Azure.Storage.Blobs;
 using GameCritic.Application.Common.Interfaces.Services;
 using GameCritic.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
+using GameCritic.Infrastructure.Options;
 
 namespace GameCritic.Infrastructure.Persistence.Extensions
 {
@@ -35,13 +36,15 @@ namespace GameCritic.Infrastructure.Persistence.Extensions
             .AddEntityFrameworkStores<GameCriticDbContext>()
             .AddDefaultTokenProviders();
 
-            services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
+
             services.AddSingleton(serviceProvider => new BlobServiceClient(configuration.GetConnectionString("AzureConnection")));
             services.AddSingleton<IBlobService>(serviceProvider =>
                 new BlobService(serviceProvider.GetService<BlobServiceClient>(), configuration.GetValue<string>("Container")));
 
-            //services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
+            services.AddTransient<IAuthenticationService, AuthenticationService>();
+
             //services.AddTransient<ITokenService, TokenService>();
 
             return services;

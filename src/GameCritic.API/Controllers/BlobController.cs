@@ -4,6 +4,7 @@ using GameCritic.Application.Common.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using GameCritic.API.Filters;
+using GameCritic.Domain.Auth;
 
 namespace GameCritic.API.Controllers
 {
@@ -17,7 +18,7 @@ namespace GameCritic.API.Controllers
         {
             _service = service;
         }
-
+        [AllowAnonymous]
         [HttpGet("{name}")]
         public async Task<IActionResult> GetBlobUri(string name)
         {
@@ -26,6 +27,7 @@ namespace GameCritic.API.Controllers
             return File(stream, mime, name);
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpDelete("{name}")]
         public async Task<IActionResult> DeleteBlob(string name)
         {
@@ -33,6 +35,7 @@ namespace GameCritic.API.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
         [HttpPost]
         public async Task<IActionResult> UploadBlob(IFormFile file)
         {

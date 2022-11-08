@@ -6,7 +6,7 @@
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content style="display:inline-flex">
-            <div mat-card-avatar class="example-header-image"
+            <div mat-card-avatar class="example-header-image" style="background-color: #EAEAEA;"
                 [style.background-image]="'url(' + getImageUrl(game.imageName) + ')'">
             </div>
             <div style="margin-left: 20px;margin-right: 20px;
@@ -17,10 +17,8 @@
 
             <div class="details">
                 <div class="score">
-                    <button mat-mini-fab style="width:50px;height:50px;font-size:larger;margin-right: 20px;"
-                        [color]="game.score > 8 ? 'success' : game.score > 5 ? 'accent' : game.score > 1 ? 'warn' : 'gray'">
-                        {{ game.score ? game.score.toFixed(1) : "tbd"}}
-                    </button>
+                    <app-score-button [score]="game.score"
+                        style="width:50px;height:50px;font-size:larger;margin-right: 20px;"></app-score-button>
                     <div *ngIf="game.score">
                         <p style="display:inline"><b>User Score</b></p>
                         <p>
@@ -29,7 +27,9 @@
                         </p>
                     </div>
                 </div>
-                <p *ngIf="game.genres"><b>Genres</b> :
+                <br>
+                <p *ngIf="game.genres">
+                    <b>Genres</b> :
                     <ng-container *ngFor="let genre of game.genres;let indexOf=index;">
                         <a [routerLink]="['/genres',genre.id]" style="font-weight: normal;">{{ genre.name }}
                             <ng-container *ngIf="indexOf != game.genres.length-1"> , </ng-container>
@@ -56,13 +56,13 @@
                         <div class="body">
                             <table class="rankings">
                                 <tbody *ngIf="game.awards.length">
-                                    <tr *ngFor="let gameAward of game.awards">
+                                    <tr *ngFor="let ranking of game.awards">
                                         <td>
                                             <mat-icon style="color: rgb(255, 210, 48);">emoji_events</mat-icon>
                                         </td>
-                                        <a routerLink="#">
-                                            <td>#{{ gameAward.rank }}</td>
-                                            <td>{{ gameAward.award | formatAward}}</td>
+                                        <a [routerLink]="['/awards',ranking.award.id]">
+                                            <td>#{{ ranking.rank }}</td>
+                                            <td>{{ ranking.award | formatAward}}</td>
                                         </a>
                                     </tr>
                                 </tbody>

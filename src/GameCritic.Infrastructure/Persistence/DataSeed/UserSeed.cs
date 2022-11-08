@@ -92,34 +92,34 @@ namespace GameCritic.Infrastructure.Persistence.DataSeed
             };
 
             await userManager.CreateAsync(users[0], "sandu@123");
-            await userManager.AddToRoleAsync(users[0], UserRoles.Admin);
+            await userManager.AddToRoleAsync(users[0], RoleCategory.Admin);
             await userManager.CreateAsync(users[2], "TolikKnight@123");
-            await userManager.AddToRoleAsync(users[2], UserRoles.Admin);
+            await userManager.AddToRoleAsync(users[2], RoleCategory.Admin);
 
 
             await userManager.CreateAsync(users[1], "sebi@123");
-            await userManager.AddToRoleAsync(users[1], UserRoles.User);
+            await userManager.AddToRoleAsync(users[1], RoleCategory.User);
             await userManager.CreateAsync(users[3], "grcool@123");
-            await userManager.AddToRoleAsync(users[3], UserRoles.User);
+            await userManager.AddToRoleAsync(users[3], RoleCategory.User);
             await userManager.CreateAsync(users[4], "SilentSeas@123");
-            await userManager.AddToRoleAsync(users[4], UserRoles.User);
+            await userManager.AddToRoleAsync(users[4], RoleCategory.User);
             await userManager.CreateAsync(users[5], "Daniel0809@123");
-            await userManager.AddToRoleAsync(users[5], UserRoles.User);
+            await userManager.AddToRoleAsync(users[5], RoleCategory.User);
             await userManager.CreateAsync(users[6], "Wasptar@123");
-            await userManager.AddToRoleAsync(users[6], UserRoles.User);
+            await userManager.AddToRoleAsync(users[6], RoleCategory.User);
             await userManager.CreateAsync(users[7], "RasmusLuostarin@123");
-            await userManager.AddToRoleAsync(users[7], UserRoles.User);
+            await userManager.AddToRoleAsync(users[7], RoleCategory.User);
             await userManager.CreateAsync(users[8], "weworkinshadowz@123");
-            await userManager.AddToRoleAsync(users[8], UserRoles.User);
+            await userManager.AddToRoleAsync(users[8], RoleCategory.User);
             await userManager.CreateAsync(users[9], "Owen20@123");
-            await userManager.AddToRoleAsync(users[9], UserRoles.User);
+            await userManager.AddToRoleAsync(users[9], RoleCategory.User);
             await userManager.CreateAsync(users[10], "Elrate99@123");
-            await userManager.AddToRoleAsync(users[10], UserRoles.User);
+            await userManager.AddToRoleAsync(users[10], RoleCategory.User);
             await userManager.CreateAsync(users[11], "yuumit@123");
-            await userManager.AddToRoleAsync(users[11], UserRoles.User);
+            await userManager.AddToRoleAsync(users[11], RoleCategory.User);
 
             await userManager.CreateAsync(user, "marcel@123");
-            await userManager.AddToRoleAsync(user, UserRoles.User);
+            await userManager.AddToRoleAsync(user, RoleCategory.User);
         }
     }
 }

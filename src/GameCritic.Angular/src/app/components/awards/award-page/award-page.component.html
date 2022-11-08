@@ -1,0 +1,17 @@
+<ng-container *ngIf="award.games.length">
+    <div>
+        <div class="cover-title">
+            <div class="container">
+                <div class="cover-title__title">
+                    <h1>{{ award | formatAward }}</h1>
+                </div>
+            </div>
+        </div>
+        <app-games-grid [ranks]="ranks" [games]="games"></app-games-grid>
+    </div>
+</ng-container>
+<ng-container *ngIf="!award.games.length">
+    <div style="margin-top: 50px;" class="not-found">
+        <span class="label danger">{{award | formatAward}} has no games</span>
+    </div>
+</ng-container>

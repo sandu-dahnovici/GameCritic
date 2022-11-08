@@ -1,8 +1,12 @@
 <div class="cards">
     <ng-container *ngIf="games.length">
-        <mat-card *ngFor="let game of games" class="card-container" [routerLink]="['/games',game.id]" >
+        <mat-card *ngFor="let game of games;let indexOf=index;" class="card-container" [routerLink]="['/games',game.id]">
+            <p class="rank" *ngIf="ranks.length > 0">#{{ranks[indexOf]}}</p>
             <img [src]="getImageUrl(game.imageName)">
-            <mat-card-title class="card-info">{{ game.title }}</mat-card-title>
+            <mat-card-title class="card-info">
+                <span>{{ game.title }}</span>
+                <app-score-button [score]="game.score" style="float:right;margin-left: 1.1rem;"></app-score-button>
+            </mat-card-title>
         </mat-card>
     </ng-container>
 </div>

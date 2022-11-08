@@ -1,7 +1,6 @@
 import { PublisherList } from "../publisher/publisher-list";
-import { Review } from "../review/review";
 import { GenreList } from "../genre/genre-list";
-import { GameAwardList } from "../game-award/game-award-list";
+import { GameAwardList } from "../ranking/game-award-list";
 
 export interface Game {
     id: number,
