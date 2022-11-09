@@ -4,6 +4,7 @@ import { ReviewCardComponent } from './review-card/review-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     MatCardModule,
+    SharedModule,
     MatButtonModule,
     MatIconModule,
   ],

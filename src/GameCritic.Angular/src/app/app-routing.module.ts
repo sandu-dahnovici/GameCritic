@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { AwardPageComponent } from './components/awards/award-page/award-page.component';
 import { AwardResolver } from './components/awards/award-page/award.resolver';
 import { HomeComponent } from './components/home/home.component';
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule) },
   { path: 'genres', loadChildren: () => import('./components/genres/genres.module').then(m => m.GenresModule) },
   { path: 'awards/:id', component: AwardPageComponent, resolve: { award: AwardResolver } },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
