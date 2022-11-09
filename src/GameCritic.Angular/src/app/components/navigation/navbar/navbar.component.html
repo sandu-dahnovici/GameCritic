@@ -26,5 +26,23 @@
             <button *ngFor="let genre of genres" mat-menu-item
                 [routerLink]="['/genres',genre.id]">{{genre.name}}</button>
         </mat-menu>
+
+        <button mat-button fxHide.xs routerLink="/login" *ngIf="!isAuthenticated();else logOut">
+            <mat-icon>login</mat-icon>
+            Log In
+        </button>
+
+        <ng-template #logOut>
+            <button mat-button fxHide.xs>
+                <mat-icon>account_box</mat-icon>
+                {{ username }}
+                <ng-container *ngIf="isAdmin()"> (Admin)</ng-container>
+            </button>
+
+            <button mat-button fxHide.xs (click)="openDialogForLogOut()">
+                <mat-icon>logout</mat-icon>
+                Log Out
+            </button>
+        </ng-template>
     </div>
 </mat-toolbar>

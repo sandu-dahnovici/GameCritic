@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ScoreButtonComponent implements OnInit {
   @Input("score") score : number;
+  @Input("isScore") isScore : boolean = true;
   constructor() { }
 
   ngOnInit(): void {

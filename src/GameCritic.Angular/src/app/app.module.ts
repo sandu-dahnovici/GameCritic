@@ -25,6 +25,14 @@ import { HomeComponent } from './components/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AwardPageComponent } from './components/awards/award-page/award-page.component';
 import { AwardsModule } from './components/awards/awards.module';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { LoginComponent } from './components/auth/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UserPageComponent } from './components/users/user-page/user-page.component';
 
 
 @NgModule({
@@ -33,6 +41,9 @@ import { AwardsModule } from './components/awards/awards.module';
     HomeComponent,
     NavbarComponent,
     ProgressBarComponent,
+    RegisterComponent,
+    LoginComponent,
+    UserPageComponent,
   ],
   imports: [
     SharedModule,
@@ -40,12 +51,16 @@ import { AwardsModule } from './components/awards/awards.module';
     AwardsModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatInputModule,
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatGridListModule,
     MatDividerModule,
+    MatFormFieldModule,
     MatNativeDateModule,
     MatSnackBarModule,
     NgImageSliderModule,
@@ -55,6 +70,7 @@ import { AwardsModule } from './components/awards/awards.module';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: DelayInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

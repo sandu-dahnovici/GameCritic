@@ -1,9 +1,7 @@
 <mat-card class="example-card">
     <mat-card-title>
-        <button mat-mini-fab style="margin-right: 1em;"
-            [color]="review.mark > 8 ? 'success' : review.mark  > 5 ? 'accent' : review.mark  > 1 ? 'warn' : 'gray'">
-            {{review.mark }}
-        </button>{{ review.user.username }}
+        <app-score-button [isScore]="false" [score]="review.mark" style="margin-right: 1em;"></app-score-button>
+        {{ review.user.username }}
         <button mat-button color="warn" style="right:0px;float: right;">
             <mat-icon>delete</mat-icon> Delete
         </button>
