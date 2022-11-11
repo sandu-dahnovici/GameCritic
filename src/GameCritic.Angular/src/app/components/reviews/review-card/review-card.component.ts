@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Review } from 'src/app/models/review/review';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-review-card',
@@ -8,11 +9,20 @@ import { Review } from 'src/app/models/review/review';
 })
 export class ReviewCardComponent implements OnInit {
   @Input() review!: Review;
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  
+  isAdmin() {
+    return this.userService.isAdmin();
+  }
 
-}
+  isUsersReview() {
+    return this.userService.getUsername() == this.review.user.username;
+  }
+
+  displayDeleteButton() {
+    return this.isAdmin() || this.isUsersReview();
+  }
+} 

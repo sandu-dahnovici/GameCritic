@@ -27,11 +27,15 @@ export class NavbarComponent implements OnInit {
   }
 
   isAuthenticated() {
-    return this.userService.isUser() || this.isAdmin();
+    return this.isUser() || this.isAdmin();
   }
 
   isAdmin() {
     return this.userService.isAdmin();
+  }
+
+  isUser() {
+    return this.userService.isUser();
   }
 
   logOutUser(): void {

@@ -10,6 +10,7 @@ import { Filter } from 'src/app/models/pagination/filter.model';
 import { PagedResult } from 'src/app/models/pagination/paged-result.model';
 import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.model';
 import { GameService } from 'src/app/services/game.service';
+import { UserService } from 'src/app/services/user.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 
@@ -20,7 +21,7 @@ import { SearchBarComponent } from '../../shared/search-bar/search-bar.component
 })
 export class GamesSearchPageComponent implements OnInit, AfterViewInit {
   pagedGames?: PagedResult<GameList>;
-  displayedColumns: Array<string> = ['title', 'releaseDate', 'price', 'score', 'id'];
+  displayedColumns: Array<string> = ['title', 'score', 'price','releaseDate' , 'id'];
   dataSource: MatTableDataSource<GameList>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -29,9 +30,11 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
 
   filter!: Filter;
   constructor(private gameService: GameService, public dialog: MatDialog,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    private userService : UserService) { }
 
   ngOnInit(): void {
+    if(!this.isAdmin()) this.displayedColumns.pop(); 
     if (this.gameService.search.redirected) {
       this.loadGamesFromApi(this.gameService.search.text);
     }
@@ -111,7 +114,7 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
   }
 
   isAdmin() {
-
+    return this.userService.isAdmin();
   }
 
   paginatedSearch(text: string) {

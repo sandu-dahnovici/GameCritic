@@ -10,6 +10,7 @@ import { PagedResult } from 'src/app/models/pagination/paged-result.model';
 import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.model';
 import { PublisherList } from 'src/app/models/publisher/publisher-list';
 import { PublisherService } from 'src/app/services/publisher.service';
+import { UserService } from 'src/app/services/user.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 
@@ -30,9 +31,11 @@ export class PublishersSearchPageComponent implements OnInit {
 
   filter!: Filter;
   constructor(private publisherService: PublisherService, public dialog: MatDialog,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+    if (!this.isAdmin()) this.displayedColumns.pop();
     if (this.publisherService.search.redirected) {
       this.loadGamesFromApi(this.publisherService.search.text);
     }
@@ -102,7 +105,7 @@ export class PublishersSearchPageComponent implements OnInit {
   }
 
   isAdmin() {
-
+    return this.userService.isAdmin();
   }
 
   paginatedSearch(text: string) {

@@ -32,6 +32,11 @@
 .register-button {
     max-width: 200px;
     width: 200px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
 }
 
 a {
@@ -49,4 +54,8 @@ a:hover {
     text-align: center;
     justify-content: center;
     margin: 0 auto;
+}
+
+mat-form-field {
+    width: 100%;
 }

@@ -2,7 +2,7 @@
     <mat-toolbar-row style="margin-bottom: 50px;">
         <app-search-bar entity="publisher" (onSearch)="paginatedSearch($event)" style="margin: auto;"></app-search-bar>
         <button mat-mini-fab style="margin-right:10px; background-color:#e07c9e"
-            [routerLink]="['/admin/editPublisher', 0]">
+            [routerLink]="['/admin/editPublisher', 0]" *ngIf="isAdmin()">
             <mat-icon>add</mat-icon>
         </button>
         <button mat-mini-fab style="margin-right:10px; background-color:darkgray"

@@ -10,6 +10,8 @@ import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.mod
 import { Review } from 'src/app/models/review/review';
 import { GameService } from 'src/app/services/game.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { UserService } from 'src/app/services/user.service';
+import { ReviewCardComponent } from '../../reviews/review-card/review-card.component';
 
 @Component({
   selector: 'app-game-page',
@@ -21,9 +23,11 @@ export class GamePageComponent implements OnInit {
   pagedReviews?: PagedResult<Review>;
   dataSource = new MatTableDataSource<Review>([]);
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(ReviewCardComponent) reviewCard: ReviewCardComponent;
 
   constructor(private gameService: GameService, private route: ActivatedRoute,
-    private reviewService: ReviewService) { }
+    private reviewService: ReviewService,
+    private userService : UserService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(({ game }) => {
@@ -56,6 +60,10 @@ export class GamePageComponent implements OnInit {
           });
       })
     ).subscribe();
+  }
+
+  isAdmin() {
+    return this.userService.isAdmin();
   }
 
 
