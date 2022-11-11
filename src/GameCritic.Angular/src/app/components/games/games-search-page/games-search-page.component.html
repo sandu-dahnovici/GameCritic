@@ -1,7 +1,8 @@
 <div class="games-container">
     <mat-toolbar-row style="margin-bottom: 50px;">
         <app-search-bar entity="game" (onSearch)="paginatedSearch($event)" style="margin: auto;"></app-search-bar>
-        <button mat-mini-fab style="margin-right:10px; background-color:#e07c9e" [routerLink]="['/admin/editGame', 0]">
+        <button mat-mini-fab style="margin-right:10px; background-color:#e07c9e" [routerLink]="['/admin/editGame', 0]"
+            *ngIf="isAdmin()">
             <mat-icon>add</mat-icon>
         </button>
         <button mat-mini-fab style="margin-right:10px; background-color:darkgray"
@@ -18,24 +19,26 @@
                     <b><a [routerLink]="['/games',game.id]" routerLinkActive="active">{{ game.title }}</a></b>
                 </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="releaseDate">
-                <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Release Date</mat-header-cell>
-                <mat-cell mat-cell *matCellDef="let game">
-                    {{ game.releaseDate | date }}
-                </mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="price">
-                <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
-                <mat-cell mat-cell *matCellDef="let game">
-                    {{ game.price | currency }}
-                </mat-cell>
-            </ng-container>
             <ng-container matColumnDef="score">
                 <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Score</mat-header-cell>
                 <mat-cell mat-cell *matCellDef="let game">
                     <app-score-button [score]="game.score"></app-score-button>
                 </mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="price">
+                <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let game">
+                    {{ game.price | currency }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="releaseDate">
+                <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Release Date</mat-header-cell>
+                <mat-cell mat-cell *matCellDef="let game">
+                    {{ game.releaseDate | date }}
+                </mat-cell>
+            </ng-container>
+
 
             <ng-container matColumnDef="id">
                 <mat-header-cell mat-header-cell *matHeaderCellDef>Admin</mat-header-cell>

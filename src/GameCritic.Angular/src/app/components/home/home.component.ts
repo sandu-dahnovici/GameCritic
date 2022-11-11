@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { delay } from 'rxjs';
@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild(NgImageSliderComponent) slider: NgImageSliderComponent;
 
   constructor(private gameService: GameService,
-    public route: ActivatedRoute, public router: Router) { }
+    public route: ActivatedRoute, public router: Router,
+    private cd : ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const paginatedRequest: PaginatedRequest = {
@@ -48,6 +49,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.slider.imagePopup = false;
+
+    this.cd.detectChanges();
   }
 
   paginatedSearch(text: string) {
@@ -61,6 +64,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   imageClickHandler(e: number) {
+
     this.router.navigate(['/games', e + 1]);
   }
 }

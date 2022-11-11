@@ -16,16 +16,17 @@ export class ErrorHandlingService {
 
         return (error: any): Observable<T> => {
             console.error(error);
-
-            let isArray: boolean = Array.isArray(error.error);
-
+            
+            let isArray: boolean = Array.isArray(error.error.errors);
+            console.log(isArray);
+            
             if (!isArray) {
                 if (error.error.Message)
                     this.message += error.error.Message;
             }
             else {
-                error.error.forEach((e: any) => {
-                    this.message += e.description + '\n';
+                error.error.errors.forEach((msg: any) => {
+                    this.message += msg + '\n';
                 });
             }
 
