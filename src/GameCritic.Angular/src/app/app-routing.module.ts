@@ -5,8 +5,11 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AwardPageComponent } from './components/awards/award-page/award-page.component';
 import { AwardResolver } from './components/awards/award-page/award.resolver';
+import { GamePageResolver } from './components/games/game-page/game-page.resolver';
 import { HomeComponent } from './components/home/home.component';
+import { EditReviewComponent } from './components/reviews/edit-review/edit-review.component';
 import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +17,7 @@ const routes: Routes = [
   { path: 'games', loadChildren: () => import('./components/games/games.module').then(m => m.GamesModule) },
   { path: 'admin', loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule), canActivate: [AdminGuard] },
   { path: 'genres', loadChildren: () => import('./components/genres/genres.module').then(m => m.GenresModule) },
+  { path: 'reviews/games/:gameId/users/:userId/:id', component: EditReviewComponent, canActivate: [UserGuard] },
   { path: 'awards/:id', component: AwardPageComponent, resolve: { award: AwardResolver } },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

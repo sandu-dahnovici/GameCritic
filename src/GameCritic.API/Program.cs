@@ -24,14 +24,12 @@ app.UseExceptionHandling();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-app.UseAuthorization();
-
 app.UseRouting();
-
-
-app.UseDbTransaction();
-
-app.MapControllers();
+app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 await app.RunAsync();
 

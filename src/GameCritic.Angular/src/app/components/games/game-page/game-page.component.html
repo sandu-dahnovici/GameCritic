@@ -76,7 +76,7 @@
             </div>
         </mat-card-content>
         <mat-card-footer style="text-align: center;margin-bottom: 5px;">
-            <button mat-flat-button color="primary">Write Review</button>
+            <button mat-flat-button color="primary" (click)="writeReview()">Write Review</button>
         </mat-card-footer>
     </mat-card>
     <div class="review-section">
@@ -90,7 +90,7 @@
                 <ng-container matColumnDef="review">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let review">
-                        <app-review-card [review]="review"></app-review-card>
+                        <app-review-card [review]="review" [gameId]="game.id"></app-review-card>
                     </mat-cell>
                 </ng-container>
                 <mat-header-row *matHeaderRowDef="['review']"></mat-header-row>

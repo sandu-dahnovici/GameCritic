@@ -84,4 +84,8 @@ export class UserService {
     return this.user?.username;
   }
 
+  getUserId() {
+    return this.user?.id;
+  }
+
 }

@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="view-card-title" style="text-align: center;">
+            {{pageTitle}}
+        </mat-card-title>
+    </mat-card-header>
+    <form novalidate [formGroup]="reviewForm" (ngSubmit)="saveReview()">
+        <mat-toolbar style="background-color: #FFF">
+            <mat-toolbar-row>
+                <span class="title-spacer"></span>
+                <mat-card-actions>
+                    <button mat-fab class="primary" style="margin-right:10px; background-color:darkgray" type="submit"
+                        [disabled]='!reviewForm.valid'>
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="" style="margin-right:10px; " [routerLink]="['/games',gameId]">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-form-field appearance="fill" color="primary" style="width: 70%;">
+            <mat-label for="comment">Comment : </mat-label>
+            <textarea matInput name="comment" cdkTextareaAutosize cdkAutosizeMinRows="2" cdkAutosizeMaxRows="100"
+                formControlName="comment"></textarea>
+        </mat-form-field>
+        <ng-container *ngIf="!comment?.valid && (comment?.dirty || comment?.touched)">
+            <mat-error *ngIf="comment?.errors?.['maxlength']">Comment must be less than 1000 characters long
+            </mat-error>
+        </ng-container>
+        <br>
+            <mat-label for="price">Mark : </mat-label>
+            <mat-slider matInput thumbLabel [displayWith]="formatLabel" tickInterval="1" step="1" min="1" max="10"
+                aria-label="units" color="primary" formControlName="mark"></mat-slider>
+        <br>
+        <ng-container *ngIf="!mark?.valid && (mark?.dirty || mark?.touched)">
+            <mat-error *ngIf="mark?.errors?.['required']">Mark is required
+            </mat-error>
+        </ng-container>
+        <br>
+    </form>
+</mat-card>

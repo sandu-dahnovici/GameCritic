@@ -30,4 +30,14 @@ export class ReviewService {
       .pipe(catchError(this.errorHandling.handleError<PagedResult<ReviewGame>>()));
   }
 
+  getReviewIdByGameAndUserId(gameId: number, userId: number | undefined): Observable<number> {
+    return this.http.get<number>(this.url + `games/${gameId}/users/${userId}`)
+      .pipe(catchError(this.errorHandling.handleError<number>()));
+  }
+
+  getReviewId(id:number): Observable<Review> {
+    return this.http.get<Review>(this.url + `${id}`)
+      .pipe(catchError(this.errorHandling.handleError<Review>()));
+  }
+
 }

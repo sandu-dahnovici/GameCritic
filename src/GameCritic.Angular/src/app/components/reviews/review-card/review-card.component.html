@@ -5,7 +5,8 @@
         <button mat-button color="warn" style="right:0px;float: right;" *ngIf="displayDeleteButton()">
             <mat-icon>delete</mat-icon> Delete
         </button>
-        <button mat-button color="primary" style="right:0px;float: right;" *ngIf="isUsersReview()">
+        <button mat-button color="primary" style="right:0px;float: right;" *ngIf="isUsersReview()"
+            (click)="writeReview()">
             <mat-icon>edit</mat-icon>Edit
         </button>
 
