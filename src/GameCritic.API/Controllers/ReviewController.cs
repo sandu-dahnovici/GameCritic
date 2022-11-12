@@ -45,6 +45,13 @@ namespace GameCritic.API.Controllers
             return Ok(await _mediator.Send(updateReviewDto));
         }
 
+        [AllowAnonymous]
+        [HttpGet("games/{gameId}/users/{userId}")]
+        public async Task<IActionResult> GetReviewByUserAndGameId(int gameId, int userId)
+        {
+            return Ok(await _mediator.Send(new GetReviewIdByUserAndGameIdQuery() { GameId = gameId, UserId = userId }));
+        }
+
         [Authorize(Roles = RoleCategory.Admin + "," + RoleCategory.User)]
         [HttpDelete]
         public async Task<IActionResult> DeleteReview(DeleteReviewCommand deleteReviewDto)

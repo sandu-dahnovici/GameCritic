@@ -36,8 +36,5 @@ namespace GameCritic.API.Middlewares
             }, null);
 
         }
-
-
-
     }
 }

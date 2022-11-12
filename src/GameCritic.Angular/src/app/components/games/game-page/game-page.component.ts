@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { merge, tap } from 'rxjs';
 import { Game } from 'src/app/models/game/game';
 import { PagedResult } from 'src/app/models/pagination/paged-result.model';
@@ -27,7 +27,8 @@ export class GamePageComponent implements OnInit {
 
   constructor(private gameService: GameService, private route: ActivatedRoute,
     private reviewService: ReviewService,
-    private userService : UserService) { }
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(({ game }) => {
@@ -66,6 +67,14 @@ export class GamePageComponent implements OnInit {
     return this.userService.isAdmin();
   }
 
+  writeReview() {
+    let reviewId: number = 0;
+    this.reviewService.getReviewIdByGameAndUserId(this.game.id, this.userService.getUserId())
+      .subscribe((id) => {
+        reviewId = id;
+        this.router.navigateByUrl(`reviews/games/${this.game.id}/users/${this.userService.getUserId()}/${reviewId}`);
+      });
+  }
 
   defaultPaginatedRequest: PaginatedRequest = {
     pageIndex: 0,
