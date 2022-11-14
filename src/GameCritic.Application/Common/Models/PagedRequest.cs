@@ -11,10 +11,10 @@
 
         public int PageSize { get; set; }
 
-        public string ColumnNameForSorting { get; set; }
+        public string? ColumnNameForSorting { get; set; } = String.Empty;
 
-        public string SortDirection { get; set; }
+        public string? SortDirection { get; set; } = String.Empty;
 
-        public Filter Filter { get; set; }
+        public Filter? Filter { get; set; }
     }
 }

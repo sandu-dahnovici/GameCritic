@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/components/shared/confirm-dialog/confirm-dialog.component';
 import { Game } from 'src/app/models/game/game';
 import { GameService } from 'src/app/services/game.service';
 
@@ -18,7 +20,8 @@ export class UploadGameImageComponent implements OnInit {
 
   constructor(private gameService: GameService,
     private route: ActivatedRoute, public snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -64,6 +67,35 @@ export class UploadGameImageComponent implements OnInit {
     }
   }
 
+  openDialogForDeleting(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Dialog', message: 'Are you sure to delete this image?' }
+    });
+    dialogRef.disableClose = true;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
+        this.gameService.deleteImage(id).subscribe(
+          () => {
+            this.snackBar.open('The image has been deleted successfully.', 'Close', {
+              duration: 1500
+            });
+          }
+        ); this.reloadCurrentPage();
+        this.delay(1500).then(() => {
+
+          this.router.navigate(['games/', this.game.id]);
+        });
+
+      }
+    });
+  }
+  reloadCurrentPage() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));

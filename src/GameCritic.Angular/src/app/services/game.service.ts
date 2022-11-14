@@ -74,4 +74,10 @@ export class GameService {
       .pipe(catchError(this.errorHandling.handleError<string>()));
   }
 
+  deleteImage(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.url}${id}/image`)
+      .pipe(catchError(this.errorHandling.handleError<any>()));
+  }
+
+
 }

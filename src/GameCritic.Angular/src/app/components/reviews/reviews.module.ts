@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -31,6 +32,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatIconModule,
     MatInputModule,
     MatToolbarModule,
+    MatSnackBarModule,
   ],
   exports: [
     ReviewCardComponent,

@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { GamesGridComponent } from './games-grid/games-grid.component';
 import { ScoreButtonComponent } from './score-button/score-button.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 
 
@@ -21,6 +22,7 @@ import { ScoreButtonComponent } from './score-button/score-button.component';
     ConfirmDialogComponent,
     GamesGridComponent,
     ScoreButtonComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     CommonModule,

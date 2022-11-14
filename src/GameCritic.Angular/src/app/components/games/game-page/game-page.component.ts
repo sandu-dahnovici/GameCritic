@@ -72,7 +72,7 @@ export class GamePageComponent implements OnInit {
     this.reviewService.getReviewIdByGameAndUserId(this.game.id, this.userService.getUserId())
       .subscribe((id) => {
         reviewId = id;
-        this.router.navigateByUrl(`reviews/games/${this.game.id}/users/${this.userService.getUserId()}/${reviewId}`);
+        this.router.navigateByUrl(`editReview/${reviewId}/games/${this.game.id}`);
       });
   }
 

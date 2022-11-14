@@ -16,10 +16,10 @@ export class ErrorHandlingService {
 
         return (error: any): Observable<T> => {
             console.error(error);
-            
+
             let isArray: boolean = Array.isArray(error.error.errors);
             console.log(isArray);
-            
+
             if (!isArray) {
                 if (error.error.Message)
                     this.message += error.error.Message;
@@ -32,7 +32,7 @@ export class ErrorHandlingService {
 
             if (this.message == '') {
                 switch (error.status) {
-                    case 0: this.message += 'Network Error! Check your internet connection!'; break;
+                    case 0: this.message += 'Network Error!'; break;
                     case 400: this.message += 'Bad Request! Please fill in all the fields!'; break;
                     case 401: this.message += 'Unauthorized! Access forbidden!'; break;
                     case 404: this.message += 'Not Found! Resource you requested is missing!'; break;
