@@ -1,10 +1,10 @@
 <mat-card class="example-card" fxLayoutAlign="center">
     <mat-card-header>
-        <mat-card-title>{{ game.title }}</mat-card-title>
+        <mat-card-title *ngIf="game!==undefined">{{ game.title }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content style="display:inline-flex;">
-        <div mat-card-avatar class="example-header-image" style="margin-right: 30px;"
+        <div mat-card-avatar class="example-header-image" style="margin-right: 30px;" *ngIf="game!==undefined"
             [style.background-image]="'url(' + getImageUrl(game.imageName) + ')'">
         </div>
         <mat-icon style="margin-top: auto;margin-right: 30px;">arrow_right</mat-icon>
@@ -15,10 +15,14 @@
 
     <mat-card-actions>
         <div class="text-center">
-            <input class="form-control" id="imgInp" type="file" (change)="onChange($event)">
+            <input class="form-control" id="imgInp" type="file" (change)="onChange($event)" >
 
             <button (click)="uploadFile()" class="btn btn-success">
                 <mat-icon>upload</mat-icon>
+            </button>
+
+            <button mat-button color="warn" style="right:0px;float: right;" (click)="openDialogForDeleting(game.id)">
+                <mat-icon>delete</mat-icon> Delete
             </button>
         </div>
     </mat-card-actions>

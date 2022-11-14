@@ -3,6 +3,6 @@ export interface UpdateReview {
     mark: number,
     comment?: number,
     creationDate: Date,
-    userId : number,
+    userId? : number,
     gameId: number
 }

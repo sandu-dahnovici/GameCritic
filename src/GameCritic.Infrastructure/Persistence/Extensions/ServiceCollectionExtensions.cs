@@ -45,8 +45,6 @@ namespace GameCritic.Infrastructure.Persistence.Extensions
             services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 
-            //services.AddTransient<ITokenService, TokenService>();
-
             return services;
         }
     }

@@ -63,9 +63,24 @@ namespace GameCritic.API.Controllers
             return Ok(await _mediator.Send(new UpdateGameImageCommand { Id = id, Image = image }));
         }
 
+        [Authorize(Roles = RoleCategory.Admin)]
+        [HttpDelete("{id}/image")]
+        public async Task<IActionResult> DeleteGameImage(int id)
+        {
+            return Ok(await _mediator.Send(new DeleteGameImageCommand { Id = id }));
+        }
+
         [AllowAnonymous]
         [HttpPost("paginated-search")]
         public async Task<PaginatedResult<GameListDto>> GetPagedGames(PagedRequest pagedRequest)
+        {
+            var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
+            return response;
+        }
+
+        [AllowAnonymous]
+        [HttpGet("paginated-search")]
+        public async Task<PaginatedResult<GameListDto>> GetPagedQueryGames([FromQuery] PagedRequest pagedRequest)
         {
             var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
             return response;

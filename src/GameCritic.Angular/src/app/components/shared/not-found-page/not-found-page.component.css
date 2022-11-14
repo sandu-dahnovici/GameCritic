@@ -1,0 +1,8 @@
+.box {
+    justify-content: center;
+    align-items: center;
+    margin:20px auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}

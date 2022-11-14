@@ -39,9 +39,10 @@ namespace GameCritic.API.Controllers
         }
 
         [Authorize(Roles = RoleCategory.User)]
-        [HttpPut]
-        public async Task<IActionResult> UpdateReview(UpdateReviewCommand updateReviewDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateReview(UpdateReviewCommand updateReviewDto, int id)
         {
+            updateReviewDto.Id = id;
             return Ok(await _mediator.Send(updateReviewDto));
         }
 
@@ -53,10 +54,10 @@ namespace GameCritic.API.Controllers
         }
 
         [Authorize(Roles = RoleCategory.Admin + "," + RoleCategory.User)]
-        [HttpDelete]
-        public async Task<IActionResult> DeleteReview(DeleteReviewCommand deleteReviewDto)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReview(int id)
         {
-            return Ok(await _mediator.Send(deleteReviewDto));
+            return Ok(await _mediator.Send(new DeleteReviewCommand() { Id = id }));
         }
 
         [AllowAnonymous]

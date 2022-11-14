@@ -2,7 +2,8 @@
     <mat-card-title>
         <app-score-button [isScore]="false" [score]="review.mark" style="margin-right: 1em;"></app-score-button>
         {{ review.user.username }}
-        <button mat-button color="warn" style="right:0px;float: right;" *ngIf="displayDeleteButton()">
+        <button mat-button color="warn" style="right:0px;float: right;" *ngIf="displayDeleteButton()"
+            (click)="openDialogForDeleting(review.id)">
             <mat-icon>delete</mat-icon> Delete
         </button>
         <button mat-button color="primary" style="right:0px;float: right;" *ngIf="isUsersReview()"
