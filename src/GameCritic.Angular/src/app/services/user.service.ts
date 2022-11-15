@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { LoginUser } from '../models/user/login-user';
 import { RegisterUser } from '../models/user/register-user';
 import { User } from '../models/user/user';
+import { UserDetails } from '../models/user/user-details';
 import { ErrorHandlingService } from './error-handling.service';
 
 @Injectable({
@@ -86,6 +87,15 @@ export class UserService {
 
   getUserId() {
     return this.user?.id;
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  getUserDetails(id: number | undefined): Observable<UserDetails> {
+    return this.http.get<UserDetails>(this.url + `/user-details/` + `${id}`)
+      .pipe(catchError(this.errorHandler.handleError<UserDetails>()));
   }
 
 }

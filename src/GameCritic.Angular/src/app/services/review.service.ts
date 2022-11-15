@@ -54,6 +54,8 @@ export class ReviewService {
 
   saveReview(review: UpdateReview): Observable<any> {
     if (review.id !== undefined && review.id > 0) {
+      review.gameId = undefined;
+      review.userId = undefined;
       return this.updateReview(review);
     }
     return this.createReview(review);

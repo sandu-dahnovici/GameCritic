@@ -58,6 +58,10 @@ export class ReviewCardComponent implements OnInit {
     });
   }
 
+  redirectToUserPage() {
+    this.router.navigate(['/users', this.review.user.id]);
+  }
+
   writeReview() {
     let reviewId: number = 0;
     this.reviewService.getReviewIdByGameAndUserId(this.gameId, this.userService.getUserId())

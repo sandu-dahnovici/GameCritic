@@ -6,6 +6,10 @@ namespace GameCritic.Domain.Auth
     {
         public ICollection<Review> Reviews { get; set; }
 
+        public int ReviewCount { get; set; }
+
+        public double Score { get; set; }
+
         public DateTime RegisterDateTime { get; set; } = DateTime.Now;
     }
 }

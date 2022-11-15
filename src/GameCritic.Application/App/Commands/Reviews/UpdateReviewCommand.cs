@@ -11,9 +11,5 @@ namespace GameCritic.Application.App.Commands.Reviews
         public string? Comment { get; set; }
 
         public DateTime CreationDate { get; set; }
-
-        public int GameId { get; set; }
-
-        public int UserId { get; set; }
     }
 }

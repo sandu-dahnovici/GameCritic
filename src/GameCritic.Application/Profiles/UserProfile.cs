@@ -12,6 +12,7 @@ namespace GameCritic.Application.Profiles
             CreateMap<User, UserListDto>();
             CreateMap<User, UserTokenDto>();
             CreateMap<RegisterUserCommand, User>();
+            CreateMap<User, UserDetailsDto>();
         }
     }
 }

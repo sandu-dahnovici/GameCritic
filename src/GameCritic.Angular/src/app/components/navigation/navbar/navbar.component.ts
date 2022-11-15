@@ -57,4 +57,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  redirectToUserPage() {
+    this.router.navigate(['/users', this.userService.getUserId()]);
+  }
+
 }

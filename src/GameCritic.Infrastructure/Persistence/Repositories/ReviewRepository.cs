@@ -53,6 +53,17 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             return await reviews.ToListAsync();
         }
 
+        public async Task<IList<Review>> GetReviewsByUserId(int id)
+        {
+            IQueryable<Review> reviews = _dbContext.Set<Review>();
+
+            reviews = reviews.Include(r => r.Game)
+                .Include(r => r.User)
+                .Where(r => r.UserId == id);
+
+            return await reviews.ToListAsync();
+        }
+
         public async Task<int> GetReviewIdByUserAndGameId(int gameId, int userId)
         {
             IQueryable<Review> reviews = _dbContext.Set<Review>();
