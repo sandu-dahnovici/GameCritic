@@ -7,6 +7,16 @@ p {
     font-size: larger;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+    color: gold;
+    cursor: pointer;
+}
+
 mat-card {
     min-width: 600px;
     max-width: 600px;

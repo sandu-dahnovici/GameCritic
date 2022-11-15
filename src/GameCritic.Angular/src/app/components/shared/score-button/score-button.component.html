@@ -1,5 +1,5 @@
 <button mat-mini-fab 
-    [color]="score > 8 ? 'success' : score > 5 ? 'accent' : score > 1 ? 'warn' : 'gray'">
+    [color]="score > 8 ? 'success' : score > 5 ? 'accent' : score > 0 ? 'warn' : 'gray'">
     <ng-container *ngIf="isScore;else isMark">
         {{ score ? score.toFixed(1) : "tbd"}}
     </ng-container>

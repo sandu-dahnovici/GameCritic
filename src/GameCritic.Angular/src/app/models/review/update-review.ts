@@ -4,5 +4,5 @@ export interface UpdateReview {
     comment?: number,
     creationDate: Date,
     userId? : number,
-    gameId: number
+    gameId?: number
 }

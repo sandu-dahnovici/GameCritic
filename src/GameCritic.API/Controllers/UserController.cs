@@ -4,6 +4,8 @@ using MediatR;
 using GameCritic.API.Filters;
 using Microsoft.AspNetCore.Authorization;
 using GameCritic.Application.App.Commands.Users;
+using GameCritic.Application.App.Queries.Users;
+using GameCritic.Application.Common.Dtos.User;
 
 namespace GameCritic.API.Controllers
 {
@@ -33,7 +35,12 @@ namespace GameCritic.API.Controllers
             return Ok(result);
         }
 
-
+        [HttpGet("user-details/{id}")]
+        public async Task<UserDetailsDto> GetUserDetails(int id)
+        {
+            var result = await _mediator.Send(new GetUserDetailsQuery() { UserId = id });
+            return result;
+        }
     }
 }
 

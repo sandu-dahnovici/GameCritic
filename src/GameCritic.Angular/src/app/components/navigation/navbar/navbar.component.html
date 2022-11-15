@@ -33,10 +33,9 @@
         </button>
 
         <ng-template #logOut>
-            <button mat-button fxHide.xs *ngIf="isUser()" routerLink="/users">
+            <button mat-button fxHide.xs *ngIf="isUser()" (click)="redirectToUserPage()">
                 <mat-icon>account_box</mat-icon>
                 {{ username }}
-                <ng-container *ngIf="isAdmin()"></ng-container>
             </button>
 
             <button mat-button fxHide.xs *ngIf="!isUser()">
