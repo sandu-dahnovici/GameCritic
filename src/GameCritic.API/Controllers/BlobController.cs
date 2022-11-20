@@ -18,6 +18,7 @@ namespace GameCritic.API.Controllers
         {
             _service = service;
         }
+
         [AllowAnonymous]
         [HttpGet("{name}")]
         public async Task<IActionResult> GetBlobUri(string name)

@@ -76,7 +76,7 @@
         <br>
         <mat-form-field appearance="fill" color="primary">
             <mat-label for="publisher">Publisher : </mat-label>
-            <mat-select name="publisher" formControlName="publisherId" placeholder="Select Publisher">
+            <mat-select name="publisher" formControlName="publisherId" placeholder="Select Publisher"> 
                 <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
                     {{publisher.name}}
                 </mat-option>

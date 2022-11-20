@@ -77,13 +77,5 @@ namespace GameCritic.API.Controllers
             var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
             return response;
         }
-
-        [AllowAnonymous]
-        [HttpGet("paginated-search")]
-        public async Task<PaginatedResult<GameListDto>> GetPagedQueryGames([FromQuery] PagedRequest pagedRequest)
-        {
-            var response = await _mediator.Send(new GetGamesPagedQuery() { PagedRequest = pagedRequest });
-            return response;
-        }
     }
 }

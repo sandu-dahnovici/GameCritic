@@ -1,0 +1,11 @@
+.form-container {
+    margin-left: 50px;
+}
+
+mat-card {
+    margin: 20px auto;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

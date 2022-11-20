@@ -15,11 +15,12 @@ import { GameService } from 'src/app/services/game.service';
 export class HomeComponent implements OnInit, AfterViewInit {
   games: GameList[] = [];
   imgCollection: Array<ImageObject> = [];
+  
   @ViewChild(NgImageSliderComponent) slider: NgImageSliderComponent;
 
   constructor(private gameService: GameService,
     public route: ActivatedRoute, public router: Router,
-    private cd : ChangeDetectorRef) { }
+    private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const paginatedRequest: PaginatedRequest = {
@@ -64,7 +65,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   imageClickHandler(e: number) {
-
     this.router.navigate(['/games', e + 1]);
   }
 }
