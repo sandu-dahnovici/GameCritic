@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="view-card-title" style="text-align: center;">
+            {{pageTitle}}
+        </mat-card-title>
+    </mat-card-header>
+    <form novalidate [formGroup]="awardForm" (ngSubmit)="saveRanking()">
+        <mat-toolbar style="background-color: #FFF">
+            <mat-toolbar-row>
+                <span class="title-spacer"></span>
+                <mat-card-actions>
+                    <button mat-fab class="primary" style="margin-right:10px; background-color:darkgray" type="submit"
+                        [disabled]='!awardForm.valid'>
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="" style="margin-right:10px; " [routerLink]="['/games']">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="award">Award : </mat-label>
+            <mat-select name="award" formControlName="awardId" placeholder="Select Award">
+                <mat-option *ngFor="let award of awards" [value]="award.id">
+                    {{ award | formatAward }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <ng-container *ngIf="!awardId?.valid && (awardId?.dirty || awardId?.touched)">
+            <mat-error *ngIf="awardId?.errors?.['required']">
+                Award is required.
+            </mat-error>
+        </ng-container>
+    </form>
+</mat-card>

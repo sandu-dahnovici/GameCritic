@@ -16,17 +16,22 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EditPublisherComponent } from './publishers/edit-publisher/edit-publisher.component';
 import { UploadGameImageComponent } from './games/upload-game-image/upload-game-image.component';
+import { AddAwardComponent } from './games/add-award/add-award.component';
+import { SharedModule } from '../shared/shared.module';
+import { AwardsModule } from '../awards/awards.module';
 
 
 @NgModule({
   declarations: [
     UploadGameImageComponent,
     EditGameComponent,
-    EditPublisherComponent
+    EditPublisherComponent,
+    AddAwardComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    AwardsModule,
     FormsModule,
     MatCardModule,
     MatOptionModule,

@@ -21,7 +21,7 @@ import { SearchBarComponent } from '../../shared/search-bar/search-bar.component
 })
 export class GamesSearchPageComponent implements OnInit, AfterViewInit {
   pagedGames?: PagedResult<GameList>;
-  displayedColumns: Array<string> = ['title', 'score', 'price','releaseDate' , 'id'];
+  displayedColumns: Array<string> = ['title', 'score', 'price', 'releaseDate', 'id'];
   dataSource: MatTableDataSource<GameList>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -29,12 +29,13 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
   @ViewChild(SearchBarComponent) sc: SearchBarComponent;
 
   filter!: Filter;
+
   constructor(private gameService: GameService, public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private userService : UserService) { }
+    private userService: UserService) { }
 
   ngOnInit(): void {
-    if(!this.isAdmin()) this.displayedColumns.pop(); 
+    if (!this.isAdmin()) this.displayedColumns.pop();
     if (this.gameService.search.redirected) {
       this.loadGamesFromApi(this.gameService.search.text);
     }

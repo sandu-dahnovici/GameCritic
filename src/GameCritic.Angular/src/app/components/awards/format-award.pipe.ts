@@ -6,7 +6,7 @@ import { AwardList } from 'src/app/models/award/award-list';
 })
 export class FormatAwardPipe implements PipeTransform {
 
-  transform(value: AwardList,) {
+  transform(value: AwardList) {
     const year = value.year;
     let result = value.title;
     if (year > 0) {

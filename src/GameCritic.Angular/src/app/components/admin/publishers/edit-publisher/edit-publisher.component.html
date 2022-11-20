@@ -53,13 +53,14 @@
         <br>
         <ng-container
             *ngIf="!publisherForm.controls['foundationYear'].valid && (publisherForm.controls['foundationYear'].dirty || publisherForm.controls['foundationYear'].touched)">
-            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['required']">Foundation Year is required
+            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['required']">
+                Foundation Year is required
             </mat-error>
-            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['max']">Foundation Year must be current
-                year
+            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['max']">
+                Foundation Year must be before current year
             </mat-error>
-            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['min']">Foundation Year must be after
-                1970
+            <mat-error *ngIf="publisherForm.controls['foundationYear'].errors?.['min']">
+                Foundation Year must be after 1970
             </mat-error>
         </ng-container>
         <br>

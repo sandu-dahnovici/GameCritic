@@ -55,6 +55,10 @@
                         [routerLink]="['/admin/uploadGameImage',game.id]" matTooltip="Upload Image for Game">
                         <mat-icon>upload</mat-icon>
                     </button>
+                    <button mat-mini-fab color="primary" style="min-height: 30px;  margin: 5px;"
+                        [routerLink]="['/admin/addAward',game.id]" matTooltip="Add award for game">
+                        <mat-icon>emoji_events</mat-icon>
+                    </button>
                 </mat-cell>
             </ng-container>
 
