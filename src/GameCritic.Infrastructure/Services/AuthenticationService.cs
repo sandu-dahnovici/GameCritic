@@ -13,7 +13,7 @@ namespace GameCritic.Infrastructure.Services
     {
         private readonly JwtOptions _jwtOptions;
         private readonly UserManager<User> _userManager;
-        private User _user;
+        private User? _user;
 
         public AuthenticationService(UserManager<User> userManager, IOptions<JwtOptions> jwtOptions)
         {
@@ -21,7 +21,7 @@ namespace GameCritic.Infrastructure.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<int> ValidateUsernameAndEmail(string username,string email)
+        public async Task<int> ValidateUsernameAndEmail(string username, string email)
         {
             var user1 = await _userManager.FindByNameAsync(username);
             var user2 = await _userManager.FindByEmailAsync(email);
@@ -46,7 +46,7 @@ namespace GameCritic.Infrastructure.Services
             var key = _jwtOptions.GetSymmetricSecurityKey();
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var claims = await GetClaims();
-            var token = GenerateTokenOptions(signingCredentials,claims);
+            var token = GenerateTokenOptions(signingCredentials, claims);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

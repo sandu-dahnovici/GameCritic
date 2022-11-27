@@ -26,10 +26,9 @@ namespace GameCritic.Application.App.QueryHandlers.Publishers
                 throw new HttpResponseException(System.Net.HttpStatusCode.NoContent, "No genres available");
 
             List<GenreListDto> genreListDtos = new();
+
             foreach (var genre in genres)
-            {
                 genreListDtos.Add(_mapper.Map<GenreListDto>(genre));
-            }
 
             return genreListDtos;
         }

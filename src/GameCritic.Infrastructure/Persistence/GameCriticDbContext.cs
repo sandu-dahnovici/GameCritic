@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using GameCritic.Domain.Entities;
 using GameCritic.Domain.Auth;
-using GameCritic.Infrastructure.Persistence.Configurations;
 using System.Reflection;
 
 namespace GameCritic.Infrastructure.Persistence

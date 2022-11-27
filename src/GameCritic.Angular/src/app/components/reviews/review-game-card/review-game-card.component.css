@@ -1,0 +1,39 @@
+mat-card-footer {
+    margin: 1px;
+    text-align: right;
+}
+
+p {
+    font-size: larger;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+    color: gold;
+    cursor: pointer;
+}
+
+mat-card {
+    min-width: 600px;
+    max-width: 600px;
+    max-height: fit-content;
+}
+
+
+.example-header-image {
+    background-size: cover;
+    width: 10em;
+    height: 10em;
+    border-radius: 10%;
+    margin-right: 10px;
+}
+
+.content {
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,105 @@
+.example-header-image {
+    background-image: url('../../../../assets/profile-photo.jpg');
+    background-size: cover;
+}
+
+.box {
+    height: 100%;
+    margin-top: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.example-card {
+    max-width: 90%;
+    margin: 20px auto 2em;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: gold;
+}
+
+.body {
+    border-color: #ccc;
+    border-width: 0 1px;
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    border-color: #ccc;
+    border-style: solid;
+}
+
+.head {
+    background-color: #caa42d;
+    border-color: #caa42d;
+}
+
+.module .module_title {
+    display: inline;
+    float: left;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+.module .head_type_1 {
+    color: #fff;
+}
+
+
+.score {
+    float: right;
+    display: inline-flex;
+}
+
+.not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    color: white;
+    padding: 18px;
+    font-family: Arial;
+    font-size: 1.2em;
+}
+
+.danger {
+    background-color: #f44336;
+}
+
+.title {
+    color: #2e2e2e !important;
+    text-transform: uppercase;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900 !important;
+}
+
+mat-card-footer {
+    text-align: center;
+}
+
+mat-card,p {
+    font-size: larger;
+}

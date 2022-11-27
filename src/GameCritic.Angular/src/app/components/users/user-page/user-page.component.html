@@ -1,3 +1,43 @@
-<h1>{{ user?.username }}</h1>
-<h1>{{ user?.reviewCount }}</h1>
-<h1>{{ user?.score }}</h1>
+<div class="box">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{user.username}}</mat-card-title>
+            <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                Number of reviews : <b style="color:rgb(107, 126, 95)">{{user.reviewCount}}</b>
+            </p>
+            <p>
+                Average game review score: <app-score-button [score]="user.score" [isScore]="true"></app-score-button>
+            </p>
+        </mat-card-content>
+        <mat-card-footer>Registered on {{user.registerDateTime | date}}</mat-card-footer>
+    </mat-card>
+    <div class="review-section">
+        <div class="head head_type_1">
+            <div class="head-wrap" style="text-align: center;">
+                <h2 class="module-title" style="color:white">REVIEWS WRITTEN BY {{user.username}}</h2>
+            </div>
+        </div>
+        <div [hidden]="!pagedReviews?.total">
+            <mat-table matSort [dataSource]="dataSource">
+                <ng-container matColumnDef="review">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let review">
+                        <app-review-game-card [review]="review" [userId]="user.id"></app-review-game-card>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="['review']"></mat-header-row>
+                <mat-row mat-row *matRowDef="let row; columns : ['review'];"></mat-row>
+            </mat-table>
+            <mat-paginator [length]="pagedReviews?.total" pageSize="3" [pageSizeOptions]="[2,3,5,10]"></mat-paginator>
+        </div>
+        <ng-container *ngIf="!pagedReviews?.total">
+            <div style="margin-top: 20px;" class="not-found">
+                <span class="label danger">This user has no reviews</span>
+            </div>
+        </ng-container>
+    </div>
+</div>

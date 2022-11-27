@@ -13,7 +13,7 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
     {
         Task<PaginatedResult<ReviewGameListDto>> GetPagedReviewsByUserId(int id, PagedRequest pagedRequest);
         Task<PaginatedResult<ReviewUserListDto>> GetPagedReviewsByGameId(int id, PagedRequest pagedRequest);
-        Task<int> GetReviewIdByUserAndGameId(int gameId, int userId);
+        Task<Review> GetReviewIdByUserAndGameId(int gameId, int userId);
         public Task<IList<Review>> GetReviewsByGameId(int id);
         public Task<IList<Review>> GetReviewsByUserId(int id);
     }

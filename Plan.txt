@@ -1,0 +1,22 @@
+Existing account :
+	Username : sebastian_barba 
+	Email : sebastian.barba@gmail.com
+	Password : sebi@123
+
+To make new account : 
+	Username : sandu
+	Email : sandu.dahnovic@gmail.com
+	Password : sandu@123
+
+Admin account : 
+	Username : sandu1337
+	Email : sandu.dahnovici@gmail.com
+	Password : sandu@123
+
+
+1. Show public content - home page, game search page, publisher search page, 
+	game page, publisher page, genre page, award page.
+2. Then in order to write review register account , show username and email validation,
+	write a review then show user page.
+3. After go in admin mode, and show admin logic.
+	

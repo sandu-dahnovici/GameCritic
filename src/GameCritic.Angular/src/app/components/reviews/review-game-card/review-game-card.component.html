@@ -1,0 +1,30 @@
+<mat-card class="example-card">
+    <mat-card-title>
+        <app-score-button [isScore]="false" [score]="review.mark" style="margin-right: 1em;"></app-score-button>
+        <a (click)="redirectToGamePage()">{{ review.game.title }}</a>
+        <ng-container *ngIf="isCurrentUsersPage()">
+            <button mat-button color="warn" style="right:0px;float: right;" (click)="openDialogForDeleting(review.id)">
+                <mat-icon>delete</mat-icon> Delete
+            </button>
+            <button mat-button color="primary" style="right:0px;float: right;" (click)="writeReview()">
+                <mat-icon>edit</mat-icon>Edit
+            </button>
+        </ng-container>
+
+    </mat-card-title>
+    <mat-card-content>
+        <div class="content">
+            <div mat-card-avatar class="example-header-image" style="background-color: #EAEAEA;"
+                [style.background-image]="'url(' + getImageUrl(review.game.imageName) + ')'">
+            </div>
+            <ng-container *ngIf="review.comment">
+                <p>{{ review.comment }}</p>
+            </ng-container>
+            <ng-container *ngIf="!review.comment">
+                <p style="color:red;text-align: center;">This review has no comment.</p>
+            </ng-container>
+        </div>
+
+    </mat-card-content>
+    <mat-card-footer style="margin-top: -10px;">{{ review.creationDate | date }}</mat-card-footer>
+</mat-card>

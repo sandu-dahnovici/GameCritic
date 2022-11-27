@@ -26,24 +26,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
+
+app.UseDbTransaction();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
 
 await app.RunAsync();
-
-
-
-
-
-
-
-
-
-
-
-
-public partial class Program
-{
-}

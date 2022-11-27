@@ -8,5 +8,6 @@ namespace GameCritic.Application.Common.Interfaces.Repositories
     {
         Task<Award> GetAward(Expression<Func<Award, bool>> expression);
         Task<IList<Award>> GetAvailableAwardsByGameId(int id);
+        Task<IList<int>> GetAvailableRanksByAwardId(int id);
     }
 }

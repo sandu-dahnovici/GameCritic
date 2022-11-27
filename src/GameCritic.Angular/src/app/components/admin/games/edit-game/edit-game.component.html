@@ -89,7 +89,7 @@
         </ng-container>
         <br>
         <mat-form-field appearance="fill" color="primary">
-            <mat-select placeholder="Select Genres" formControlName="genresId" [value]="genres" multiple>
+            <mat-select placeholder="Select Genres" formControlName="genresId" multiple>
                 <mat-option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
             </mat-select>
         </mat-form-field>

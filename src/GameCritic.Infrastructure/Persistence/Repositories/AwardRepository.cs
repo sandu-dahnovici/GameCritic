@@ -28,6 +28,20 @@ namespace GameCritic.Infrastructure.Persistence.Repositories
             return await awards.ToListAsync();
         }
 
+        public async Task<IList<int>> GetAvailableRanksByAwardId(int id)
+        {
+            var ranks = Enumerable.Range(1, 50).ToList();
+
+            IQueryable<Ranking> rankings = _dbContext.Set<Ranking>();
+
+            var ocuppiedRankings = await rankings
+                .Where(r => r.AwardId == id)
+                .Select(r => r.Rank)
+                .ToListAsync();
+
+            return ranks.Except(ocuppiedRankings).ToList();
+        }
+
         public async Task<Award> GetAward(Expression<Func<Award, bool>> expression)
         {
             IQueryable<Award> awards = _dbContext.Set<Award>();

@@ -1,5 +1,4 @@
 ﻿using static HeyRed.Mime.MimeTypesMap;
-using GameCritic.API.Controllers;
 using GameCritic.Application.Common.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +20,7 @@ namespace GameCritic.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("{name}")]
-        public async Task<IActionResult> GetBlobUri(string name)
+        public async Task<IActionResult> GetBlob(string name)
         {
             var stream = await _service.GetBlob(name);
             var mime = GetMimeType(Path.GetExtension(name));

@@ -7,7 +7,7 @@ using MediatR;
 
 namespace GameCritic.Application.App.QueryHandlers.Reviews
 {
-    public class GetReviewByIdQueryHandler : IRequestHandler<GetReviewByIdQuery, ReviewUserListDto>
+    public class GetReviewByIdQueryHandler : IRequestHandler<GetReviewByIdQuery, ReviewDto>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -18,14 +18,14 @@ namespace GameCritic.Application.App.QueryHandlers.Reviews
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ReviewUserListDto> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ReviewDto> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
         {
             var review = await _unitOfWork.ReviewRepository.GetWithInclude(r => r.Id == request.ReviewId, r => r.User);
 
             if (review == null)
                 throw new HttpResponseException(System.Net.HttpStatusCode.NotFound, "No review found");
 
-            var reviewDto = _mapper.Map<ReviewUserListDto>(review);
+            var reviewDto = _mapper.Map<ReviewDto>(review);
 
             return reviewDto;
         }
