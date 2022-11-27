@@ -16,6 +16,8 @@ namespace GameCritic.Application.Profiles
             CreateMap<Review, ReviewGameListDto>()
                 .ForMember(r => r.Game, c => c.MapFrom(u => u.Game));
 
+            CreateMap<Review, ReviewDto>().ReverseMap();
+
             CreateMap<CreateReviewCommand, Review>();
             CreateMap<UpdateReviewCommand, Review>();
         }

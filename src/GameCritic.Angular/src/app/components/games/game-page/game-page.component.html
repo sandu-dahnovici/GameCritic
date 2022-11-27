@@ -10,7 +10,7 @@
                 [style.background-image]="'url(' + getImageUrl(game.imageName) + ')'">
             </div>
             <div style="margin-left: 20px;margin-right: 20px;
-            width: fit-content;">
+            width: 80%;">
                 <h3 align="center"><strong>Summary</strong></h3>
                 <p style="font-size: larger;">{{ game.summary }}</p>
             </div>
@@ -65,6 +65,14 @@
                                             <td>#{{ ranking.rank }}</td>
                                             <td>{{ ranking.award | formatAward}}</td>
                                         </a>
+                                        <ng-container *ngIf="isAdmin()">
+                                            <td>
+                                                <button mat-button style="width:fit-content;" color="warn"
+                                                    (click)="openDialogForDeleting(ranking.id)">
+                                                    <mat-icon>delete_forever</mat-icon>
+                                                </button>
+                                            </td>
+                                        </ng-container>
                                     </tr>
                                 </tbody>
                                 <tbody *ngIf="!game.awards.length">

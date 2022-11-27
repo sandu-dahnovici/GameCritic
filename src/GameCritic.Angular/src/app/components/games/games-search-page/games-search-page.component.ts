@@ -30,12 +30,15 @@ export class GamesSearchPageComponent implements OnInit, AfterViewInit {
 
   filter!: Filter;
 
-  constructor(private gameService: GameService, public dialog: MatDialog,
+  constructor(
+    private gameService: GameService,
+    public dialog: MatDialog,
     public snackBar: MatSnackBar,
     private userService: UserService) { }
 
   ngOnInit(): void {
     if (!this.isAdmin()) this.displayedColumns.pop();
+
     if (this.gameService.search.redirected) {
       this.loadGamesFromApi(this.gameService.search.text);
     }

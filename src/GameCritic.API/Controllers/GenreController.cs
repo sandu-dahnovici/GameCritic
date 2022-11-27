@@ -11,6 +11,7 @@ namespace GameCritic.API.Controllers
     [Route("api/genres")]
     [ApiController]
     [HttpResponseExceptionFilter]
+    [AllowAnonymous]
     public class GenreController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,7 +21,6 @@ namespace GameCritic.API.Controllers
             _mediator = mediator;
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}/games")]
         public async Task<GenreDto> GetById(int id)
         {
@@ -28,7 +28,6 @@ namespace GameCritic.API.Controllers
             return genreDto;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IList<GenreListDto>> GetAllGenres()
         {

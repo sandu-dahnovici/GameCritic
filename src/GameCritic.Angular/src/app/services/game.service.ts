@@ -32,7 +32,7 @@ export class GameService {
     return environment.apiUrl + `blob/${imageName}`;
   }
 
-  getGameById(id: string): Observable<Game> {
+  getGameById(id: string|undefined): Observable<Game> {
     return this.http.get<Game>(this.url + `${id}`)
       .pipe(catchError(this.errorHandling.handleError<Game>()));
   }

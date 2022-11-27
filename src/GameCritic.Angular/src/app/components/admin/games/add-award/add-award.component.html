@@ -22,7 +22,8 @@
 
         <mat-form-field appearance="fill" color="primary">
             <mat-label for="award">Award : </mat-label>
-            <mat-select name="award" formControlName="awardId" placeholder="Select Award">
+            <mat-select name="award" formControlName="awardId" placeholder="Select Award"
+                (selectionChange)="awardChangeAction(awardForm.get('awardId')?.value)">
                 <mat-option *ngFor="let award of awards" [value]="award.id">
                     {{ award | formatAward }}
                 </mat-option>
@@ -32,6 +33,21 @@
         <ng-container *ngIf="!awardId?.valid && (awardId?.dirty || awardId?.touched)">
             <mat-error *ngIf="awardId?.errors?.['required']">
                 Award is required.
+            </mat-error>
+        </ng-container>
+
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label for="rank">Rank : </mat-label>
+            <mat-select name="ranking" formControlName="rank" placeholder="Select Rank">
+                <mat-option *ngFor="let rank of ranks" [value]="rank">
+                    {{ rank }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <ng-container *ngIf="!rank?.valid && (rank?.dirty || rank?.touched)">
+            <mat-error *ngIf="rank?.errors?.['required']">
+                Rank is required.
             </mat-error>
         </ng-container>
     </form>

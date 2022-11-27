@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReviewGameCardComponent } from './review-game-card/review-game-card.component';
 
 
 
@@ -19,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   declarations: [
     ReviewCardComponent,
     EditReviewComponent,
+    ReviewGameCardComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   exports: [
     ReviewCardComponent,
+    ReviewGameCardComponent
   ]
 })
 export class ReviewsModule { }

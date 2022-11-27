@@ -25,7 +25,7 @@ namespace GameCritic.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ReviewUserListDto> GetReviewById(int id)
+        public async Task<ReviewDto> GetReviewById(int id)
         {
             var reviewDto = await _mediator.Send(new GetReviewByIdQuery() { ReviewId = id });
             return reviewDto;
@@ -48,9 +48,9 @@ namespace GameCritic.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("games/{gameId}/users/{userId}")]
-        public async Task<IActionResult> GetReviewByUserAndGameId(int gameId, int userId)
+        public async Task<ReviewDto> GetReviewByUserAndGameId(int gameId, int userId)
         {
-            return Ok(await _mediator.Send(new GetReviewIdByUserAndGameIdQuery() { GameId = gameId, UserId = userId }));
+            return await _mediator.Send(new GetReviewIdByUserAndGameIdQuery() { GameId = gameId, UserId = userId });
         }
 
         [Authorize(Roles = RoleCategory.Admin + "," + RoleCategory.User)]
@@ -70,9 +70,9 @@ namespace GameCritic.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("paginated-search/users/{userId}")]
-        public async Task<PaginatedResult<ReviewUserListDto>> GetPagedReviewsByUserId(int userId, PagedRequest pagedRequest)
+        public async Task<PaginatedResult<ReviewGameListDto>> GetPagedReviewsByUserId(int userId, PagedRequest pagedRequest)
         {
-            var response = await _mediator.Send(new GetPagedReviewsByGameIdQuery() { Id = userId, PagedRequest = pagedRequest });
+            var response = await _mediator.Send(new GetPagedReviewsByUserIdQuery() { Id = userId, PagedRequest = pagedRequest });
             return response;
         }
     }

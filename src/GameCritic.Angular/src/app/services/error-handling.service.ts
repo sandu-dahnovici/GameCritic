@@ -18,7 +18,6 @@ export class ErrorHandlingService {
             console.error(error);
 
             let isArray: boolean = Array.isArray(error.error.errors);
-            console.log(isArray);
 
             if (!isArray) {
                 if (error.error.Message)

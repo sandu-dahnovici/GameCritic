@@ -59,6 +59,8 @@ export class UserService {
 
 
   isUser(): boolean {
+    if (this.user == undefined) return false;
+
     return this.user?.role == 'User';
   }
 
@@ -93,7 +95,7 @@ export class UserService {
     return this.user;
   }
 
-  getUserDetails(id: number | undefined): Observable<UserDetails> {
+  getUserDetails(id: number | string | undefined): Observable<UserDetails> {
     return this.http.get<UserDetails>(this.url + `/user-details/` + `${id}`)
       .pipe(catchError(this.errorHandler.handleError<UserDetails>()));
   }

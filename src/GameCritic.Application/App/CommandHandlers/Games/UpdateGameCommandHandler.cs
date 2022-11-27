@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using GameCritic.Application.App.Commands.Games;
-using GameCritic.Application.Common.Dtos.Game;
 using GameCritic.Application.Common.Exceptions;
 using GameCritic.Application.Common.Interfaces.Repositories;
-using GameCritic.Application.Common.Interfaces.Services;
 using GameCritic.Domain.Entities;
 using MediatR;
 
@@ -30,6 +28,7 @@ namespace GameCritic.Application.App.CommandHandlers.Games
             _mapper.Map(request, game);
 
             var genres = game.GameGenres.AsQueryable().Select(gg => gg.Genre).ToList();
+
             foreach (var genreId in request.GenresId)
             {
                 var genre = await _unitOfWork.GenreRepository.GetById(genreId);
@@ -46,8 +45,7 @@ namespace GameCritic.Application.App.CommandHandlers.Games
                 {
                     var gameGenreDelete = _unitOfWork.GameGenreRepository
                         .GetAll()
-                        .AsQueryable()
-                        .Single(gg => gg.Genre == genre && gg.Game == gg.Game);
+                        .SingleOrDefault(gg => gg.GenreId == genre.Id && gg.GameId == game.Id);
 
                     await _unitOfWork.GameGenreRepository.Delete(gameGenreDelete.Id);
                 }

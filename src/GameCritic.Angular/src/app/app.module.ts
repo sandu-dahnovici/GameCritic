@@ -32,6 +32,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserPageComponent } from './components/users/user-page/user-page.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { ReviewsModule } from './components/reviews/reviews.module';
 
 
 @NgModule({
@@ -48,6 +51,7 @@ import { UserPageComponent } from './components/users/user-page/user-page.compon
     SharedModule,
     AppRoutingModule,
     AwardsModule,
+    ReviewsModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -61,6 +65,8 @@ import { UserPageComponent } from './components/users/user-page/user-page.compon
     MatDividerModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
     MatSnackBarModule,
     NgImageSliderModule,
     MatProgressBarModule,

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from 'src/app/models/game/game';
-import { Review } from 'src/app/models/review/review';
 import { UpdateReview } from 'src/app/models/review/update-review';
 import { GameService } from 'src/app/services/game.service';
 import { ReviewService } from 'src/app/services/review.service';
@@ -16,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EditReviewComponent implements OnInit {
   public id!: number;
-  public gameId: number;
+  public gameId?: number;
   public userId: number | undefined;
   public gameTitle!: string;
   public pageTitle: string;
@@ -27,25 +26,23 @@ export class EditReviewComponent implements OnInit {
     private formBuilder: FormBuilder,
     private gameService: GameService,
     private reviewService: ReviewService,
-    private snackbar: MatSnackBar,
-    private userService : UserService) { }
+    private userService: UserService,
+    private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     let objectId!: number;
     this.route.params.subscribe(params => {
       objectId = +params['id'];
-      this.gameId = +params['gameId'];
-      this.userId = this.userService.getUserId();
-      this.gameService.getGameById(this.gameId.toString()).subscribe((game: Game) => {
-        this.gameTitle = game.title;
-        if (objectId === 0) {
+      if (objectId != 0)
+        this.getReview(objectId);
+      else {
+        this.gameService.getGameById(this.reviewService.gameIdToReview.toString()).subscribe((game: Game) => {
+          this.gameTitle = game.title;
+          this.gameId = this.reviewService.gameIdToReview;
+          this.userId = this.userService.getUserId();
           this.pageTitle = `Add Review for ${this.gameTitle}`;
-        } else {
-          this.getReview(objectId);
-          this.pageTitle = `Edit Review for ${this.gameTitle}`;
-          this.id = objectId;
-        }
-      });
+        });
+      }
     });
 
     this.reviewForm = this.formBuilder.group({
@@ -56,10 +53,29 @@ export class EditReviewComponent implements OnInit {
   }
 
   getReview(id: number): void {
-    this.reviewService.getReviewId(id).subscribe((review: Review) => {
+    this.reviewService.getReviewId(id).subscribe((review: UpdateReview) => {
       this.reviewForm.controls['comment'].setValue(review.comment);
       this.reviewForm.controls['mark'].setValue(review.mark);
       this.reviewForm.controls['id'].setValue(review.id);
+      this.gameId = review.gameId;
+
+      if (review.userId != this.userService.getUserId()) {
+        this.delay(10).then(() => {
+          this.router.navigate(['home']).then(() => {
+            this.snackbar.open(`You don't have rights to edit this review\n
+          Redirecting to home page`, 'Close', {
+              duration: 5000,
+            });
+          });
+        });
+      }
+      this.userId = review.userId;
+
+      this.gameService.getGameById(this.gameId?.toString()).subscribe((game: Game) => {
+        this.gameTitle = game.title;
+        this.pageTitle = `Edit Review for ${this.gameTitle}`;
+        this.id = id;
+      });
     });
   }
 

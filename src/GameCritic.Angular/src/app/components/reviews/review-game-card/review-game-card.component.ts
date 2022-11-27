@@ -1,42 +1,32 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Review } from 'src/app/models/review/review';
+import { Router } from '@angular/router';
+import { ReviewGame } from 'src/app/models/review/review-game';
+import { GameService } from 'src/app/services/game.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-review-card',
-  templateUrl: './review-card.component.html',
-  styleUrls: ['./review-card.component.css']
+  selector: 'app-review-game-card',
+  templateUrl: './review-game-card.component.html',
+  styleUrls: ['./review-game-card.component.css']
 })
-export class ReviewCardComponent implements OnInit {
-  @Input() review!: Review;
-  @Input() gameId: number;
+export class ReviewGameCardComponent implements OnInit {
+  @Input() review!: ReviewGame;
+  @Input() userId: number;
 
   constructor(private userService: UserService,
     private reviewService: ReviewService,
     private router: Router,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
-    private activeRoute: ActivatedRoute) { }
+    private gameService: GameService) { }
 
   ngOnInit(): void {
   }
 
-  isAdmin() {
-    return this.userService.isAdmin();
-  }
-
-  isUsersReview() {
-    return this.userService.getUsername() == this.review.user.username;
-  }
-
-  displayDeleteButton() {
-    return this.isAdmin() || this.isUsersReview();
-  }
 
   openDialogForDeleting(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -58,13 +48,17 @@ export class ReviewCardComponent implements OnInit {
     });
   }
 
-  redirectToUserPage() {
-    this.router.navigate(['/users', this.review.user.id]);
+  isCurrentUsersPage() {
+    return this.userService.getUserId() == this.userId;
+  }
+
+  redirectToGamePage() {
+    this.router.navigate(['/games', this.review.game.id]);
   }
 
   writeReview() {
     let reviewId: number | undefined = 0;
-    this.reviewService.getReviewByGameAndUserId(this.gameId, this.userService.getUserId())
+    this.reviewService.getReviewByGameAndUserId(this.review.game.id, this.userService.getUserId())
       .subscribe((review) => {
         reviewId = review.id;
         this.router.navigateByUrl(`editReview/${reviewId}`);
@@ -77,4 +71,12 @@ export class ReviewCardComponent implements OnInit {
       this.router.navigate([currentUrl]);
     });
   }
-} 
+
+  getImageUrl(imageName?: string) {
+    if (imageName) {
+      return this.gameService.getGameImageUrl(imageName);
+    }
+    return 'assets/no-image.jpg';
+  }
+
+}

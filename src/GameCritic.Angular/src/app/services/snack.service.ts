@@ -12,7 +12,7 @@ export class SnackService {
     openSnack(message: string, error: boolean = false) {
         this._snackBar.open(message, '', {
             verticalPosition: this.verticalPosition,
-            duration: 1000,
+            duration: 2000,
             panelClass: error ? ['red-snackbar'] : ['green-snackbar']
         });
     }

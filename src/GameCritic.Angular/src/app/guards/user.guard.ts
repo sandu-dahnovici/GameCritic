@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 export class UserGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router,
     private snackbar: SnackService) { }
-  
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -21,5 +21,5 @@ export class UserGuard implements CanActivate {
     });
     return false;
   }
-  
+
 }

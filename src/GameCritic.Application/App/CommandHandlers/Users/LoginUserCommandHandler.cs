@@ -31,7 +31,7 @@ namespace GameCritic.Application.App.CommandHandlers.Users
         public async Task<UserTokenDto> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             if (!await _authService.ValidateUser(request.Email, request.Password))
-                throw new HttpResponseException(HttpStatusCode.Unauthorized, "Incorrect account email and password");
+                throw new HttpResponseException(HttpStatusCode.Unauthorized, "Incorrect account email or password");
 
             var user = await _userManager.FindByEmailAsync(request.Email);
             var roles = await _userManager.GetRolesAsync(user);

@@ -73,6 +73,9 @@ export class EditGameComponent implements OnInit {
 
   getGame(id: number): void {
     this.gameService.getGameById(id.toString()).subscribe((game: Game) => {
+      let arr: Array<number> = [];
+      for (let genre of game.genres) arr.push(genre.id);
+      this.gameForm.controls['genresId'].setValue(arr);
       this.gameForm.controls['title'].setValue(game.title);
       this.gameForm.controls['price'].setValue(game.price);
       this.gameForm.controls['summary'].setValue(game.summary);
@@ -80,9 +83,6 @@ export class EditGameComponent implements OnInit {
       this.gameForm.controls['releaseDate'].setValue(game.releaseDate);
       this.gameForm.controls['playtime'].setValue(game.playtime);
       this.gameForm.controls['publisherId'].setValue(game.publisher.id);
-      let arr: Array<number> = [];
-      for (let genre of game.genres) arr.push(genre.id);
-      this.gameForm.controls['genresId'].setValue(arr);
     });
   }
 

@@ -1,17 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { merge, tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
 import { Game } from 'src/app/models/game/game';
 import { PagedResult } from 'src/app/models/pagination/paged-result.model';
 import { PaginatedRequest } from 'src/app/models/pagination/paginated-result.model';
 import { Review } from 'src/app/models/review/review';
 import { GameService } from 'src/app/services/game.service';
+import { RankingService } from 'src/app/services/ranking.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { UserService } from 'src/app/services/user.service';
 import { ReviewCardComponent } from '../../reviews/review-card/review-card.component';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-game-page',
@@ -28,7 +31,10 @@ export class GamePageComponent implements OnInit {
   constructor(private gameService: GameService, private route: ActivatedRoute,
     private reviewService: ReviewService,
     private userService: UserService,
-    private router: Router) { }
+    private rankingService: RankingService,
+    public snackBar: MatSnackBar,
+    private router: Router,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(({ game }) => {
@@ -68,12 +74,51 @@ export class GamePageComponent implements OnInit {
   }
 
   writeReview() {
-    let reviewId: number = 0;
-    this.reviewService.getReviewIdByGameAndUserId(this.game.id, this.userService.getUserId())
-      .subscribe((id) => {
-        reviewId = id;
-        this.router.navigateByUrl(`editReview/${reviewId}/games/${this.game.id}`);
-      });
+    let reviewId: number | undefined = 0;
+    let userId: number | undefined = 0;
+
+    userId = this.userService.getUserId();
+    if (userId != undefined) {
+      this.reviewService.getReviewByGameAndUserId(this.game.id, userId)
+        .subscribe((review) => {
+          if (review != undefined)
+            reviewId = review.id;
+          this.reviewService.gameIdToReview = this.game.id;
+          this.router.navigateByUrl(`editReview/${reviewId}`);
+        });
+    } else this.router.navigateByUrl(`editReview/${reviewId}`);
+  }
+
+  openDialogForDeleting(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: 'Dialog', message: 'Are you sure to delete this ranking?' }
+    });
+    dialogRef.disableClose = true;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
+        this.rankingService.deleteRanking(id).subscribe(
+          () => {
+            this.snackBar.open('The award has been deleted successfully from this game.', 'Close', {
+              duration: 1500
+            });
+            this.delay(1600);
+            this.reloadCurrentPage();
+          }
+        );
+      }
+    });
+  }
+
+  reloadCurrentPage() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   defaultPaginatedRequest: PaginatedRequest = {
